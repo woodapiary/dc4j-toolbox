@@ -23,7 +23,7 @@
 /*
  *
  */
-package info.dc4j.dc4j_toolbox;
+package info.dc4j.toolbox;
 
 import static org.junit.Assert.assertTrue;
 
