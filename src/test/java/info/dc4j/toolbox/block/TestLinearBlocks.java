@@ -151,7 +151,16 @@ public class TestLinearBlocks {
    */
   @Test
   public void testIntegrator() {
-    // TODO
+    Step spUa = new Step("Ua");
+    spUa.setT0(0.0);
+    Integrator int1 =  new Integrator(spUa.out());
+    for (int i = 1; i < 3000; i++) {
+      spUa.run();
+      int1.run();
+      //System.out.println(int1.toString());
+    }
+    assertTrue(int1.out().getValue() > 2.9);
+    assertTrue(int1.out().getValue() < 3.1);
   }
 
 }
