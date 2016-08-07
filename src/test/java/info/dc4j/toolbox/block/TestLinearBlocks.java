@@ -33,6 +33,7 @@ import info.dc4j.toolbox.block.connector.DoubleConnector;
 import info.dc4j.toolbox.block.generator.Step;
 import info.dc4j.toolbox.block.linear.Adder;
 import info.dc4j.toolbox.block.linear.Gain;
+import info.dc4j.toolbox.block.linear.Integrator;
 import info.dc4j.toolbox.block.linear.Loopback;
 import info.dc4j.toolbox.block.linear.PT1;
 
