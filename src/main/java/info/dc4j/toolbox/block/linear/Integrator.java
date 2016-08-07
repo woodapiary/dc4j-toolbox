@@ -82,7 +82,7 @@ public class Integrator extends LinearBlock {
   protected void eval() {
     double y1 = out().getValue();
     double u = getU0().getValue();
-    double y = (u - y1) / ti + y1;
+    double y = u * dt / ti + y1;
     out().setValue(y);
   }
 
