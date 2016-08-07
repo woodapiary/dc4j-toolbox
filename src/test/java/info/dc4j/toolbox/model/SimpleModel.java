@@ -20,53 +20,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/*
- *
- */
-package info.dc4j.toolbox;
+package info.dc4j.toolbox.model;
 
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Test;
-
-import info.dc4j.toolbox.block.generator.Sin;
+import info.dc4j.toolbox.block.CompositeBlock;
 import info.dc4j.toolbox.block.generator.Step;
+import info.dc4j.toolbox.block.linear.Adder;
+import info.dc4j.toolbox.block.linear.PT1;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class TestGeneratorBlocks.
- */
-public class TestGeneratorBlocks {
+public class SimpleModel extends Model {
 
-  /**
-   * Test sin.
-   */
-  @Test
-  public void testSin() {
+  @Override
+  public void create() {
+    CompositeBlock comp1 = new CompositeBlock("b1", 0, 1, 0, 0);
+    add(comp1);
+    Step step1 = new Step("St1");
+    comp1.add(step1);
+    PT1 pt1 = new PT1("Pt1", step1.out());
+    comp1.add(pt1);
+    comp1.getY(0).setChain(pt1.out());
 
-    Sin sin = new Sin();
-    for (int i = 0; i < 3000; i++) {
-      sin.run();
-      // System.out.println(sin.toString());
-    }
-    assertTrue(sin.out().getValue() > 0.1);
-    assertTrue(sin.out().getValue() < 0.2);
-  }
+    CompositeBlock comp2 = new CompositeBlock("b2", 1, 1, 0, 0);
+    add(comp2);
+    Step step2 = new Step("St2", getDs("st2_a"), 1);
+    comp2.add(step2);
+    Adder adder = new Adder("Add2", step2.out(), comp2.getU(0));
+    comp2.add(adder);
+    PT1 pt2 = new PT1("Pt2", adder.out());
+    comp2.add(pt2);
+    comp2.getY(0).setChain(pt2.out());
 
-  /**
-   * Test step.
-   */
-  @Test
-  public void testStep() {
+    comp2.getU(0).setChain(comp1.getY(0));
 
-    Step step = new Step();
-    step.setT0(0.5);
-    step.run();
-    assertTrue(step.out().getValue() == 0);
-    for (int i = 0; i < 3000; i++) {
-      step.run();
-    }
-    assertTrue(step.out().getValue() == 1);
+    watch(comp1.getY(0));
+    watch(comp2.getU(0));
+    watch(comp2.getY(0));
+    watch(adder.out());
+    watch(pt2.out());
   }
 
 }

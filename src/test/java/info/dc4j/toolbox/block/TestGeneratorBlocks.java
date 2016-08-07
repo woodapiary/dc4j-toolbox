@@ -23,38 +23,50 @@
 /*
  *
  */
-package info.dc4j.toolbox;
+package info.dc4j.toolbox.block;
 
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import info.dc4j.toolbox.block.CompositeBlock;
+import info.dc4j.toolbox.block.generator.Sin;
 import info.dc4j.toolbox.block.generator.Step;
-import info.dc4j.toolbox.block.linear.PT1;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class TestBaseBlocks.
+ * The Class TestGeneratorBlocks.
  */
-public class TestBaseBlocks {
+public class TestGeneratorBlocks {
 
   /**
-   * Test composite.
+   * Test sin.
    */
   @Test
-  public void testComposite() {
-    CompositeBlock comp = new CompositeBlock("model", 0, 1, 0, 0);
-    Step step = new Step();
-    comp.add(step);
-    PT1 pt = new PT1(step.out());
-    comp.add(pt);
-    comp.getY(0).setChain(pt.out());
+  public void testSin() {
+
+    Sin sin = new Sin();
     for (int i = 0; i < 3000; i++) {
-      comp.run();
-      // System.out.println(comp.toString());
+      sin.run();
+      // System.out.println(sin.toString());
     }
-    assertTrue(comp.getY(0).getValue() < 1.0);
-    assertTrue(comp.getY(0).getValue() > 0.8);
+    assertTrue(sin.out().getValue() > 0.1);
+    assertTrue(sin.out().getValue() < 0.2);
   }
+
+  /**
+   * Test step.
+   */
+  @Test
+  public void testStep() {
+
+    Step step = new Step();
+    step.setT0(0.5);
+    step.run();
+    assertTrue(step.out().getValue() == 0);
+    for (int i = 0; i < 3000; i++) {
+      step.run();
+    }
+    assertTrue(step.out().getValue() == 1);
+  }
+
 }
