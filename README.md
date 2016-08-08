@@ -5,7 +5,7 @@
 # Control system toolbox
 
 ##Continuous
- *  **Derivative **      Output time derivative of input
+ *  **Derivative** - Output time derivative of input
  * Integrator      Limited  Integrate signal
  * PID             Simulate continuous PID controllers
  * TransferFcn     Model linear system by transfer function
