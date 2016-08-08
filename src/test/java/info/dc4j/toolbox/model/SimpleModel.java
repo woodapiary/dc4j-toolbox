@@ -20,14 +20,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package info.dc4j.toolbox.model;
 
 import info.dc4j.toolbox.block.CompositeBlock;
-import info.dc4j.toolbox.block.generator.Step;
-import info.dc4j.toolbox.block.linear.Adder;
-import info.dc4j.toolbox.block.linear.PT1;
+import info.dc4j.toolbox.block.continuous.PT1;
+import info.dc4j.toolbox.block.math.Sum;
+import info.dc4j.toolbox.block.source.Step;
 
 public class SimpleModel extends Model {
+
 
   @Override
   public void create() {
@@ -43,7 +45,7 @@ public class SimpleModel extends Model {
     add(comp2);
     Step step2 = new Step("St2", getDs("st2_a"), 1);
     comp2.add(step2);
-    Adder adder = new Adder("Add2", step2.out(), comp2.getU(0));
+    Sum adder = new Sum("Add2", step2.out(), comp2.getU(0));
     comp2.add(adder);
     PT1 pt2 = new PT1("Pt2", adder.out());
     comp2.add(pt2);

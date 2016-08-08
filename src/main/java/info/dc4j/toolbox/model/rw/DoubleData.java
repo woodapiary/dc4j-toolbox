@@ -20,63 +20,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/*
- *
- */
+
 package info.dc4j.toolbox.model.rw;
 
 import java.io.Serializable;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class DoubleData.
- */
 public class DoubleData implements Serializable {
 
-  /** The Constant serialVersionUID. */
   private static final long serialVersionUID = -2347569693139477304L;
-
-  /** The key. */
   private final String key;
-
-  /** The value. */
   private final double value;
 
-  /**
-   * Instantiates a new double data.
-   *
-   * @param key the key
-   * @param value the value
-   */
   public DoubleData(String key, double value) {
     super();
     this.key = key;
     this.value = value;
   }
 
-  /**
-   * Gets the key.
-   *
-   * @return the key
-   */
   public String getKey() {
     return key;
   }
 
-  /**
-   * Gets the value.
-   *
-   * @return the value
-   */
   public double getValue() {
     return value;
   }
 
-
-
-  /* (non-Javadoc)
-   * @see java.lang.Object#hashCode()
-   */
   @Override
   public int hashCode() {
     final int prime = 31;
@@ -88,9 +56,6 @@ public class DoubleData implements Serializable {
     return result;
   }
 
-  /* (non-Javadoc)
-   * @see java.lang.Object#equals(java.lang.Object)
-   */
   @Override
   public boolean equals(Object obj) {
     if (this == obj) {
@@ -116,9 +81,6 @@ public class DoubleData implements Serializable {
     return true;
   }
 
-  /* (non-Javadoc)
-   * @see java.lang.Object#toString()
-   */
   @Override
   public String toString() {
     return "Setting [key=" + key + ", value=" + value + "]";

@@ -21,49 +21,27 @@
  * THE SOFTWARE.
  */
 
-package info.dc4j.toolbox.block.connector;
+package info.dc4j.toolbox.block.math;
 
-import info.dc4j.toolbox.block.Block;
-import info.dc4j.toolbox.model.rw.BoolData;
+import static org.junit.Assert.assertTrue;
 
-public class BoolConnector extends Connector {
+import org.junit.Test;
 
-  private boolean value;
+import info.dc4j.toolbox.block.connector.DoubleConnector;
 
-  public BoolConnector(Block source, String name) {
-    super(source, name);
-  }
+public class TestGain {
 
-  public BoolConnector(String name) {
-    super(null, name);
-  }
+  @Test
+  public void testGain() {
+    DoubleConnector in = new DoubleConnector("const");
+    in.setValue(1.0);
+    Gain gain = new Gain(in);
+    gain.run();
+    assertTrue(gain.out().getValue() == 1.0);
+    for (int i = 1; i < 3000; i++) {
+      gain.run();
 
-  public BoolConnector() {
-    super(null, null);
-  }
-
-  public boolean getValue() {
-    if (chain != null) {
-      return getChain().getValue();
     }
-    return value;
+    assertTrue(gain.out().getValue() == 1.0);
   }
-
-  public void setValue(boolean value) {
-    this.value = value;
-  }
-
-  public BoolConnector getChain() {
-    return (BoolConnector) chain;
-  }
-
-  public BoolData getData() {
-    return new BoolData(getName(), value);
-  }
-
-  @Override
-  public String toString() {
-    return super.toString() + " " + getValue();
-  }
-
 }

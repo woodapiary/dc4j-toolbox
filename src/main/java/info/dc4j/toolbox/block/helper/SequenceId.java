@@ -20,45 +20,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/*
- *
- */
+
 package info.dc4j.toolbox.block.helper;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class SequenceId.
- */
 public final class SequenceId {
 
-  /** The block seq. */
   private static int blockSeq;
-
-  /** The conn seq. */
   private static int connSeq;
 
-  /**
-   * Instantiates a new sequence id.
-   */
   private SequenceId() {
 
   }
 
-  /**
-   * Gets the block id.
-   *
-   * @return the block id
-   */
   public static int getBlockId() {
     blockSeq++;
     return blockSeq;
   }
 
-  /**
-   * Gets the conn id.
-   *
-   * @return the conn id
-   */
   public static int getConnId() {
     connSeq++;
     return connSeq;

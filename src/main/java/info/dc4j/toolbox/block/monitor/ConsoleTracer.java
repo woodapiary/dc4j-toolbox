@@ -20,60 +20,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/*
- *
- */
-package info.dc4j.toolbox.block.linear;
 
-import info.dc4j.toolbox.block.LinearBlock;
+package info.dc4j.toolbox.block.monitor;
+
+import java.util.Date;
+import java.util.List;
+
+import info.dc4j.toolbox.block.connector.BoolConnector;
 import info.dc4j.toolbox.block.connector.DoubleConnector;
 
-// TODO: Auto-generated Javadoc
-//y = u1 + u2
+public class ConsoleTracer implements ITracable {
 
-/**
- * The Class Adder.
- */
-public class Adder extends LinearBlock {
-
-  /**
-   * Instantiates a new adder.
-   *
-   * @param name the name
-   * @param u1 the u 1
-   * @param u2 the u 2
-   */
-  public Adder(String name, DoubleConnector u1, DoubleConnector u2) {
-    super(name);
-    if (u1 == null) {
-      throw new IllegalArgumentException("null connector");
-    }
-    if (u2 == null) {
-      throw new IllegalArgumentException("null connector");
-    }
-    DoubleConnector y = new DoubleConnector(this, "Out");
-    setConnectorU0U1Y0(u1, u2, y);
-  }
-
-  /**
-   * Instantiates a new adder.
-   *
-   * @param u1 the u 1
-   * @param u2 the u 2
-   */
-  public Adder(DoubleConnector u1, DoubleConnector u2) {
-    this("Adder", u1, u2);
-  }
-
-  /* (non-Javadoc)
-   * @see info.dc4j.dc4j_toolbox.block.Block#eval()
-   */
   @Override
-  protected void eval() {
-    double u1 = getU0().getValue();
-    double u2 = getU1().getValue();
-    double y = u1 + u2;
-    out().setValue(y);
+  public void trace(long step, double t, List<DoubleConnector> dConn, List<BoolConnector> bConn) {
+    System.out.printf("%tT  ", new Date());
+    System.out.printf("%07d  ", step);
+    System.out.printf("t=");
+    System.out.printf("%8.3f  ", t);
+    for (DoubleConnector conn : dConn) {
+      System.out.printf(conn.getName() + "=");
+      System.out.printf("%8.3f  ", conn.getValue());
+    }
+    System.out.printf("%n");
   }
-
 }

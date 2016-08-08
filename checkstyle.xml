@@ -32,10 +32,10 @@
     Source = https://github.com/checkstyle/checkstyle/tree/master/src/main/resources
 
     Checkstyle configurartion that checks the Google coding conventions from:
-    
+
     -  Google Java Style
        https://google-styleguide.googlecode.com/svn-history/r130/trunk/javaguide.html
-       
+
     Checkstyle is very configurable. Be sure to read the documentation at
     http://checkstyle.sf.net (or in your downloaded distribution).
 
@@ -44,12 +44,12 @@
     To completely disable a check, just comment it out or delete it from the file.
 
     Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov.
-    
+
  -->
 
 <module name="Checker">
     <property name="charset" value="UTF-8"/>
-	
+
 	<property name="fileExtensions" value="java, xml, properties"/>
 
     <property name="severity" value="error"/>
@@ -120,7 +120,7 @@
             <property name="tokens" value="COMMA"/>
             <property name="option" value="EOL"/>
         </module>
-		
+
         <!-- Checks for Naming Conventions.                  -->
         <!-- See http://checkstyle.sf.net/config_naming.html -->
         <module name="ConstantName"/>
@@ -177,7 +177,7 @@
             <property name="target" value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF"/>
         </module>
         <module name="JavadocMethod">
-            <property name="scope" value="public"/>
+            <property name="scope" value="nothing"/>
             <property name="allowMissingParamTags" value="true"/>
             <property name="allowMissingThrowsTags" value="true"/>
             <property name="allowMissingReturnTag" value="true"/>

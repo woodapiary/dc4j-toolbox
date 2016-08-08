@@ -20,9 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/*
- *
- */
+
 package info.dc4j.toolbox.model.rw;
 
 import java.io.Serializable;
@@ -31,76 +29,39 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class Settings.
- */
 public class Settings implements Serializable {
 
-  /** The Constant serialVersionUID. */
   private static final long serialVersionUID = -1101844193863102298L;
-
-  /** The double list. */
   private final List<DoubleData> doubleList;
-
-  /** The bool list. */
   private final List<BoolData> boolList;
-
-  /** The dt. */
   private double dt = 0.001;
-
-  /** The max time. */
   private double maxTime = 10;
-
-  /** The trace level. */
   private int traceLevel = 100;
-
-  /** The double map. */
   private transient Map<String, DoubleData> doubleMap;
-
-  /** The bool map. */
   private transient Map<String, BoolData> boolMap;
 
-  /**
-   * Instantiates a new settings.
-   */
   public Settings() {
-    doubleList = new ArrayList<DoubleData>();
-    boolList = new ArrayList<BoolData>();
-    doubleMap = new HashMap<String, DoubleData>();
-    boolMap = new HashMap<String, BoolData>();
+    doubleList = new ArrayList<>();
+    boolList = new ArrayList<>();
+    doubleMap = new HashMap<>();
+    boolMap = new HashMap<>();
   }
 
-  /**
-   * Adds the ds.
-   *
-   * @param key the key
-   * @param val the val
-   */
   public void addDs(String key, double val) {
     DoubleData data = new DoubleData(key, val);
     doubleMap.put(key, data);
     doubleList.add(data);
   }
 
-  /**
-   * Adds the bs.
-   *
-   * @param key the key
-   * @param val the val
-   */
   public void addBs(String key, boolean val) {
     BoolData data = new BoolData(key, val);
     boolMap.put(key, data);
     boolList.add(data);
   }
 
-  /**
-   * Inits the.
-   */
   public void init() {
-    doubleMap = new HashMap<String, DoubleData>();
-    boolMap = new HashMap<String, BoolData>();
+    doubleMap = new HashMap<>();
+    boolMap = new HashMap<>();
 
     for (DoubleData val : doubleList) {
       doubleMap.put(val.getKey(), val);
@@ -110,76 +71,34 @@ public class Settings implements Serializable {
     }
   }
 
-  /**
-   * Gets the dt.
-   *
-   * @return the dt
-   */
   public double getDt() {
     return dt;
   }
 
-  /**
-   * Gets the max time.
-   *
-   * @return the max time
-   */
   public double getMaxTime() {
     return maxTime;
   }
 
-  /**
-   * Gets the trace level.
-   *
-   * @return the trace level
-   */
   public int getTraceLevel() {
     return traceLevel;
   }
 
-  /**
-   * Gets the ds.
-   *
-   * @param key the key
-   * @return the ds
-   */
   public double getDs(String key) {
     return doubleMap.get(key).getValue();
   }
 
-  /**
-   * Gets the bs.
-   *
-   * @param key the key
-   * @return the bs
-   */
   public boolean getBs(String key) {
     return boolMap.get(key).getValue();
   }
 
-  /**
-   * Sets the dt.
-   *
-   * @param dt the new dt
-   */
   public void setDt(double dt) {
     this.dt = dt;
   }
 
-  /**
-   * Sets the max time.
-   *
-   * @param maxTime the new max time
-   */
   public void setMaxTime(double maxTime) {
     this.maxTime = maxTime;
   }
 
-  /**
-   * Sets the trace level.
-   *
-   * @param traceLevel the new trace level
-   */
   public void setTraceLevel(int traceLevel) {
     this.traceLevel = traceLevel;
   }

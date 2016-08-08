@@ -20,50 +20,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package info.dc4j.toolbox.block;
 
-package info.dc4j.toolbox.block.connector;
+import static org.junit.Assert.assertTrue;
 
-import info.dc4j.toolbox.block.Block;
-import info.dc4j.toolbox.model.rw.BoolData;
+import org.junit.Test;
 
-public class BoolConnector extends Connector {
+import info.dc4j.toolbox.block.continuous.PT1;
+import info.dc4j.toolbox.block.source.Step;
 
-  private boolean value;
+public class TestCompositeBlock {
 
-  public BoolConnector(Block source, String name) {
-    super(source, name);
-  }
+  @Test
+  public void testComposite() {
+    CompositeBlock comp = new CompositeBlock("model", 0, 1, 0, 0);
+    Step step = new Step();
+    comp.add(step);
+    PT1 pt = new PT1(step.out());
+    comp.add(pt);
+    comp.getY(0).setChain(pt.out());
+    for (int i = 0; i < 3000; i++) {
+      comp.run();
 
-  public BoolConnector(String name) {
-    super(null, name);
-  }
-
-  public BoolConnector() {
-    super(null, null);
-  }
-
-  public boolean getValue() {
-    if (chain != null) {
-      return getChain().getValue();
     }
-    return value;
+    assertTrue(comp.getY(0).getValue() < 1.0);
+    assertTrue(comp.getY(0).getValue() > 0.8);
   }
-
-  public void setValue(boolean value) {
-    this.value = value;
-  }
-
-  public BoolConnector getChain() {
-    return (BoolConnector) chain;
-  }
-
-  public BoolData getData() {
-    return new BoolData(getName(), value);
-  }
-
-  @Override
-  public String toString() {
-    return super.toString() + " " + getValue();
-  }
-
 }

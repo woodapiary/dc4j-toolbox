@@ -20,35 +20,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/*
- *
- */
-package info.dc4j.toolbox.block.linear;
+
+package info.dc4j.toolbox.block.continuous;
 
 import info.dc4j.toolbox.block.LinearBlock;
 import info.dc4j.toolbox.block.connector.DoubleConnector;
 
-// TODO: Auto-generated Javadoc
-// y = k*u/(1+Ts)
+public class Integrator extends LinearBlock {
 
-/**
- * The Class PT1.
- */
-public class PT1 extends LinearBlock {
+  private double ti = 1.0;
 
-  /** The k. */
-  private double k = 1.0;
-
-  /** The tf. */
-  private double tf = 1.0;
-
-  /**
-   * Instantiates a new pt1.
-   *
-   * @param name the name
-   * @param u the u
-   */
-  public PT1(String name, DoubleConnector u) {
+  public Integrator(String name, DoubleConnector u) {
     super(name);
     if (u == null) {
       throw new IllegalArgumentException("null connector");
@@ -57,76 +39,31 @@ public class PT1 extends LinearBlock {
     setConnectorU0Y0(u, y);
   }
 
-  /**
-   * Instantiates a new pt1.
-   *
-   * @param u the u
-   */
-  public PT1(DoubleConnector u) {
-    this("PT1", u);
+  public Integrator(DoubleConnector u) {
+    this("Integrator", u);
   }
 
-  /**
-   * Instantiates a new pt1.
-   *
-   * @param name the name
-   * @param k the k
-   * @param tf the tf
-   * @param u the u
-   */
-  public PT1(String name, double k, double tf, DoubleConnector u) {
+  public Integrator(String name, double ti, DoubleConnector u) {
     this(name, u);
-    setK(k);
-    setTf(tf);
+    setT(ti);
   }
 
-  /* (non-Javadoc)
-   * @see info.dc4j.dc4j_toolbox.block.Block#eval()
-   */
   @Override
   protected void eval() {
-    double ku = k / (1 + tf / dt);
-    double ky1 = 1 / (1 + dt / tf);
     double y1 = out().getValue();
     double u = getU0().getValue();
-    double y = ky1 * y1 + ku * u;
+    double y = u * dt / ti + y1;
     out().setValue(y);
   }
 
-  /**
-   * Gets the k.
-   *
-   * @return the k
-   */
-  public double getK() {
-    return k;
-  }
-
-  /**
-   * Sets the k.
-   *
-   * @param k the new k
-   */
-  public void setK(double k) {
-    this.k = k;
-  }
-
-  /* (non-Javadoc)
-   * @see info.dc4j.dc4j_toolbox.block.Block#getT()
-   */
   @Override
   public double getT() {
-    return tf;
+    return ti;
   }
 
-  /**
-   * Sets the tf.
-   *
-   * @param tf the new tf
-   */
-  public void setTf(double tf) {
-    this.tf = tf;
-    if (tf <= 0) {
+  public void setT(double ti) {
+    this.ti = ti;
+    if (ti <= 0) {
       throw new IllegalArgumentException("T must be over zero");
     }
   }

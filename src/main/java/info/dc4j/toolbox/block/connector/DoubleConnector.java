@@ -20,54 +20,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/*
- * 
- */
+
 package info.dc4j.toolbox.block.connector;
 
 import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.model.rw.DoubleData;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class DoubleConnector.
- */
 public class DoubleConnector extends Connector {
 
-  /** The value. */
   private double value;
 
-  /**
-   * Instantiates a new double connector.
-   *
-   * @param source the source
-   * @param name the name
-   */
   public DoubleConnector(Block source, String name) {
     super(source, name);
   }
 
-  /**
-   * Instantiates a new double connector.
-   *
-   * @param name the name
-   */
   public DoubleConnector(String name) {
     super(null, name);
   }
 
-  /**
-   * Instantiates a new double connector.
-   */
   public DoubleConnector() {
     super(null, null);
   }
 
-  /**
-   * Gets the value.
-   *
-   * @return the value
-   */
   public double getValue() {
     if (chain != null) {
       return getChain().getValue();
@@ -75,36 +49,18 @@ public class DoubleConnector extends Connector {
     return value;
   }
 
-  /**
-   * Sets the value.
-   *
-   * @param value the new value
-   */
   public void setValue(double value) {
     this.value = value;
   }
 
-  /**
-   * Gets the chain.
-   *
-   * @return the chain
-   */
   public DoubleConnector getChain() {
     return (DoubleConnector) chain;
   }
 
-  /**
-   * Gets the data.
-   *
-   * @return the data
-   */
   public DoubleData getData() {
     return new DoubleData(getName(), value);
   }
 
-  /* (non-Javadoc)
-   * @see info.dc4j.dc4j_toolbox.block.connector.Connector#toString()
-   */
   @Override
   public String toString() {
     return super.toString() + ", value=" + getValue();

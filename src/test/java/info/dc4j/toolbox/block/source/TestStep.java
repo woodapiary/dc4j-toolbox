@@ -20,36 +20,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/*
- *
- */
-package info.dc4j.toolbox.block.monitor;
 
-import java.util.Date;
-import java.util.List;
+package info.dc4j.toolbox.block.source;
 
-import info.dc4j.toolbox.block.connector.BoolConnector;
-import info.dc4j.toolbox.block.connector.DoubleConnector;
+import static org.junit.Assert.assertTrue;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class PrintfTracer.
- */
-public class PrintfTracer implements ITracable {
+import org.junit.Test;
 
-  /* (non-Javadoc)
-   * @see info.dc4j.dc4j_toolbox.block.monitor.ITracable#trace(long, double, java.util.List, java.util.List)
-   */
-  @Override
-  public void trace(long step, double t, List<DoubleConnector> dConn, List<BoolConnector> bConn) {
-    System.out.printf("%tT  ", new Date());
-    System.out.printf("%07d  ", step);
-    System.out.printf("t=");
-    System.out.printf("%8.3f  ", t);
-    for (DoubleConnector conn : dConn) {
-      System.out.printf(conn.getName() + "=");
-      System.out.printf("%8.3f  ", conn.getValue());
+public class TestStep {
+
+  @Test
+  public void testStep() {
+
+    Step step = new Step();
+    step.setT0(0.5);
+    step.run();
+    assertTrue(step.out().getValue() == 0);
+    for (int i = 0; i < 3000; i++) {
+      step.run();
     }
-    System.out.printf("%n");
+    assertTrue(step.out().getValue() == 1);
   }
 }

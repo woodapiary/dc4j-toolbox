@@ -20,105 +20,63 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/*
- *
- */
-package info.dc4j.toolbox.block.generator;
+
+package info.dc4j.toolbox.block.continuous;
 
 import info.dc4j.toolbox.block.LinearBlock;
 import info.dc4j.toolbox.block.connector.DoubleConnector;
 
-// TODO: Auto-generated Javadoc
-//y = A, t > t0
+public class PT1 extends LinearBlock {
 
-/**
- * The Class Step.
- */
-public class Step extends LinearBlock {
+  private double k = 1.0;
+  private double tf = 1.0;
 
-  /** The a. */
-  private double a = 1.0;
-
-  /** The t 0. */
-  private double t0 = 1.0;
-
-  /**
-   * Instantiates a new step.
-   */
-  public Step() {
-    this("Step");
-  }
-
-  /**
-   * Instantiates a new step.
-   *
-   * @param name the name
-   */
-  public Step(String name) {
+  public PT1(String name, DoubleConnector u) {
     super(name);
+    if (u == null) {
+      throw new IllegalArgumentException("null connector");
+    }
     DoubleConnector y = new DoubleConnector(this, "Out");
-    setY(y);
+    setConnectorU0Y0(u, y);
   }
 
-  /**
-   * Instantiates a new step.
-   *
-   * @param name the name
-   * @param a the a
-   * @param t0 the t 0
-   */
-  public Step(String name, double a, double t0) {
-    this(name);
-    setA(a);
-    setT0(t0);
+  public PT1(DoubleConnector u) {
+    this("PT1", u);
   }
 
-  /* (non-Javadoc)
-   * @see info.dc4j.dc4j_toolbox.block.Block#eval()
-   */
+  public PT1(String name, double k, double tf, DoubleConnector u) {
+    this(name, u);
+    setK(k);
+    setTf(tf);
+  }
+
   @Override
   protected void eval() {
-    double y = 0;
-    if (t >= t0) {
-      y = a;
-    }
+    double ku = k / (1 + tf / dt);
+    double ky1 = 1 / (1 + dt / tf);
+    double y1 = out().getValue();
+    double u = getU0().getValue();
+    double y = ky1 * y1 + ku * u;
     out().setValue(y);
   }
 
-  /**
-   * Gets the a.
-   *
-   * @return the a
-   */
-  public double getA() {
-    return a;
+  public double getK() {
+    return k;
   }
 
-  /**
-   * Sets the a.
-   *
-   * @param a the new a
-   */
-  public void setA(double a) {
-    this.a = a;
+  public void setK(double k) {
+    this.k = k;
   }
 
-  /**
-   * Gets the t0.
-   *
-   * @return the t0
-   */
-  public double getT0() {
-    return t0;
+  @Override
+  public double getT() {
+    return tf;
   }
 
-  /**
-   * Sets the t0.
-   *
-   * @param t0 the new t0
-   */
-  public void setT0(double t0) {
-    this.t0 = t0;
+  public void setTf(double tf) {
+    this.tf = tf;
+    if (tf <= 0) {
+      throw new IllegalArgumentException("T must be over zero");
+    }
   }
-
 }

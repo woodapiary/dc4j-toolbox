@@ -20,50 +20,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/*
- *
- */
-package info.dc4j.toolbox.model.rw;
+package info.dc4j.toolbox.block.continuous;
+import static org.junit.Assert.assertTrue;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import org.junit.Test;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class Result.
- */
-public class Result implements Serializable {
+import info.dc4j.toolbox.block.connector.DoubleConnector;
 
-  /** The Constant serialVersionUID. */
-  private static final long serialVersionUID = 5606738581593595781L;
+public class TestPT1 {
 
-  /** The lines. */
-  private final List<ResultLine> lines;
+  @Test
+  public void testPT1() {
+    DoubleConnector in = new DoubleConnector("const");
+    in.setValue(1.0);
+    PT1 pt = new PT1(in);
+    pt.run();
+    assertTrue(pt.out().getValue() < 0.1);
+    assertTrue(pt.out().getValue() > 0.0);
+    for (int i = 1; i < 3000; i++) {
+      pt.run();
 
-  /**
-   * Instantiates a new result.
-   */
-  public Result() {
-    lines = new ArrayList<ResultLine>();
+    }
+    assertTrue(pt.out().getValue() < 1.0);
+    assertTrue(pt.out().getValue() > 0.9);
   }
-
-  /**
-   * Adds the line.
-   *
-   * @param line the line
-   */
-  public void addLine(ResultLine line) {
-    lines.add(line);
-  }
-
-  /**
-   * Gets the lines.
-   *
-   * @return the lines
-   */
-  public List<ResultLine> getLines() {
-    return lines;
-  }
-
 }

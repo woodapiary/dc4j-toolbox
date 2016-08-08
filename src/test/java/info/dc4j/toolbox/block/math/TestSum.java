@@ -21,49 +21,39 @@
  * THE SOFTWARE.
  */
 
-package info.dc4j.toolbox.block.connector;
+package info.dc4j.toolbox.block.math;
 
-import info.dc4j.toolbox.block.Block;
-import info.dc4j.toolbox.model.rw.BoolData;
+import static org.junit.Assert.assertTrue;
 
-public class BoolConnector extends Connector {
+import org.junit.Test;
 
-  private boolean value;
+import info.dc4j.toolbox.block.source.Step;
 
-  public BoolConnector(Block source, String name) {
-    super(source, name);
-  }
+public class TestSum {
 
-  public BoolConnector(String name) {
-    super(null, name);
-  }
+  @Test
+  public void testAdder() {
+    Step spUa = new Step("Ua");
+    spUa.setT0(1.0);
+    Step spUb = new Step("Ub");
+    spUb.setT0(2.0);
+    Sum sU = new Sum("sU", spUa.out(), spUb.out());
+    spUa.run();
+    spUb.run();
+    sU.run();
+    assertTrue(sU.out().getValue() == 0.0);
+    for (int i = 1; i < 1500; i++) {
+      spUa.run();
+      spUb.run();
+      sU.run();
 
-  public BoolConnector() {
-    super(null, null);
-  }
-
-  public boolean getValue() {
-    if (chain != null) {
-      return getChain().getValue();
     }
-    return value;
+    assertTrue(sU.out().getValue() == 1.0);
+    for (int i = 1500; i < 3000; i++) {
+      spUa.run();
+      spUb.run();
+      sU.run();
+    }
+    assertTrue(sU.out().getValue() == 2.0);
   }
-
-  public void setValue(boolean value) {
-    this.value = value;
-  }
-
-  public BoolConnector getChain() {
-    return (BoolConnector) chain;
-  }
-
-  public BoolData getData() {
-    return new BoolData(getName(), value);
-  }
-
-  @Override
-  public String toString() {
-    return super.toString() + " " + getValue();
-  }
-
 }

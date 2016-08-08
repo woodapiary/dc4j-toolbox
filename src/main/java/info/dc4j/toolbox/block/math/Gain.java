@@ -20,102 +20,47 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/*
- *
- */
-package info.dc4j.toolbox.block.generator;
+
+package info.dc4j.toolbox.block.math;
 
 import info.dc4j.toolbox.block.LinearBlock;
 import info.dc4j.toolbox.block.connector.DoubleConnector;
 
-// TODO: Auto-generated Javadoc
-//y = A, t > t0
+public class Gain extends LinearBlock {
 
-/**
- * The Class Sin.
- */
-public class Sin extends LinearBlock {
+  private double k = 1.0;
 
-  /** The a. */
-  private double a = 1.0;
-
-  /** The w. */
-  private double w = 1.0;
-
-  /**
-   * Instantiates a new sin.
-   */
-  public Sin() {
-    this("Sin");
-  }
-
-  /**
-   * Instantiates a new sin.
-   *
-   * @param name the name
-   */
-  public Sin(String name) {
+  public Gain(String name, DoubleConnector u) {
     super(name);
+    if (u == null) {
+      throw new IllegalArgumentException("null connector");
+    }
     DoubleConnector y = new DoubleConnector(this, "Out");
-    setY(y);
+    setConnectorU0Y0(u, y);
   }
 
-  /**
-   * Instantiates a new sin.
-   *
-   * @param name the name
-   * @param a the a
-   * @param w the w
-   */
-  public Sin(String name, double a, double w) {
-    this(name);
-    setA(a);
-    setW(w);
+  public Gain(String name, double k, DoubleConnector u) {
+    this(name, u);
+    setK(k);
   }
 
-  /* (non-Javadoc)
-   * @see info.dc4j.dc4j_toolbox.block.Block#eval()
-   */
+  public Gain(DoubleConnector u) {
+    this("Gain", u);
+  }
+
   @Override
   protected void eval() {
-    double y = a * Math.sin(t * w);
+    double u = getU0().getValue();
+    double y = k * u;
     out().setValue(y);
   }
 
-  /**
-   * Gets the a.
-   *
-   * @return the a
-   */
-  public double getA() {
-    return a;
+  public double getK() {
+    return k;
   }
 
-  /**
-   * Sets the a.
-   *
-   * @param a the new a
-   */
-  public void setA(double a) {
-    this.a = a;
-  }
-
-  /**
-   * Gets the w.
-   *
-   * @return the w
-   */
-  public double getW() {
-    return w;
-  }
-
-  /**
-   * Sets the w.
-   *
-   * @param w the new w
-   */
-  public void setW(double w) {
-    this.w = w;
+  public void setK(double k) {
+    this.k = k;
   }
 
 }

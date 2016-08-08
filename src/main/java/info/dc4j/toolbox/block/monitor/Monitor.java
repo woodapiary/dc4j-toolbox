@@ -20,9 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/*
- *
- */
+
 package info.dc4j.toolbox.block.monitor;
 
 import java.util.ArrayList;
@@ -30,47 +28,24 @@ import java.util.List;
 
 import info.dc4j.toolbox.block.Block;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class Monitor.
- */
 public class Monitor extends Block {
 
-  /** The trace level. */
   private int traceLevel = 100;
-
-  /** The tracers. */
   private final List<ITracable> tracers;
 
-  /**
-   * Instantiates a new monitor.
-   */
   public Monitor() {
     super("monitor");
-    this.tracers = new ArrayList<ITracable>();
+    tracers = new ArrayList<>();
   }
 
-  /**
-   * Sets the trace level.
-   *
-   * @param traceLevel the new trace level
-   */
   public void setTraceLevel(int traceLevel) {
     this.traceLevel = traceLevel;
   }
 
-  /**
-   * Adds the tracer.
-   *
-   * @param tracer the tracer
-   */
   public void addTracer(ITracable tracer) {
     tracers.add(tracer);
   }
 
-  /**
-   * Trace.
-   */
   public void trace() {
     if (getStep() % traceLevel == 0 || getStep() == 0) {
       for (ITracable tracer : tracers) {
@@ -79,9 +54,6 @@ public class Monitor extends Block {
     }
   }
 
-  /* (non-Javadoc)
-   * @see info.dc4j.dc4j_toolbox.block.Block#eval()
-   */
   @Override
   protected void eval() {
     trace();

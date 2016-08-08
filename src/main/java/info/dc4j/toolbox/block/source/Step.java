@@ -20,60 +20,56 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/*
- *
- */
-package info.dc4j.toolbox.block.linear;
+
+package info.dc4j.toolbox.block.source;
 
 import info.dc4j.toolbox.block.LinearBlock;
 import info.dc4j.toolbox.block.connector.DoubleConnector;
 
-// TODO: Auto-generated Javadoc
-//y = u1 - u2
+public class Step extends LinearBlock {
 
-/**
- * The Class Loopback.
- */
-public class Loopback extends LinearBlock {
+  private double a = 1.0;
+  private double t0 = 1.0;
 
-  /**
-   * Instantiates a new loopback.
-   *
-   * @param name the name
-   * @param u1 the u 1
-   * @param u2 the u 2
-   */
-  public Loopback(String name, DoubleConnector u1, DoubleConnector u2) {
+  public Step() {
+    this("Step");
+  }
+
+  public Step(String name) {
     super(name);
-    if (u1 == null) {
-      throw new IllegalArgumentException("null connector");
-    }
-    if (u2 == null) {
-      throw new IllegalArgumentException("null connector");
-    }
     DoubleConnector y = new DoubleConnector(this, "Out");
-    setConnectorU0U1Y0(u1, u2, y);
+    setY(y);
   }
 
-  /**
-   * Instantiates a new loopback.
-   *
-   * @param u1 the u 1
-   * @param u2 the u 2
-   */
-  public Loopback(DoubleConnector u1, DoubleConnector u2) {
-    this("Loopback", u1, u2);
+  public Step(String name, double a, double t0) {
+    this(name);
+    setA(a);
+    setT0(t0);
   }
 
-  /* (non-Javadoc)
-   * @see info.dc4j.dc4j_toolbox.block.Block#eval()
-   */
   @Override
   protected void eval() {
-    double u1 = getU0().getValue();
-    double u2 = getU1().getValue();
-    double y = u1 - u2;
+    double y = 0;
+    if (t >= t0) {
+      y = a;
+    }
     out().setValue(y);
+  }
+
+  public double getA() {
+    return a;
+  }
+
+  public void setA(double a) {
+    this.a = a;
+  }
+
+  public double getT0() {
+    return t0;
+  }
+
+  public void setT0(double t0) {
+    this.t0 = t0;
   }
 
 }

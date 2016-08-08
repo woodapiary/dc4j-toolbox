@@ -20,50 +20,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package info.dc4j.toolbox.block.continuous;
 
-package info.dc4j.toolbox.block.connector;
+import static org.junit.Assert.assertTrue;
 
-import info.dc4j.toolbox.block.Block;
-import info.dc4j.toolbox.model.rw.BoolData;
+import org.junit.Test;
 
-public class BoolConnector extends Connector {
+import info.dc4j.toolbox.block.source.Step;
 
-  private boolean value;
+public class TestIntegrator {
 
-  public BoolConnector(Block source, String name) {
-    super(source, name);
-  }
+  @Test
+  public void testIntegrator() {
+    Step spUa = new Step("Ua");
+    spUa.setT0(0.0);
+    Integrator int1 = new Integrator(spUa.out());
+    for (int i = 1; i < 3000; i++) {
+      spUa.run();
+      int1.run();
 
-  public BoolConnector(String name) {
-    super(null, name);
-  }
-
-  public BoolConnector() {
-    super(null, null);
-  }
-
-  public boolean getValue() {
-    if (chain != null) {
-      return getChain().getValue();
     }
-    return value;
+    assertTrue(int1.out().getValue() > 2.9);
+    assertTrue(int1.out().getValue() < 3.1);
   }
-
-  public void setValue(boolean value) {
-    this.value = value;
-  }
-
-  public BoolConnector getChain() {
-    return (BoolConnector) chain;
-  }
-
-  public BoolData getData() {
-    return new BoolData(getName(), value);
-  }
-
-  @Override
-  public String toString() {
-    return super.toString() + " " + getValue();
-  }
-
 }

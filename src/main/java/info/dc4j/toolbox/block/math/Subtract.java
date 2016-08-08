@@ -21,49 +21,35 @@
  * THE SOFTWARE.
  */
 
-package info.dc4j.toolbox.block.connector;
+package info.dc4j.toolbox.block.math;
 
-import info.dc4j.toolbox.block.Block;
-import info.dc4j.toolbox.model.rw.BoolData;
+import info.dc4j.toolbox.block.LinearBlock;
+import info.dc4j.toolbox.block.connector.DoubleConnector;
 
-public class BoolConnector extends Connector {
+public class Subtract extends LinearBlock {
 
-  private boolean value;
-
-  public BoolConnector(Block source, String name) {
-    super(source, name);
-  }
-
-  public BoolConnector(String name) {
-    super(null, name);
-  }
-
-  public BoolConnector() {
-    super(null, null);
-  }
-
-  public boolean getValue() {
-    if (chain != null) {
-      return getChain().getValue();
+  public Subtract(String name, DoubleConnector u1, DoubleConnector u2) {
+    super(name);
+    if (u1 == null) {
+      throw new IllegalArgumentException("null connector");
     }
-    return value;
+    if (u2 == null) {
+      throw new IllegalArgumentException("null connector");
+    }
+    DoubleConnector y = new DoubleConnector(this, "Out");
+    setConnectorU0U1Y0(u1, u2, y);
   }
 
-  public void setValue(boolean value) {
-    this.value = value;
-  }
-
-  public BoolConnector getChain() {
-    return (BoolConnector) chain;
-  }
-
-  public BoolData getData() {
-    return new BoolData(getName(), value);
+  public Subtract(DoubleConnector u1, DoubleConnector u2) {
+    this("Loopback", u1, u2);
   }
 
   @Override
-  public String toString() {
-    return super.toString() + " " + getValue();
+  protected void eval() {
+    double u1 = getU0().getValue();
+    double u2 = getU1().getValue();
+    double y = u1 - u2;
+    out().setValue(y);
   }
 
 }

@@ -20,9 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/*
- *
- */
+
 package info.dc4j.toolbox.block.monitor;
 
 import java.util.ArrayList;
@@ -32,37 +30,26 @@ import info.dc4j.toolbox.block.connector.BoolConnector;
 import info.dc4j.toolbox.block.connector.DoubleConnector;
 import info.dc4j.toolbox.model.rw.BoolData;
 import info.dc4j.toolbox.model.rw.DoubleData;
-import info.dc4j.toolbox.model.rw.Result;
+import info.dc4j.toolbox.model.rw.Response;
 import info.dc4j.toolbox.model.rw.ResultLine;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class MemoryTracer.
- */
 public class MemoryTracer implements ITracable {
 
-  /** The result. */
-  private final Result result;
+  private final Response result;
 
-  /**
-   * Instantiates a new memory tracer.
-   */
   public MemoryTracer() {
     super();
-    this.result = new Result();
+    result = new Response();
   }
 
-  /* (non-Javadoc)
-   * @see info.dc4j.dc4j_toolbox.block.monitor.ITracable#trace(long, double, java.util.List, java.util.List)
-   */
   @Override
   public void trace(long step, double t, List<DoubleConnector> dConn, List<BoolConnector> bConn) {
     ResultLine line = new ResultLine();
     result.addLine(line);
     line.setStep(step);
     line.setT(t);
-    List<DoubleData> doubles = new ArrayList<DoubleData>();
-    List<BoolData> bools = new ArrayList<BoolData>();
+    List<DoubleData> doubles = new ArrayList<>();
+    List<BoolData> bools = new ArrayList<>();
     line.setDoubles(doubles);
     line.setBools(bools);
     for (DoubleConnector conn : dConn) {
@@ -73,12 +60,7 @@ public class MemoryTracer implements ITracable {
     }
   }
 
-  /**
-   * Gets the result.
-   *
-   * @return the result
-   */
-  public Result getResult() {
+  public Response getResult() {
     return result;
   }
 

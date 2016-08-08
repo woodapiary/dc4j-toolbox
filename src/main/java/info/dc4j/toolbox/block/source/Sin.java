@@ -20,89 +20,53 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/*
- *
- */
-package info.dc4j.toolbox.block.linear;
+
+package info.dc4j.toolbox.block.source;
 
 import info.dc4j.toolbox.block.LinearBlock;
 import info.dc4j.toolbox.block.connector.DoubleConnector;
 
-// TODO: Auto-generated Javadoc
-// y = k*u/(1+Ts)
+public class Sin extends LinearBlock {
 
-/**
- * The Class Integrator.
- */
-public class Integrator extends LinearBlock {
+  private double a = 1.0;
+  private double w = 1.0;
 
-  /** The ti. */
-  private double ti = 1.0;
+  public Sin() {
+    this("Sin");
+  }
 
-  /**
-   * Instantiates a new integrator.
-   *
-   * @param name the name
-   * @param u the u
-   */
-  public Integrator(String name, DoubleConnector u) {
+  public Sin(String name) {
     super(name);
-    if (u == null) {
-      throw new IllegalArgumentException("null connector");
-    }
     DoubleConnector y = new DoubleConnector(this, "Out");
-    setConnectorU0Y0(u, y);
+    setY(y);
   }
 
-  /**
-   * Instantiates a new integrator.
-   *
-   * @param u the u
-   */
-  public Integrator(DoubleConnector u) {
-    this("Integrator", u);
+  public Sin(String name, double a, double w) {
+    this(name);
+    setA(a);
+    setW(w);
   }
 
-  /**
-   * Instantiates a new integrator.
-   *
-   * @param name the name
-   * @param ti the ti
-   * @param u the u
-   */
-  public Integrator(String name, double ti, DoubleConnector u) {
-    this(name, u);
-    setT(ti);
-  }
-
-  /* (non-Javadoc)
-   * @see info.dc4j.dc4j_toolbox.block.Block#eval()
-   */
   @Override
   protected void eval() {
-    double y1 = out().getValue();
-    double u = getU0().getValue();
-    double y = u * dt / ti + y1;
+    double y = a * Math.sin(t * w);
     out().setValue(y);
   }
 
-  /* (non-Javadoc)
-   * @see info.dc4j.dc4j_toolbox.block.Block#getT()
-   */
-  @Override
-  public double getT() {
-    return ti;
+  public double getA() {
+    return a;
   }
 
-  /**
-   * Sets the t.
-   *
-   * @param ti the new t
-   */
-  public void setT(double ti) {
-    this.ti = ti;
-    if (ti <= 0) {
-      throw new IllegalArgumentException("T must be over zero");
-    }
+  public void setA(double a) {
+    this.a = a;
   }
+
+  public double getW() {
+    return w;
+  }
+
+  public void setW(double w) {
+    this.w = w;
+  }
+
 }

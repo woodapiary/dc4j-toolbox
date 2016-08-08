@@ -20,63 +20,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/*
- *
- */
+
 package info.dc4j.toolbox.model.rw;
 
 import java.io.Serializable;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class BoolData.
- */
 public class BoolData implements Serializable {
 
-  /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1472098078665272545L;
-
-  /** The key. */
   private final String key;
-
-  /** The value. */
   private final boolean value;
 
-  /**
-   * Instantiates a new bool data.
-   *
-   * @param key the key
-   * @param value the value
-   */
   public BoolData(String key, boolean value) {
     super();
     this.key = key;
     this.value = value;
   }
 
-  /**
-   * Gets the key.
-   *
-   * @return the key
-   */
   public String getKey() {
     return key;
   }
 
-  /**
-   * Gets the value.
-   *
-   * @return the value
-   */
   public boolean getValue() {
     return value;
   }
 
-
-
-  /* (non-Javadoc)
-   * @see java.lang.Object#hashCode()
-   */
   @Override
   public int hashCode() {
     final int prime = 31;
@@ -86,9 +54,6 @@ public class BoolData implements Serializable {
     return result;
   }
 
-  /* (non-Javadoc)
-   * @see java.lang.Object#equals(java.lang.Object)
-   */
   @Override
   public boolean equals(Object obj) {
     if (this == obj) {
@@ -114,9 +79,6 @@ public class BoolData implements Serializable {
     return true;
   }
 
-  /* (non-Javadoc)
-   * @see java.lang.Object#toString()
-   */
   @Override
   public String toString() {
     return "BoolSetting [key=" + key + ", value=" + value + "]";

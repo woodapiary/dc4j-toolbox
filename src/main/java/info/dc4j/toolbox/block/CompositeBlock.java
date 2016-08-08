@@ -20,9 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/*
- *
- */
+
 package info.dc4j.toolbox.block;
 
 import java.util.ArrayList;
@@ -35,18 +33,9 @@ public class CompositeBlock extends Block {
 
   protected List<Block> childBlocks;
 
-  /**
-   * Instantiates a new composite block.
-   *
-   * @param name the name
-   * @param inDouble the in double
-   * @param outDouble the out double
-   * @param inBool the in bool
-   * @param outBool the out bool
-   */
   public CompositeBlock(String name, int inDouble, int outDouble, int inBool, int outBool) {
     super(name);
-    childBlocks = new ArrayList<Block>();
+    childBlocks = new ArrayList<>();
     for (int i = 0; i < inDouble; i++) {
       setU(new DoubleConnector());
     }
@@ -61,18 +50,10 @@ public class CompositeBlock extends Block {
     }
   }
 
-  /**
-   * Instantiates a new composite block.
-   *
-   * @param name the name
-   */
   public CompositeBlock(String name) {
     this(name, 0, 0, 0, 0);
   }
 
-  /* (non-Javadoc)
-   * @see info.dc4j.dc4j_toolbox.block.Block#run()
-   */
   @Override
   public void run() {
     super.run();
@@ -86,22 +67,14 @@ public class CompositeBlock extends Block {
 
   }
 
-  /**
-   * Adds the.
-   *
-   * @param block the block
-   */
   public void add(Block block) {
     childBlocks.add(block);
     block.setHost(this);
   }
 
-  /* (non-Javadoc)
-   * @see info.dc4j.dc4j_toolbox.block.Block#getDescendants()
-   */
   @Override
   public List<Block> getDescendants() {
-    List<Block> res = new ArrayList<Block>();
+    List<Block> res = new ArrayList<>();
     for (Block block : childBlocks) {
       List<Block> childList = block.getDescendants();
       if (childList == null) {
@@ -114,9 +87,6 @@ public class CompositeBlock extends Block {
     return res;
   }
 
-  /* (non-Javadoc)
-   * @see info.dc4j.dc4j_toolbox.block.Block#toString()
-   */
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();

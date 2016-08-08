@@ -20,9 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/*
- *
- */
+
 package info.dc4j.toolbox.block;
 
 import java.util.HashMap;
@@ -33,21 +31,15 @@ import info.dc4j.toolbox.block.connector.DoubleConnector;
 
 public class Layout extends CompositeBlock {
 
-  private final HashMap<Integer, Block> mapBlocks = new HashMap<Integer, Block>();
-  private final HashMap<Integer, DoubleConnector> mapDoubleConnectors = new HashMap<Integer, DoubleConnector>();
-  private final HashMap<Integer, BoolConnector> mapBoolConnectors = new HashMap<Integer, BoolConnector>();
+  private final HashMap<Integer, Block> mapBlocks = new HashMap<>();
+  private final HashMap<Integer, DoubleConnector> mapDoubleConnectors = new HashMap<>();
+  private final HashMap<Integer, BoolConnector> mapBoolConnectors = new HashMap<>();
   private List<Block> listBlocks;
 
-  /**
-   * Instantiates a new layout.
-   */
   public Layout() {
     super("");
   }
 
-  /**
-   * Builds the.
-   */
   public void build() {
     listBlocks = getDescendants();
     int order = 0;
@@ -58,38 +50,18 @@ public class Layout extends CompositeBlock {
     }
   }
 
-  /**
-   * Gets the map blocks.
-   *
-   * @return the map blocks
-   */
   public HashMap<Integer, Block> getMapBlocks() {
     return mapBlocks;
   }
 
-  /**
-   * Gets the map double connectors.
-   *
-   * @return the map double connectors
-   */
   public HashMap<Integer, DoubleConnector> getMapDoubleConnectors() {
     return mapDoubleConnectors;
   }
 
-  /**
-   * Gets the map bool connectors.
-   *
-   * @return the map bool connectors
-   */
   public HashMap<Integer, BoolConnector> getMapBoolConnectors() {
     return mapBoolConnectors;
   }
 
-  /**
-   * Gets the list blocks.
-   *
-   * @return the list blocks
-   */
   public List<Block> getListBlocks() {
     return listBlocks;
   }

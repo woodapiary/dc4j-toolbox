@@ -20,49 +20,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/*
- * 
- */
+
 package info.dc4j.toolbox.block.connector;
 
 import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.block.helper.SequenceId;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class Connector.
- */
 public abstract class Connector {
 
-  /** The id. */
   private final int id;
-  
-  /** The name. */
   private final String name;
-  
-  /** The source. */
   private final Block source;
-  
-  /** The chain. */
   protected Connector chain;
 
-  /**
-   * Instantiates a new connector.
-   *
-   * @param source the source
-   * @param name the name
-   */
   public Connector(Block source, String name) {
-    this.id = SequenceId.getConnId();
+    id = SequenceId.getConnId();
     this.name = name;
     this.source = source;
   }
 
-  /**
-   * Gets the id.
-   *
-   * @return the id
-   */
   public int getId() {
     if (chain != null) {
       return chain.getId();
@@ -70,11 +46,6 @@ public abstract class Connector {
     return id;
   }
 
-  /**
-   * Gets the simple name.
-   *
-   * @return the simple name
-   */
   public String getSimpleName() {
     if (chain != null) {
       return chain.getSimpleName();
@@ -82,11 +53,6 @@ public abstract class Connector {
     return name;
   }
 
-  /**
-   * Gets the name.
-   *
-   * @return the name
-   */
   public String getName() {
     if (chain != null) {
       return chain.getName();
@@ -97,18 +63,10 @@ public abstract class Connector {
     return name;
   }
 
-  /**
-   * Sets the chain.
-   *
-   * @param chain the new chain
-   */
   public void setChain(Connector chain) {
     this.chain = chain;
   }
 
-  /* (non-Javadoc)
-   * @see java.lang.Object#toString()
-   */
   @Override
   public String toString() {
     return "\n" + this.getClass().getSimpleName() + " - " + getName() + ": " + " id=" + id;

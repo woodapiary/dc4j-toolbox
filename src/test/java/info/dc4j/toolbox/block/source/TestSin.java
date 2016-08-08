@@ -20,41 +20,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/*
- *
- */
-package info.dc4j.toolbox.block;
+
+package info.dc4j.toolbox.block.source;
 
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import info.dc4j.toolbox.block.CompositeBlock;
-import info.dc4j.toolbox.block.generator.Step;
-import info.dc4j.toolbox.block.linear.PT1;
+public class TestSin {
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class TestBaseBlocks.
- */
-public class TestBaseBlocks {
 
-  /**
-   * Test composite.
-   */
   @Test
-  public void testComposite() {
-    CompositeBlock comp = new CompositeBlock("model", 0, 1, 0, 0);
-    Step step = new Step();
-    comp.add(step);
-    PT1 pt = new PT1(step.out());
-    comp.add(pt);
-    comp.getY(0).setChain(pt.out());
+  public void testSin() {
+
+    Sin sin = new Sin();
     for (int i = 0; i < 3000; i++) {
-      comp.run();
-      // System.out.println(comp.toString());
+      sin.run();
+
     }
-    assertTrue(comp.getY(0).getValue() < 1.0);
-    assertTrue(comp.getY(0).getValue() > 0.8);
+    assertTrue(sin.out().getValue() > 0.1);
+    assertTrue(sin.out().getValue() < 0.2);
   }
 }

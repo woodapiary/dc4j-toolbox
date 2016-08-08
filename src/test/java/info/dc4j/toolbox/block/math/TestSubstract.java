@@ -20,53 +20,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/*
- *
- */
-package info.dc4j.toolbox.block;
+
+package info.dc4j.toolbox.block.math;
 
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import info.dc4j.toolbox.block.generator.Sin;
-import info.dc4j.toolbox.block.generator.Step;
+import info.dc4j.toolbox.block.source.Step;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class TestGeneratorBlocks.
- */
-public class TestGeneratorBlocks {
+public class TestSubstract {
 
-  /**
-   * Test sin.
-   */
   @Test
-  public void testSin() {
-
-    Sin sin = new Sin();
-    for (int i = 0; i < 3000; i++) {
-      sin.run();
-      // System.out.println(sin.toString());
+  public void testLoopBack() {
+    Step spUa = new Step("Ua");
+    spUa.setT0(1.0);
+    Step spUb = new Step("Ub");
+    spUb.setT0(2.0);
+    Subtract dU = new Subtract("dUa", spUa.out(), spUb.out());
+    spUa.run();
+    spUb.run();
+    dU.run();
+    assertTrue(dU.out().getValue() == 0.0);
+    for (int i = 1; i < 1500; i++) {
+      spUa.run();
+      spUb.run();
+      dU.run();
     }
-    assertTrue(sin.out().getValue() > 0.1);
-    assertTrue(sin.out().getValue() < 0.2);
-  }
-
-  /**
-   * Test step.
-   */
-  @Test
-  public void testStep() {
-
-    Step step = new Step();
-    step.setT0(0.5);
-    step.run();
-    assertTrue(step.out().getValue() == 0);
-    for (int i = 0; i < 3000; i++) {
-      step.run();
+    assertTrue(dU.out().getValue() == 1.0);
+    for (int i = 1500; i < 3000; i++) {
+      spUa.run();
+      spUb.run();
+      dU.run();
     }
-    assertTrue(step.out().getValue() == 1);
+    assertTrue(dU.out().getValue() == 0.0);
   }
-
 }

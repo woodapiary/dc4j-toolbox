@@ -20,9 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/*
- *
- */
+
 package info.dc4j.toolbox.block.monitor;
 
 import java.util.List;
@@ -30,19 +28,7 @@ import java.util.List;
 import info.dc4j.toolbox.block.connector.BoolConnector;
 import info.dc4j.toolbox.block.connector.DoubleConnector;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Interface ITracable.
- */
 public interface ITracable {
 
-  /**
-   * Trace.
-   *
-   * @param step the step
-   * @param t the t
-   * @param dConn the d conn
-   * @param bConn the b conn
-   */
   void trace(long step, double t, List<DoubleConnector> dConn, List<BoolConnector> bConn);
 }

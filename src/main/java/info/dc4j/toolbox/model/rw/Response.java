@@ -21,49 +21,27 @@
  * THE SOFTWARE.
  */
 
-package info.dc4j.toolbox.block.connector;
+package info.dc4j.toolbox.model.rw;
 
-import info.dc4j.toolbox.block.Block;
-import info.dc4j.toolbox.model.rw.BoolData;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-public class BoolConnector extends Connector {
+public class Response implements Serializable {
 
-  private boolean value;
+  private static final long serialVersionUID = 5606738581593595781L;
+  private final List<ResultLine> lines;
 
-  public BoolConnector(Block source, String name) {
-    super(source, name);
+  public Response() {
+    lines = new ArrayList<>();
   }
 
-  public BoolConnector(String name) {
-    super(null, name);
+  public void addLine(ResultLine line) {
+    lines.add(line);
   }
 
-  public BoolConnector() {
-    super(null, null);
-  }
-
-  public boolean getValue() {
-    if (chain != null) {
-      return getChain().getValue();
-    }
-    return value;
-  }
-
-  public void setValue(boolean value) {
-    this.value = value;
-  }
-
-  public BoolConnector getChain() {
-    return (BoolConnector) chain;
-  }
-
-  public BoolData getData() {
-    return new BoolData(getName(), value);
-  }
-
-  @Override
-  public String toString() {
-    return super.toString() + " " + getValue();
+  public List<ResultLine> getLines() {
+    return lines;
   }
 
 }

@@ -20,17 +20,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package info.dc4j.toolbox.model;
 
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import info.dc4j.toolbox.block.monitor.ConsoleTracer;
 import info.dc4j.toolbox.block.monitor.MemoryTracer;
-import info.dc4j.toolbox.block.monitor.PrintfTracer;
-import info.dc4j.toolbox.model.rw.Result;
+import info.dc4j.toolbox.model.rw.Response;
 import info.dc4j.toolbox.model.rw.Settings;
-
 
 public class TestSimpleModel {
 
@@ -38,12 +38,12 @@ public class TestSimpleModel {
   public void testSimpleModel() {
     SimpleModel model = new SimpleModel();
     model.setSettings(getSettings());
-    model.addTracer(new PrintfTracer());
+    model.addTracer(new ConsoleTracer());
     MemoryTracer tracer = new MemoryTracer();
     model.addTracer(tracer);
     model.build();
     model.run();
-    Result res = tracer.getResult();
+    Response res = tracer.getResult();
     assertTrue(res.getLines().size() == 101);
     assertTrue(model.getLayout().getListBlocks().size() == 8);
     assertTrue(model.getLayout().getT() > 99.9);

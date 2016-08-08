@@ -20,87 +20,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/*
- *
- */
-package info.dc4j.toolbox.block.linear;
+
+package info.dc4j.toolbox.block.math;
 
 import info.dc4j.toolbox.block.LinearBlock;
 import info.dc4j.toolbox.block.connector.DoubleConnector;
 
-// TODO: Auto-generated Javadoc
-//y = k*u
+public class Sum extends LinearBlock {
 
-/**
- * The Class Gain.
- */
-public class Gain extends LinearBlock {
-
-  /** The k. */
-  private double k = 1.0;
-
-  /**
-   * Instantiates a new gain.
-   *
-   * @param name the name
-   * @param u the u
-   */
-  public Gain(String name, DoubleConnector u) {
+  public Sum(String name, DoubleConnector u1, DoubleConnector u2) {
     super(name);
-    if (u == null) {
+    if (u1 == null) {
+      throw new IllegalArgumentException("null connector");
+    }
+    if (u2 == null) {
       throw new IllegalArgumentException("null connector");
     }
     DoubleConnector y = new DoubleConnector(this, "Out");
-    setConnectorU0Y0(u, y);
+    setConnectorU0U1Y0(u1, u2, y);
   }
 
-  /**
-   * Instantiates a new gain.
-   *
-   * @param name the name
-   * @param k the k
-   * @param u the u
-   */
-  public Gain(String name, double k, DoubleConnector u) {
-    this(name, u);
-    setK(k);
+  public Sum(DoubleConnector u1, DoubleConnector u2) {
+    this("Adder", u1, u2);
   }
 
-  /**
-   * Instantiates a new gain.
-   *
-   * @param u the u
-   */
-  public Gain(DoubleConnector u) {
-    this("Gain", u);
-  }
-
-  /* (non-Javadoc)
-   * @see info.dc4j.dc4j_toolbox.block.Block#eval()
-   */
   @Override
   protected void eval() {
-    double u = getU0().getValue();
-    double y = k * u;
+    double u1 = getU0().getValue();
+    double u2 = getU1().getValue();
+    double y = u1 + u2;
     out().setValue(y);
-  }
-
-  /**
-   * Gets the k.
-   *
-   * @return the k
-   */
-  public double getK() {
-    return k;
-  }
-
-  /**
-   * Sets the k.
-   *
-   * @param k the new k
-   */
-  public void setK(double k) {
-    this.k = k;
   }
 
 }
