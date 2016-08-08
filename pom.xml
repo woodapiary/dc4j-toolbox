@@ -1,7 +1,7 @@
 <!--
 
     The MIT License
-    Copyright (c) 2002 Ilkka Seppälä
+    Copyright (c) 2002-2016 dc4j.info
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,7 @@
   <version>0.0.3</version>
   <packaging>jar</packaging>
   <name>dc4j-toolbox</name>
-  <inceptionYear>2002</inceptionYear>
+  <inceptionYear>2002-2016</inceptionYear>
   <organization>
     <name>dc4j.info</name>
     <url>dc4j.info</url>
@@ -225,9 +225,9 @@
                 <configuration>
                     <header>com/mycila/maven/plugin/license/templates/MIT.txt</header>
                     <properties>
-                        <owner>Ilkka Seppälä</owner>
+                        <owner>dc4j.info</owner>
                     </properties>
-                    <skipExistingHeaders>true</skipExistingHeaders>
+                    <skipExistingHeaders>false</skipExistingHeaders>
                 </configuration>
                 <executions>
                     <execution>

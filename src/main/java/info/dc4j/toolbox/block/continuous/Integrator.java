@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2002 Ilkka Seppälä
+ * Copyright (c) 2002-2016 dc4j.info
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +20,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package info.dc4j.toolbox.block.continuous;
 
 import info.dc4j.toolbox.block.LinearBlock;
