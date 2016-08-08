@@ -5,42 +5,42 @@
 # Control system toolbox
 
 ##Continuous
- * **Derivative**     - Output time derivative of input
- * **Integrator**     - Limited  Integrate signal
- * **PID**            - Simulate continuous PID controllers
- * **TransferFcn**    - Model linear system by transfer function
- * **TransportDelay** - Delay input by given amount of time
- * **PT1**            - First order lowpass filter
+* **Derivative** - output time derivative of input.
+* **Integrator** - limited  Integrate signal.
+* **PID** - simulate continuous PID controllers.
+* **TransferFcn** - model linear system by transfer function.
+* **TransportDelay** - delay input by given amount of time.
+* **PT1** - first order lowpass filter.
 
 ##Discontinuities
-Saturation Limit range of signal
-Backlash   Model behavior of system with play
-DeadZone   Provide region of zero output
-Relay      Switch output between two constants
-Min        Get minimum from input signals
-Max        Get maximum from inpur signals
+* **Saturation** - limit range of signal.
+* **Backlash** - model behavior of system with play.
+* **DeadZone** - provide region of zero output.
+* **Relay** - switch output between two constants.
+* **Min** - get minimum from input signals.
+* **Max** - get maximum from inpur signals.
 
 ##Math Operations
-Sign     Indicate sign of input
-Sqrt     Calculate square root
-Abs      Output absolute value of input
-Gain     Multiply input by constant
-Product  Multiply one input by another
-Sum      Sum inputs
-Divide   Divide one input by another
-Subtract Subtract inputs
+* **Sign** - indicate sign of input.
+* **Sqrt** - calculate square root.
+* **Abs** - output absolute value of input.
+* **Gain** - multiply input by constant.
+* **Product** - multiply one input by another.
+* **Sum** - sum inputs.
+* **Divide** - givide one input by another.
+* **Subtract** - gubtract inputs.
 
 ##Logic Operations
 
 ##Sources
-Pulse   Generate square wave pulses at regular intervals
-Ramp    Generate constantly increasing or decreasing signal
-Random  Generate normally distributed random signal
-Step    Generate step function
-Sin     Generate sin function
+* **Pulse** - generate square wave pulses at regular intervals.
+* **Ramp** - generate constantly increasing or decreasing signal.
+* **Random** - generate normally distributed random signal.
+* **Step** - generate step function.
+* **Sin** - generate sin function.
 
 ##Monitors
-ConsoleTracer   Write data to console
-MemoryTracer    Write data to memory
-XMLTracer       Write data to xml
+* **ConsoleTracer** - write data to console.
+* **MemoryTracer** - write data to memory.
+* **XMLTracer** - write data to xml.
 
