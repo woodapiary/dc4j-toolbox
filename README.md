@@ -5,12 +5,12 @@
 # Control system toolbox
 
 ##Continuous
- *  **Derivative** - Output time derivative of input
- * Integrator      Limited  Integrate signal
- * PID             Simulate continuous PID controllers
- * TransferFcn     Model linear system by transfer function
- * TransportDelay  Delay input by given amount of time
- * PT1             First order lowpass filter
+ * **Derivative**     - Output time derivative of input
+ * **Integrator**     - Limited  Integrate signal
+ * **PID**            - Simulate continuous PID controllers
+ * **TransferFcn**    - Model linear system by transfer function
+ * **TransportDelay** - Delay input by given amount of time
+ * **PT1**            - First order lowpass filter
 
 ##Discontinuities
 Saturation Limit range of signal
