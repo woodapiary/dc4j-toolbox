@@ -22,6 +22,44 @@
  */
 package info.dc4j.toolbox.block;
 
-public class CompositeBlockTest {
+import info.dc4j.toolbox.element.TypeEnum;
 
+public class EmptyBlock extends BlockImpl {
+  public static final String TYPE = "Empty";
+  public static final String DESC = "empty block";
+
+  private static final double D = 1.0;
+  public static final String D_NAME = "d";
+  private static final boolean B = true;
+  public static final String B_NAME = "b";
+  private static final int I = 2;
+  public static final String I_NAME = "i";
+  private static final String S = "3";
+  public static final String S_NAME = "s";
+
+  public EmptyBlock(int id, String name) {
+    super(id, name);
+    addParameter(D_NAME, D, TypeEnum.DOUBLE);
+    addParameter(B_NAME, B, TypeEnum.BOOL);
+    addParameter(I_NAME, I, TypeEnum.INTEGER);
+    addParameter(S_NAME, S, TypeEnum.STRING);
+  }
+
+  @Override
+  protected void eval() {
+    double u0 = getDoubleU(0);
+    double p0 = getDoubleParameter(D_NAME);
+    double y0 = u0 * p0;
+    setValueY(0, y0);
+  }
+
+  @Override
+  public String getType() {
+    return TYPE;
+  }
+
+  @Override
+  public String getDesc() {
+    return DESC;
+  }
 }

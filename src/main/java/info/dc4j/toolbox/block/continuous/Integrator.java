@@ -26,12 +26,15 @@ import info.dc4j.toolbox.block.BlockImpl;
 import info.dc4j.toolbox.element.TypeEnum;
 
 public class Integrator extends BlockImpl {
-  public static final String TYPE = "int";
-  private static final double TI = 1.0;
+  public static final String TYPE = "Integrator";
+  public static final String DESC = "limited  integrate signal";
+
+  public static final double TI = 1.0;
+  public static final String TI_NAME = "Ti";
 
   public Integrator(int id, String name) {
     super(id, name);
-    addParameter("ti", TI, TypeEnum.DOUBLE);
+    addParameter(TI_NAME, TI, TypeEnum.DOUBLE);
   }
 
   @Override
@@ -39,12 +42,18 @@ public class Integrator extends BlockImpl {
     double y0 = getDoubleY(0);
     double u = getDoubleU(0);
     double dt = getScanTime();
-    double y = u * dt / TI + y0;
+    double ti = getDoubleParameter(TI_NAME);
+    double y = u * dt / ti + y0;
     setValueY(0, y);
   }
 
   @Override
   public String getType() {
     return TYPE;
+  }
+
+  @Override
+  public String getDesc() {
+    return DESC;
   }
 }

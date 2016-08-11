@@ -6,7 +6,7 @@
 
 ##1. Continuous
 * **Derivative** - output time derivative of input.
-* **Integrator** - limited  Integrate signal.
+* **Integrator** - limited  integrate signal.
 * **PID** - simulate continuous PID controllers.
 * **TransferFcn** - model linear system by transfer function.
 * **TransportDelay** - delay input by given amount of time.

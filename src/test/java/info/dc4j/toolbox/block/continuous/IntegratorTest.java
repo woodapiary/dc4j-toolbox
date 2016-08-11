@@ -22,19 +22,34 @@
  */
 package info.dc4j.toolbox.block.continuous;
 
+import static org.junit.Assert.assertTrue;
+
+import java.util.Arrays;
+
 import org.junit.Test;
+
+import info.dc4j.toolbox.block.Parameter;
+import info.dc4j.toolbox.connector.DoubleConnector;
+import info.dc4j.toolbox.element.TypeEnum;
 
 public class IntegratorTest {
 
   @Test
-  public void testIntegrator() {
-    /*
-     * Step spUa = new Step("Ua"); spUa.setT0(0.0); Integrator int1 = new
-     * Integrator(spUa.out()); for (int i = 1; i < 3000; i++) { spUa.run();
-     * int1.run();
-     * 
-     * } assertTrue(int1.out().getValue() > 2.9);
-     * assertTrue(int1.out().getValue() < 3.1);
-     */
+  public void test01() {
+    Integrator block1 = new Integrator(1, "block1");
+    DoubleConnector u = new DoubleConnector(1, "in", null, block1);
+    DoubleConnector y = new DoubleConnector(2, "out", block1, null);
+    block1.setU(u, 0);
+    block1.setY(y, 0);
+    Parameter p = new Parameter("ti", TypeEnum.DOUBLE, 2.0);
+    block1.setParameters(Arrays.asList(p));
+    u.setValue(1.0);
+    for (int i = 1; i < 3000; i++) {
+      block1.run(0);
+      //System.out.println(y.getValue());
+    }
+    assertTrue(y.getValue() > 1.49);
+    assertTrue(y.getValue() < 1.51);
+
   }
 }

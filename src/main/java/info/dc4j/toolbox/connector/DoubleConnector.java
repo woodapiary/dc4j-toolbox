@@ -23,14 +23,17 @@
 package info.dc4j.toolbox.connector;
 
 import info.dc4j.toolbox.block.Block;
+import info.dc4j.toolbox.element.TypeEnum;
 
 public class DoubleConnector extends ConnectorImpl {
-  public static final String TYPE = "double";
+  public static final String TYPE = TypeEnum.DOUBLE;
 
   public DoubleConnector(int id, String name, Block source, Block target) {
     super(id, name, source, target);
+    setValue(0.0);
   }
 
+  @Override
   public Double getValue() {
     return (Double) super.getValue();
   }

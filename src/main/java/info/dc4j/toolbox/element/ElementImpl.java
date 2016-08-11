@@ -1,6 +1,7 @@
 package info.dc4j.toolbox.element;
 
 public abstract class ElementImpl implements Element {
+  public static final String DESC = "no description";
   private final int id;
   private String name;
   private String desc;
@@ -13,6 +14,7 @@ public abstract class ElementImpl implements Element {
     } else {
       this.name = name;
     }
+    desc = DESC;
   }
 
   @Override
