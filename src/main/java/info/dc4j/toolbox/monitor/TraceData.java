@@ -20,28 +20,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package info.dc4j.toolbox.block.math;
+package info.dc4j.toolbox.monitor;
 
-import info.dc4j.toolbox.block.BlockImpl;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Sum extends BlockImpl {
-  public static final String TYPE = "sum";
+public class TraceData implements Serializable {
 
-  public Sum(int id, String name) {
-    super(id, name);
+  private static final long serialVersionUID = -4527241881441543366L;
+  private final long step;
+  private final double t;
+  private final List<Data> indicators = new ArrayList<>();
+
+  public TraceData(long step, double t) {
+    this.step = step;
+    this.t = t;
   }
 
-  @Override
-  protected void eval() {
-    // TODO
-    /*
-     * double u1 = getU0().getValue(); double u2 = getU1().getValue(); double y
-     * = u1 + u2; out().setValue(y)
-     */
+  public long getStep() {
+    return step;
   }
 
-  @Override
-  public String getType() {
-    return TYPE;
+  public double getT() {
+    return t;
   }
+
+  public List<Data> getIndicators() {
+    return indicators;
+  }
+
+  public void addIndicator(Data indicator) {
+    indicators.add(indicator);
+  }
+
 }

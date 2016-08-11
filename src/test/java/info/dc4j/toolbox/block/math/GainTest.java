@@ -22,26 +22,18 @@
  */
 package info.dc4j.toolbox.block.math;
 
-import info.dc4j.toolbox.block.BlockImpl;
+import org.junit.Test;
 
-public class Sum extends BlockImpl {
-  public static final String TYPE = "sum";
+public class GainTest {
 
-  public Sum(int id, String name) {
-    super(id, name);
-  }
-
-  @Override
-  protected void eval() {
-    // TODO
+  @Test
+  public void testGain() {
     /*
-     * double u1 = getU0().getValue(); double u2 = getU1().getValue(); double y
-     * = u1 + u2; out().setValue(y)
+     * DoubleConnector in = new DoubleConnector("const"); in.setValue(1.0); Gain
+     * gain = new Gain(in); gain.run(); assertTrue(gain.out().getValue() ==
+     * 1.0); for (int i = 1; i < 3000; i++) { gain.run();
+     * 
+     * } assertTrue(gain.out().getValue() == 1.0);
      */
-  }
-
-  @Override
-  public String getType() {
-    return TYPE;
   }
 }

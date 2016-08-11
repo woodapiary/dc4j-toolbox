@@ -20,28 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package info.dc4j.toolbox.block.math;
+package info.dc4j.toolbox.monitor;
 
-import info.dc4j.toolbox.block.BlockImpl;
+import java.util.List;
 
-public class Sum extends BlockImpl {
-  public static final String TYPE = "sum";
+import info.dc4j.toolbox.connector.Connector;
+import info.dc4j.toolbox.element.Typable;
 
-  public Sum(int id, String name) {
-    super(id, name);
-  }
+public interface Tracer extends Typable {
 
-  @Override
-  protected void eval() {
-    // TODO
-    /*
-     * double u1 = getU0().getValue(); double u2 = getU1().getValue(); double y
-     * = u1 + u2; out().setValue(y)
-     */
-  }
+  void trace(long step, double t, List<Connector> connectors);
 
-  @Override
-  public String getType() {
-    return TYPE;
-  }
+  List<TraceData> getTraceData();
+
+  void clear();
+
 }

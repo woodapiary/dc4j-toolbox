@@ -22,48 +22,29 @@
  */
 package info.dc4j.toolbox.block.continuous;
 
-import info.dc4j.toolbox.block.LinearBlock;
-import info.dc4j.toolbox.block.connector.DoubleConnector;
+import info.dc4j.toolbox.block.BlockImpl;
+import info.dc4j.toolbox.element.TypeEnum;
 
-public class Integrator extends LinearBlock {
+public class Integrator extends BlockImpl {
+  public static final String TYPE = "int";
+  private static final double TI = 1.0;
 
-  private double ti = 1.0;
-
-  public Integrator(String name, DoubleConnector u) {
-    super(name);
-    if (u == null) {
-      throw new IllegalArgumentException("null connector");
-    }
-    DoubleConnector y = new DoubleConnector(this, "Out");
-    setConnectorU0Y0(u, y);
-  }
-
-  public Integrator(DoubleConnector u) {
-    this("Integrator", u);
-  }
-
-  public Integrator(String name, double ti, DoubleConnector u) {
-    this(name, u);
-    setT(ti);
+  public Integrator(int id, String name) {
+    super(id, name);
+    addParameter("ti", TI, TypeEnum.DOUBLE);
   }
 
   @Override
   protected void eval() {
-    double y1 = out().getValue();
-    double u = getU0().getValue();
-    double y = u * dt / ti + y1;
-    out().setValue(y);
+    double y0 = getDoubleY(0);
+    double u = getDoubleU(0);
+    double dt = getScanTime();
+    double y = u * dt / TI + y0;
+    setValueY(0, y);
   }
 
   @Override
-  public double getT() {
-    return ti;
-  }
-
-  public void setT(double ti) {
-    this.ti = ti;
-    if (ti <= 0) {
-      throw new IllegalArgumentException("T must be over zero");
-    }
+  public String getType() {
+    return TYPE;
   }
 }

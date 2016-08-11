@@ -20,28 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package info.dc4j.toolbox.block.math;
+package info.dc4j.toolbox.block.source;
 
-import info.dc4j.toolbox.block.BlockImpl;
+import org.junit.Test;
 
-public class Sum extends BlockImpl {
-  public static final String TYPE = "sum";
+public class StepTest {
 
-  public Sum(int id, String name) {
-    super(id, name);
-  }
+  @Test
+  public void testStep() {
 
-  @Override
-  protected void eval() {
-    // TODO
     /*
-     * double u1 = getU0().getValue(); double u2 = getU1().getValue(); double y
-     * = u1 + u2; out().setValue(y)
+     * Step step = new Step(0,""); step.setT0(0.5); step.run();
+     * assertTrue(step.out().getValue() == 0); for (int i = 0; i < 3000; i++) {
+     * step.run(10); } assertTrue(step.out().getValue() == 1);
      */
-  }
-
-  @Override
-  public String getType() {
-    return TYPE;
   }
 }

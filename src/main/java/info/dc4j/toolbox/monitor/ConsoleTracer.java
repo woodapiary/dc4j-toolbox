@@ -20,28 +20,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package info.dc4j.toolbox.block.math;
+package info.dc4j.toolbox.monitor;
 
-import info.dc4j.toolbox.block.BlockImpl;
+import java.util.Date;
+import java.util.List;
 
-public class Sum extends BlockImpl {
-  public static final String TYPE = "sum";
+import info.dc4j.toolbox.connector.Connector;
 
-  public Sum(int id, String name) {
-    super(id, name);
+public class ConsoleTracer implements Tracer {
+  public static final String TYPE = "console";
+
+  @Override
+  public void trace(long step, double t, List<Connector> connectors) {
+    System.out.printf("%tT  ", new Date());
+    System.out.printf("%07d  ", step);
+    System.out.printf("t=");
+    System.out.printf("%8.3f  ", t);
+    for (Connector conn : connectors) {
+      System.out.printf(conn.getName() + "=");
+      // TODO case for type
+      System.out.printf("%8.3f  ", conn.getValue());
+    }
+    System.out.printf("%n");
   }
 
   @Override
-  protected void eval() {
-    // TODO
-    /*
-     * double u1 = getU0().getValue(); double u2 = getU1().getValue(); double y
-     * = u1 + u2; out().setValue(y)
-     */
+  public List<TraceData> getTraceData() {
+    return null;
+  }
+
+  @Override
+  public void clear() {
+
   }
 
   @Override
   public String getType() {
     return TYPE;
   }
+
 }

@@ -22,33 +22,27 @@
  */
 package info.dc4j.toolbox.block.math;
 
-import info.dc4j.toolbox.block.LinearBlock;
-import info.dc4j.toolbox.block.connector.DoubleConnector;
+import info.dc4j.toolbox.block.BlockImpl;
 
-public class Subtract extends LinearBlock {
+public class Subtract extends BlockImpl {
+  public static final String TYPE = "sub";
 
-  public Subtract(String name, DoubleConnector u1, DoubleConnector u2) {
-    super(name);
-    if (u1 == null) {
-      throw new IllegalArgumentException("null connector");
-    }
-    if (u2 == null) {
-      throw new IllegalArgumentException("null connector");
-    }
-    DoubleConnector y = new DoubleConnector(this, "Out");
-    setConnectorU0U1Y0(u1, u2, y);
-  }
-
-  public Subtract(DoubleConnector u1, DoubleConnector u2) {
-    this("Loopback", u1, u2);
+  public Subtract(int id, String name) {
+    super(id, name);
   }
 
   @Override
   protected void eval() {
-    double u1 = getU0().getValue();
-    double u2 = getU1().getValue();
-    double y = u1 - u2;
-    out().setValue(y);
+    // TODO
+    /*
+     * double u1 = getU0().getValue(); double u2 = getU1().getValue(); double y
+     * = u1 - u2; out().setValue(y);
+     */
+  }
+
+  @Override
+  public String getType() {
+    return TYPE;
   }
 
 }

@@ -20,28 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package info.dc4j.toolbox.block.math;
+package info.dc4j.toolbox.block.source;
 
-import info.dc4j.toolbox.block.BlockImpl;
+import org.junit.Test;
 
-public class Sum extends BlockImpl {
-  public static final String TYPE = "sum";
+public class SinTest {
 
-  public Sum(int id, String name) {
-    super(id, name);
-  }
-
-  @Override
-  protected void eval() {
-    // TODO
+  @Test
+  public void testSin() {
     /*
-     * double u1 = getU0().getValue(); double u2 = getU1().getValue(); double y
-     * = u1 + u2; out().setValue(y)
+     * Sin sin = new Sin(0,""); for (int i = 0; i < 3000; i++) { sin.run(10);
+     *
+     * } //assertTrue(sin.getDoubleY(0) > 0.1); //
+     * assertTrue(sin.out().getValue() < 0.2);
      */
-  }
-
-  @Override
-  public String getType() {
-    return TYPE;
   }
 }

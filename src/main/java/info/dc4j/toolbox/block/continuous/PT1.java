@@ -22,60 +22,32 @@
  */
 package info.dc4j.toolbox.block.continuous;
 
-import info.dc4j.toolbox.block.LinearBlock;
-import info.dc4j.toolbox.block.connector.DoubleConnector;
+import info.dc4j.toolbox.block.BlockImpl;
+import info.dc4j.toolbox.element.TypeEnum;
 
-public class PT1 extends LinearBlock {
+public class PT1 extends BlockImpl {
+  public static final String TYPE = "pt1";
+  private static final double K = 1.0;
+  private static final double TF = 1.0;
 
-  private double k = 1.0;
-  private double tf = 1.0;
-
-  public PT1(String name, DoubleConnector u) {
-    super(name);
-    if (u == null) {
-      throw new IllegalArgumentException("null connector");
-    }
-    DoubleConnector y = new DoubleConnector(this, "Out");
-    setConnectorU0Y0(u, y);
-  }
-
-  public PT1(DoubleConnector u) {
-    this("PT1", u);
-  }
-
-  public PT1(String name, double k, double tf, DoubleConnector u) {
-    this(name, u);
-    setK(k);
-    setTf(tf);
+  public PT1(int id, String name) {
+    super(id, name);
+    addParameter("tf", TF, TypeEnum.DOUBLE);
+    addParameter("k", K, TypeEnum.DOUBLE);
   }
 
   @Override
   protected void eval() {
-    double ku = k / (1 + tf / dt);
-    double ky1 = 1 / (1 + dt / tf);
-    double y1 = out().getValue();
-    double u = getU0().getValue();
-    double y = ky1 * y1 + ku * u;
-    out().setValue(y);
-  }
-
-  public double getK() {
-    return k;
-  }
-
-  public void setK(double k) {
-    this.k = k;
+    // TODO
+    /*
+     * double ku = k / (1 + tf / dt); double ky1 = 1 / (1 + dt / tf); double y1
+     * = out().getValue(); double u = getU0().getValue(); double y = ky1 * y1 +
+     * ku * u; out().setValue(y);
+     */
   }
 
   @Override
-  public double getT() {
-    return tf;
-  }
-
-  public void setTf(double tf) {
-    this.tf = tf;
-    if (tf <= 0) {
-      throw new IllegalArgumentException("T must be over zero");
-    }
+  public String getType() {
+    return TYPE;
   }
 }

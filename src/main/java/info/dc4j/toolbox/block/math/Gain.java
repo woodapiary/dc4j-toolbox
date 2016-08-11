@@ -22,44 +22,32 @@
  */
 package info.dc4j.toolbox.block.math;
 
-import info.dc4j.toolbox.block.LinearBlock;
-import info.dc4j.toolbox.block.connector.DoubleConnector;
+import info.dc4j.toolbox.block.BlockImpl;
+import info.dc4j.toolbox.element.TypeEnum;
 
-public class Gain extends LinearBlock {
+public class Gain extends BlockImpl {
+  public static final String TYPE = "gain";
+  private static final double K = 1.0;
 
-  private double k = 1.0;
-
-  public Gain(String name, DoubleConnector u) {
-    super(name);
-    if (u == null) {
-      throw new IllegalArgumentException("null connector");
-    }
-    DoubleConnector y = new DoubleConnector(this, "Out");
-    setConnectorU0Y0(u, y);
-  }
-
-  public Gain(String name, double k, DoubleConnector u) {
-    this(name, u);
-    setK(k);
-  }
-
-  public Gain(DoubleConnector u) {
-    this("Gain", u);
+  public Gain(int id, String name) {
+    super(id, name);
+    addParameter("k", K, TypeEnum.DOUBLE);
   }
 
   @Override
   protected void eval() {
-    double u = getU0().getValue();
-    double y = k * u;
-    out().setValue(y);
+    // TODO
+    /*
+     * double u = getU0().getValue(); double y = k * u; out().setValue(y);
+     */
   }
 
-  public double getK() {
-    return k;
+  public static String type() {
+    return Gain.class.getSimpleName();
   }
 
-  public void setK(double k) {
-    this.k = k;
+  @Override
+  public String getType() {
+    return TYPE;
   }
-
 }

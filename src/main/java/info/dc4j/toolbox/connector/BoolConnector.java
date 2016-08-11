@@ -20,28 +20,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package info.dc4j.toolbox.block.math;
+package info.dc4j.toolbox.connector;
 
-import info.dc4j.toolbox.block.BlockImpl;
+import info.dc4j.toolbox.block.Block;
 
-public class Sum extends BlockImpl {
-  public static final String TYPE = "sum";
+public class BoolConnector extends ConnectorImpl implements Connector {
+  public static final String TYPE = "bool";
 
-  public Sum(int id, String name) {
-    super(id, name);
+  public BoolConnector(int id, String name, Block source, Block target) {
+    super(id, name, source, target);
   }
 
   @Override
-  protected void eval() {
-    // TODO
-    /*
-     * double u1 = getU0().getValue(); double u2 = getU1().getValue(); double y
-     * = u1 + u2; out().setValue(y)
-     */
+  public Boolean getValue() {
+    return (Boolean) super.getValue();
   }
 
   @Override
   public String getType() {
     return TYPE;
   }
+
 }

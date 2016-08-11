@@ -22,50 +22,31 @@
  */
 package info.dc4j.toolbox.block.source;
 
-import info.dc4j.toolbox.block.LinearBlock;
-import info.dc4j.toolbox.block.connector.DoubleConnector;
+import info.dc4j.toolbox.block.BlockImpl;
+import info.dc4j.toolbox.element.TypeEnum;
 
-public class Sin extends LinearBlock {
+public class Sin extends BlockImpl {
+  public static final String TYPE = "sin";
+  private static final double A = 1.0;
+  private static final double W = 1.0;
 
-  private double a = 1.0;
-  private double w = 1.0;
-
-  public Sin() {
-    this("Sin");
-  }
-
-  public Sin(String name) {
-    super(name);
-    DoubleConnector y = new DoubleConnector(this, "Out");
-    setY(y);
-  }
-
-  public Sin(String name, double a, double w) {
-    this(name);
-    setA(a);
-    setW(w);
+  public Sin(int id, String name) {
+    super(id, name);
+    addParameter("a", A, TypeEnum.DOUBLE);
+    addParameter("w", W, TypeEnum.DOUBLE);
   }
 
   @Override
   protected void eval() {
-    double y = a * Math.sin(t * w);
-    out().setValue(y);
+    // TODO
+    /*
+     * double y = a * Math.sin(t * w); out().setValue(y);
+     */
   }
 
-  public double getA() {
-    return a;
-  }
-
-  public void setA(double a) {
-    this.a = a;
-  }
-
-  public double getW() {
-    return w;
-  }
-
-  public void setW(double w) {
-    this.w = w;
+  @Override
+  public String getType() {
+    return TYPE;
   }
 
 }

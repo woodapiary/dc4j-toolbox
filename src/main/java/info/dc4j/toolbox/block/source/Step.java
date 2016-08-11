@@ -22,53 +22,31 @@
  */
 package info.dc4j.toolbox.block.source;
 
-import info.dc4j.toolbox.block.LinearBlock;
-import info.dc4j.toolbox.block.connector.DoubleConnector;
+import info.dc4j.toolbox.block.BlockImpl;
+import info.dc4j.toolbox.element.TypeEnum;
 
-public class Step extends LinearBlock {
+public class Step extends BlockImpl {
+  public static final String TYPE = "step";
+  private static final double A = 1.0;
+  private static final double T0 = 1.0;
 
-  private double a = 1.0;
-  private double t0 = 1.0;
-
-  public Step() {
-    this("Step");
-  }
-
-  public Step(String name) {
-    super(name);
-    DoubleConnector y = new DoubleConnector(this, "Out");
-    setY(y);
-  }
-
-  public Step(String name, double a, double t0) {
-    this(name);
-    setA(a);
-    setT0(t0);
+  public Step(int id, String name) {
+    super(id, name);
+    addParameter("a", A, TypeEnum.DOUBLE);
+    addParameter("t0", T0, TypeEnum.DOUBLE);
   }
 
   @Override
   protected void eval() {
-    double y = 0;
-    if (t >= t0) {
-      y = a;
-    }
-    out().setValue(y);
+    // TODO
+    /*
+     * double y = 0; if (t >= t0) { y = a; } out().setValue(y);
+     */
   }
 
-  public double getA() {
-    return a;
-  }
-
-  public void setA(double a) {
-    this.a = a;
-  }
-
-  public double getT0() {
-    return t0;
-  }
-
-  public void setT0(double t0) {
-    this.t0 = t0;
+  @Override
+  public String getType() {
+    return TYPE;
   }
 
 }

@@ -20,24 +20,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package info.dc4j.toolbox.block.math;
+package info.dc4j.toolbox.monitor;
 
-import info.dc4j.toolbox.block.BlockImpl;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Sum extends BlockImpl {
-  public static final String TYPE = "sum";
+import info.dc4j.toolbox.connector.Connector;
 
-  public Sum(int id, String name) {
-    super(id, name);
+public class MemoryTracer implements Tracer {
+
+  private final List<TraceData> result = new ArrayList<TraceData>();
+  public static final String TYPE = "memory";
+
+  @Override
+  public void trace(long step, double t, List<Connector> connectors) {
+    TraceData line = new TraceData(step, t);
+    result.add(line);
+    for (Connector connector : connectors) {
+      line.addIndicator(connector.getData());
+    }
   }
 
   @Override
-  protected void eval() {
-    // TODO
-    /*
-     * double u1 = getU0().getValue(); double u2 = getU1().getValue(); double y
-     * = u1 + u2; out().setValue(y)
-     */
+  public List<TraceData> getTraceData() {
+    return result;
+  }
+
+  @Override
+  public void clear() {
+    result.clear();
   }
 
   @Override

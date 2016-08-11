@@ -22,26 +22,20 @@
  */
 package info.dc4j.toolbox.block.math;
 
-import info.dc4j.toolbox.block.BlockImpl;
+import org.junit.Test;
 
-public class Sum extends BlockImpl {
-  public static final String TYPE = "sum";
+public class SubstractTest {
 
-  public Sum(int id, String name) {
-    super(id, name);
-  }
-
-  @Override
-  protected void eval() {
-    // TODO
+  @Test
+  public void testLoopBack() {
     /*
-     * double u1 = getU0().getValue(); double u2 = getU1().getValue(); double y
-     * = u1 + u2; out().setValue(y)
+     * Step spUa = new Step("Ua"); spUa.setT0(1.0); Step spUb = new Step("Ub");
+     * spUb.setT0(2.0); Subtract dU = new Subtract("dUa", spUa.out(),
+     * spUb.out()); spUa.run(); spUb.run(); dU.run();
+     * assertTrue(dU.out().getValue() == 0.0); for (int i = 1; i < 1500; i++) {
+     * spUa.run(); spUb.run(); dU.run(); } assertTrue(dU.out().getValue() ==
+     * 1.0); for (int i = 1500; i < 3000; i++) { spUa.run(); spUb.run();
+     * dU.run(); } assertTrue(dU.out().getValue() == 0.0);
      */
-  }
-
-  @Override
-  public String getType() {
-    return TYPE;
   }
 }
