@@ -28,7 +28,7 @@ public class Sum extends BlockImpl {
   public static final String TYPE = "sum";
 
   public Sum(int id, String name) {
-    super(id, name);
+    super(id, name,2,1);
   }
 
   @Override

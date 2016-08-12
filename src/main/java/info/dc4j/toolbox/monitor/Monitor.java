@@ -36,10 +36,9 @@ public class Monitor extends BlockImpl implements Tracer, MonitorService {
   private final List<Tracer> tracers = new ArrayList<>();
   private final Layout layout;
   private final ModelFactory factory;
-  private int index;
 
   public Monitor(int id, String name, ModelFactory factory, Layout layout) {
-    super(id, name);
+    super(id, name,0,0);
     this.layout = layout;
     this.factory = factory;
     addParameter("traceLevel", TRACE_LEVEL, TypeEnum.STRING);
@@ -53,7 +52,7 @@ public class Monitor extends BlockImpl implements Tracer, MonitorService {
   @Override
   public void setMonitoredConnector(int connectorId) {
     Connector connector = layout.getConnector(connectorId);
-    setU(connector, index);
+    addU(connector);
   }
 
   @Override

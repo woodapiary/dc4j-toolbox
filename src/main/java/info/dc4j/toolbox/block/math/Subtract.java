@@ -28,7 +28,7 @@ public class Subtract extends BlockImpl {
   public static final String TYPE = "sub";
 
   public Subtract(int id, String name) {
-    super(id, name);
+    super(id, name,2,1);
   }
 
   @Override

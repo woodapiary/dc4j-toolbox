@@ -33,11 +33,11 @@ public class ModelImpl implements Model {
 
   private final Layout layout;
   private final Monitor monitor;
-  private double dt = Model.DT;
+  private double dt = ModelConstants.DT;
   private double t;
   private long step;
 
-  protected ModelImpl(ModelFactory factory, Layout layout, Monitor monitor) {
+  protected ModelImpl(Layout layout, Monitor monitor) {
     this.layout = layout;
     this.monitor = monitor;
   }

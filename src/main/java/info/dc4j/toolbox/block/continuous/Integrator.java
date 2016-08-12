@@ -33,7 +33,7 @@ public class Integrator extends BlockImpl {
   public static final String TI_NAME = "Ti";
 
   public Integrator(int id, String name) {
-    super(id, name);
+    super(id, name,1,1);
     addParameter(TI_NAME, TI, TypeEnum.DOUBLE);
   }
 

@@ -38,7 +38,7 @@ public class UnitImpl extends BlockImpl implements Unit {
   private final HashMap<Integer, Connector> mapConnectors = new HashMap<>();
 
   public UnitImpl(int id, String name) {
-    super(id, name);
+    super(id, name,0,0);
   }
 
   @Override

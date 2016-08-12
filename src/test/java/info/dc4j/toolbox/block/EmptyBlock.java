@@ -28,17 +28,17 @@ public class EmptyBlock extends BlockImpl {
   public static final String TYPE = "Empty";
   public static final String DESC = "empty block";
 
-  private static final double D = 1.0;
+  public static final double D = 1.0;
   public static final String D_NAME = "d";
-  private static final boolean B = true;
+  public static final boolean B = true;
   public static final String B_NAME = "b";
-  private static final int I = 2;
+  public static final int I = 2;
   public static final String I_NAME = "i";
-  private static final String S = "3";
+  public static final String S = "3";
   public static final String S_NAME = "s";
 
   public EmptyBlock(int id, String name) {
-    super(id, name);
+    super(id, name,4,4);
     addParameter(D_NAME, D, TypeEnum.DOUBLE);
     addParameter(B_NAME, B, TypeEnum.BOOL);
     addParameter(I_NAME, I, TypeEnum.INTEGER);

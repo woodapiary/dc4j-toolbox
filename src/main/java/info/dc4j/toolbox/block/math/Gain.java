@@ -30,7 +30,7 @@ public class Gain extends BlockImpl {
   private static final double K = 1.0;
 
   public Gain(int id, String name) {
-    super(id, name);
+    super(id, name, 1,1);
     addParameter("k", K, TypeEnum.DOUBLE);
   }
 

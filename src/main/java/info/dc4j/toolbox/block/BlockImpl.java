@@ -23,6 +23,7 @@
 package info.dc4j.toolbox.block;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,20 +32,27 @@ import info.dc4j.toolbox.connector.Connector;
 import info.dc4j.toolbox.connector.DoubleConnector;
 import info.dc4j.toolbox.element.ElementImpl;
 import info.dc4j.toolbox.layout.Composite;
-import info.dc4j.toolbox.model.Model;
+import info.dc4j.toolbox.model.ModelConstants;
 
 public abstract class BlockImpl extends ElementImpl implements Block {
   public static final String TYPE = "block";
-  private final List<Connector> listY = new ArrayList<>();
-  private final List<Connector> listU = new ArrayList<>();
+  private final List<Connector> listY;
+  private final List<Connector> listU;
   private final Map<String, Parameter> parameters = new HashMap<>();
   private long step;
   private Composite host;
-  private double dt = Model.DT;
+  private double dt = ModelConstants.DT;
   private double t;
+  private final int sizeU;
+  private final int sizeY;
 
-  public BlockImpl(int id, String name) {
+  //TODO get default parameters
+  public BlockImpl(int id, String name, int sizeU, int sizeY) {
     super(id, name);
+    this.sizeU = sizeU;
+    this.sizeY = sizeY;
+    listU = Arrays.asList(new Connector[sizeU]);
+    listY = Arrays.asList(new Connector[sizeY]);
   }
 
   protected void setParameter(String key, Object value) {
@@ -101,12 +109,22 @@ public abstract class BlockImpl extends ElementImpl implements Block {
 
   @Override
   public void setY(Connector y, int out) {
-    listY.add(out, y);
+    listY.set(out, y);
+  }
+
+  @Override
+  public void addY(Connector y) {
+    listY.add(y);
   }
 
   @Override
   public void setU(Connector u, int in) {
-    listU.add(in, u);
+    listU.set(in, u);
+  }
+
+  @Override
+  public void addU(Connector u) {
+    listU.add(u);
   }
 
   @Override
@@ -193,6 +211,14 @@ public abstract class BlockImpl extends ElementImpl implements Block {
   public void init() {
     t = 0;
     step = 0;
+  }
+
+  public int getSizeU() {
+    return sizeU;
+  }
+
+  public int getSizeY() {
+    return sizeY;
   }
 
   @Override

@@ -20,25 +20,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package info.dc4j.toolbox.layout;
+package info.dc4j.toolbox.model;
 
-import java.util.List;
+public class ModelConstants {
 
-import info.dc4j.toolbox.block.Block;
-import info.dc4j.toolbox.connector.Connector;
-
-public interface Unit extends Block {
-
-  void addBlock(Block block);
-
-  void addConnector(Connector connector);
-
-  List<Block> getBlocks();
-
-  List<Connector> getConnectors();
-
-  Connector getConnector(int id);
-
-  Block getBlock(int id);
+  public static final double DT = 0.001;
 
 }

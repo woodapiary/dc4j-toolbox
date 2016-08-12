@@ -41,7 +41,7 @@ public class IntegratorTest {
     DoubleConnector y = new DoubleConnector(2, "out", block1, null);
     block1.setU(u, 0);
     block1.setY(y, 0);
-    Parameter p = new Parameter("ti", TypeEnum.DOUBLE, 2.0);
+    Parameter p = new Parameter(Integrator.TI_NAME, TypeEnum.DOUBLE, 2.0);
     block1.setParameters(Arrays.asList(p));
     u.setValue(1.0);
     for (int i = 1; i < 3000; i++) {

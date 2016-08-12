@@ -31,7 +31,7 @@ public class Sin extends BlockImpl {
   private static final double W = 1.0;
 
   public Sin(int id, String name) {
-    super(id, name);
+    super(id, name,0,1);
     addParameter("a", A, TypeEnum.DOUBLE);
     addParameter("w", W, TypeEnum.DOUBLE);
   }

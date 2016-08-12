@@ -31,7 +31,7 @@ public class Step extends BlockImpl {
   private static final double T0 = 1.0;
 
   public Step(int id, String name) {
-    super(id, name);
+    super(id, name,0,1);
     addParameter("a", A, TypeEnum.DOUBLE);
     addParameter("t0", T0, TypeEnum.DOUBLE);
   }

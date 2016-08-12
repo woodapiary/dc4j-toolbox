@@ -31,7 +31,7 @@ public class PT1 extends BlockImpl {
   private static final double TF = 1.0;
 
   public PT1(int id, String name) {
-    super(id, name);
+    super(id, name,1,1);
     addParameter("tf", TF, TypeEnum.DOUBLE);
     addParameter("k", K, TypeEnum.DOUBLE);
   }
