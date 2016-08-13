@@ -20,27 +20,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package info.dc4j.toolbox.block;
+package info.dc4j.toolbox.connector;
 
-import info.dc4j.toolbox.connector.Connectable;
-import info.dc4j.toolbox.element.Element;
-import info.dc4j.toolbox.element.Parametrizable;
-import info.dc4j.toolbox.layout.Composite;
-import info.dc4j.toolbox.model.Runnable;
+import java.util.List;
 
-public interface Block extends Element, Composite, Connectable, Runnable, Parametrizable {
+import info.dc4j.toolbox.block.Block;
+import info.dc4j.toolbox.block.BlockImpl;
+import info.dc4j.toolbox.element.Parameter;
 
-  public enum Port {
-    Y, U, S
-  };
+public class Splitter extends BlockImpl {
 
-  public enum Type {
-    USER, INTEGRATOR, PT1, GAIN, SUBSTRACT, SUM, SIN, STEP, SPLITTER
+  public Splitter(int id, String name) {
+    super(id, name, 1, 2, 0, 0, 0, 0, 0, 0);
   }
 
-  Type blockType();
+  @Override
+  protected void eval() {
+    double u = dU[0].get();
+    double y0 = u;
+    double y1 = u;
+    dY[0].set(y0);
+    dY[1].set(y1);
+  }
 
-  int getOrder();
+  @Override
+  public Block.Type blockType() {
+    return Block.Type.SPLITTER;
+  }
 
-  void setOrder(int order);
+  @Override
+  public List<Parameter> getParameters(boolean defaults) {
+    return null;
+  }
+
+  @Override
+  public void setParameters(List<Parameter> params) {
+
+  }
+
 }

@@ -20,27 +20,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package info.dc4j.toolbox.block;
+package info.dc4j.toolbox.connector;
 
-import info.dc4j.toolbox.connector.Connectable;
-import info.dc4j.toolbox.element.Element;
-import info.dc4j.toolbox.element.Parametrizable;
-import info.dc4j.toolbox.layout.Composite;
-import info.dc4j.toolbox.model.Runnable;
+import static org.junit.Assert.assertEquals;
 
-public interface Block extends Element, Composite, Connectable, Runnable, Parametrizable {
+import org.junit.Test;
 
-  public enum Port {
-    Y, U, S
-  };
+import info.dc4j.toolbox.block.Block;
 
-  public enum Type {
-    USER, INTEGRATOR, PT1, GAIN, SUBSTRACT, SUM, SIN, STEP, SPLITTER
+public class SplitterTest {
+
+  double delta = 0.005;
+
+  @Test
+  public void test01() {
+    Splitter block1 = new Splitter(1, "block1");
+    DoubleConnector u1 = new DoubleConnector(1, "in1", null, block1);
+    DoubleConnector y1 = new DoubleConnector(2, "out1", block1, null);
+    DoubleConnector y2 = new DoubleConnector(3, "out2", block1, null);
+    block1.setConnector(u1, Block.Port.U, 0);
+    block1.setConnector(y1, Block.Port.Y, 0);
+    block1.setConnector(y2, Block.Port.Y, 1);
+    u1.setValue(2.0);
+    for (int i = 1; i < 3000; i++) {
+      block1.run(0);
+      //System.out.println(y.getValue());
+    }
+    assertEquals(2, y1.getValue(), delta);
+    assertEquals(2, y2.getValue(), delta);
   }
-
-  Type blockType();
-
-  int getOrder();
-
-  void setOrder(int order);
 }

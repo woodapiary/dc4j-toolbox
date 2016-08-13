@@ -33,6 +33,7 @@ import info.dc4j.toolbox.block.source.Step;
 import info.dc4j.toolbox.connector.BoolConnector;
 import info.dc4j.toolbox.connector.Connector;
 import info.dc4j.toolbox.connector.DoubleConnector;
+import info.dc4j.toolbox.connector.Splitter;
 import info.dc4j.toolbox.layout.Layout;
 import info.dc4j.toolbox.layout.LayoutImpl;
 import info.dc4j.toolbox.monitor.ConsoleTracer;
@@ -72,6 +73,9 @@ public class ModelFactoryImpl implements ModelFactory {
         break;
       case SUBSTRACT:
         block = new Subtract(id, name);
+        break;
+      case SPLITTER:
+        block = new Splitter(id, name);
         break;
       case USER:
         createUserBlock(id, name, param);

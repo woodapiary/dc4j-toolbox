@@ -52,13 +52,11 @@ public class Subtract extends BlockImpl {
 
   @Override
   public List<Parameter> getParameters(boolean defaults) {
-    // TODO Auto-generated method stub
     return null;
   }
 
   @Override
   public void setParameters(List<Parameter> params) {
-    // TODO Auto-generated method stub
 
   }
 

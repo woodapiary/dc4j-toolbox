@@ -54,7 +54,7 @@ public class ModelTest {
     List<TraceData> res = model.getTraceData();
     assertEquals(30, res.size());
     Data data = res.get(res.size() - 1).getIndicators().get(1);
-    assertEquals(0.865, data.getDouble(),delta);
+    assertEquals(0.865, data.getDouble(), delta);
 
   }
 
