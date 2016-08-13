@@ -26,6 +26,8 @@ import org.junit.Test;
 
 public class SubstractTest {
 
+  double delta = 0.005;
+
   @Test
   public void testLoopBack() {
     /*

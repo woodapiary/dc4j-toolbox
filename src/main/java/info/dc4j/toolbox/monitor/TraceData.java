@@ -26,6 +26,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import info.dc4j.toolbox.element.Data;
+
 public class TraceData implements Serializable {
 
   private static final long serialVersionUID = -4527241881441543366L;

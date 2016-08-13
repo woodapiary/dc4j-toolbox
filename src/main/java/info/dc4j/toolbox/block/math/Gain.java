@@ -22,15 +22,18 @@
  */
 package info.dc4j.toolbox.block.math;
 
+import java.util.List;
+
 import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.block.BlockImpl;
+import info.dc4j.toolbox.element.Parameter;
 
 public class Gain extends BlockImpl {
 
   private final double k = 1.0;
 
   public Gain(int id, String name) {
-    super(id, name, 1,1,0,0,0,0);
+    super(id, name, 1, 1, 0, 0, 0, 0, 1, 1);
   }
 
   @Override
@@ -40,29 +43,22 @@ public class Gain extends BlockImpl {
     dY[0].set(y);
   }
 
-  @Override
-  public Object getParameters() {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
-  public void setParameters(Object map) {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public Object getDefaultParameters() {
-    // TODO Auto-generated method stub
-    return null;
-  }
 
   @Override
   public Block.Type blockType() {
     return Block.Type.GAIN;
   }
 
+  @Override
+  public List<Parameter> getParameters(boolean defaults) {
+    // TODO Auto-generated method stub
+    return null;
+  }
 
+  @Override
+  public void setParameters(List<Parameter> params) {
+    // TODO Auto-generated method stub
+
+  }
 
 }

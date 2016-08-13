@@ -23,5 +23,5 @@
 package info.dc4j.toolbox.monitor;
 
 public enum TracerType {
-CONSOLE, MEMORY
+  CONSOLE, MEMORY
 }

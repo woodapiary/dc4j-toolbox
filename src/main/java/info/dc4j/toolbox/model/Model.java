@@ -27,5 +27,4 @@ import info.dc4j.toolbox.monitor.MonitorService;
 
 public interface Model extends Runnable, LayoutService, MonitorService {
 
-
 }

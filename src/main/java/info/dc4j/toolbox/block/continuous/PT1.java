@@ -22,21 +22,29 @@
  */
 package info.dc4j.toolbox.block.continuous;
 
-import java.util.EnumMap;
+import java.util.ArrayList;
+import java.util.List;
 
 import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.block.BlockImpl;
+import info.dc4j.toolbox.connector.Connector;
+import info.dc4j.toolbox.element.Parameter;
 
 public class PT1 extends BlockImpl {
+
+  public static final String DESC = "first order lowpass filter";
 
   public enum P {
     K, TF
   };
-  private double k = 1.0;
-  private double tf = 1.0;
+
+  private static double kDefault = 1.0;
+  private static double tDefault = 1.0;
+  private double k = kDefault;
+  private double tf = tDefault;
 
   public PT1(int id, String name) {
-    super(id, name,1,1,0,0,0,0);
+    super(id, name, 1, 1, 0, 0, 0, 0, 2, 0);
   }
 
   @Override
@@ -49,24 +57,31 @@ public class PT1 extends BlockImpl {
     dY[0].set(y);
   }
 
-  @Override
-  public Object getParameters() {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @SuppressWarnings("unchecked")
-  @Override
-  public void setParameters(Object map) {
-    EnumMap<P, Object> params = (EnumMap<P, Object>) map;
-    tf = (Double)params.get(P.TF);
-    k = (Double)params.get(P.K);
-  }
 
   @Override
-  public Object getDefaultParameters() {
-    // TODO Auto-generated method stub
-    return null;
+  public void setParameters(List<Parameter> params) {
+    for (Parameter param : params) {
+      switch (P.valueOf(param.getName())) {
+        case K:
+          k = param.getDouble();
+          break;
+        case TF:
+          tf = param.getDouble();
+          break;
+        default:
+          throw new IllegalArgumentException("wrong parameter");
+      }
+    }
+  }
+
+  @Override
+  public List<Parameter> getParameters(boolean defaults) {
+    List<Parameter> data = new ArrayList<>();
+    if (!defaults) {
+      data.add(new Parameter(getId(), P.K.name(), Connector.Type.DOUBLE, k));
+      data.add(new Parameter(getId(), P.TF.name(), Connector.Type.DOUBLE, tf));
+    }
+    return data;
   }
 
   protected void setK(double k) {

@@ -28,7 +28,6 @@ public abstract class ElementImpl implements Element {
   private String name;
   private String desc;
 
-
   public ElementImpl(int id, String name) {
     this.id = id;
     if (name == null) {
@@ -66,8 +65,6 @@ public abstract class ElementImpl implements Element {
   public void setDesc(String desc) {
     this.desc = desc;
   }
-
-
 
   @Override
   public String getCanonicalName() {

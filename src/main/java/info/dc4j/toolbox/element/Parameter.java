@@ -20,32 +20,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package info.dc4j.toolbox.monitor;
+package info.dc4j.toolbox.element;
 
 import java.io.Serializable;
 
-public class Data implements Serializable {
+import info.dc4j.toolbox.connector.Connector;
 
-  private static final long serialVersionUID = -2428130720125168559L;
-  private final Integer id;
-  private final String type; //TODO enum
+public class Parameter implements Serializable {
+
+  private static final long serialVersionUID = -2424130720125168559L;
+  private final int id;
+  private final String name;
+  private final Connector.Type type;
   private Object value;
 
-  public Data(Integer id, String type, Object value) {
+  public Parameter(int id, String name, Connector.Type type, Object value) {
     this.value = value;
     this.type = type;
     this.id = id;
+    this.name = name;
   }
 
   public Object getValue() {
     return value;
   }
 
-  public String getType() {
+  public Connector.Type getType() {
     return type;
   }
 
-  public Integer getId() {
+  public int getId() {
     return id;
   }
 
@@ -67,6 +71,10 @@ public class Data implements Serializable {
 
   public Boolean getBoolean() {
     return (Boolean) value;
+  }
+
+  public String getName() {
+    return name;
   }
 
 }

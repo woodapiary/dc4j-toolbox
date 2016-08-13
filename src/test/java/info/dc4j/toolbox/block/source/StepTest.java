@@ -26,6 +26,8 @@ import org.junit.Test;
 
 public class StepTest {
 
+  double delta = 0.005;
+
   @Test
   public void testStep() {
 

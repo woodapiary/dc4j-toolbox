@@ -30,6 +30,7 @@ import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.connector.Connector;
 import info.dc4j.toolbox.element.Element;
 import info.dc4j.toolbox.element.ElementImpl;
+import info.dc4j.toolbox.element.Parameter;
 import info.dc4j.toolbox.model.ModelConstants;
 import info.dc4j.toolbox.model.ModelFactory;
 import info.dc4j.toolbox.model.Runnable;
@@ -108,13 +109,13 @@ public class LayoutImpl extends ElementImpl implements Layout {
   }
 
   @Override
-  public Object getBlockParameters(int blockId) {
+  public List<Parameter>  getBlockParameters(int blockId, boolean defaults) {
     Block block = getBlock(blockId);
-    return block.getParameters();
+    return block.getParameters(defaults);
   }
 
   @Override
-  public void setBlockParameters(int blockId, Object parameters) {
+  public void setBlockParameters(int blockId, List<Parameter>  parameters) {
     Block block = getBlock(blockId);
     block.setParameters(parameters);
   }
@@ -158,6 +159,5 @@ public class LayoutImpl extends ElementImpl implements Layout {
   public long getStep() {
     return step;
   }
-
 
 }

@@ -26,6 +26,8 @@ import org.junit.Test;
 
 public class SumTest {
 
+  double delta = 0.005;
+
   @Test
   public void testAdder() {
     /*
@@ -33,7 +35,7 @@ public class SumTest {
      * spUb.setT0(2.0); Sum sU = new Sum("sU", spUa.out(), spUb.out());
      * spUa.run(); spUb.run(); sU.run(); assertTrue(sU.out().getValue() == 0.0);
      * for (int i = 1; i < 1500; i++) { spUa.run(); spUb.run(); sU.run();
-     * 
+     *
      * } assertTrue(sU.out().getValue() == 1.0); for (int i = 1500; i < 3000;
      * i++) { spUa.run(); spUb.run(); sU.run(); } assertTrue(sU.out().getValue()
      * == 2.0);

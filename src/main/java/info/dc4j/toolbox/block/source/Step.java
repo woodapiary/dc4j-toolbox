@@ -22,8 +22,11 @@
  */
 package info.dc4j.toolbox.block.source;
 
+import java.util.List;
+
 import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.block.BlockImpl;
+import info.dc4j.toolbox.element.Parameter;
 
 public class Step extends BlockImpl {
 
@@ -31,7 +34,7 @@ public class Step extends BlockImpl {
   private final double t0 = 1.0;
 
   public Step(int id, String name) {
-    super(id, name, 0, 1, 0, 0, 0, 0);
+    super(id, name, 0, 1, 0, 0, 0, 0, 2, 0);
   }
 
   @Override
@@ -43,26 +46,21 @@ public class Step extends BlockImpl {
     dY[0].set(y);
   }
 
-  @Override
-  public Object getParameters() {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
-  public void setParameters(Object map) {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public Object getDefaultParameters() {
-    // TODO Auto-generated method stub
-    return null;
-  }
 
   @Override
   public Block.Type blockType() {
     return Block.Type.STEP;
+  }
+
+  @Override
+  public List<Parameter> getParameters(boolean defaults) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public void setParameters(List<Parameter> params) {
+    // TODO Auto-generated method stub
+
   }
 }

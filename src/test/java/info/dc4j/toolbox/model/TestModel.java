@@ -20,13 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package info.dc4j.toolbox.connector;
+package info.dc4j.toolbox.model;
 
-import info.dc4j.toolbox.block.Block;
-import info.dc4j.toolbox.element.Element;
+import org.junit.Test;
 
-public interface Connectable extends Element {
+public class TestModel {
 
-  void setConnector(Connector connector, Block.Port port, int pin);
+  @Test
+  public void test01() {
+    //Model model = ModelFactoryImpl.createModel();
+  }
 
 }

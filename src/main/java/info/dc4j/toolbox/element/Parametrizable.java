@@ -22,11 +22,11 @@
  */
 package info.dc4j.toolbox.element;
 
+import java.util.List;
+
 public interface Parametrizable {
 
-  Object getParameters();
+  List<Parameter> getParameters(boolean defaults);
+  void setParameters(List<Parameter> params);
 
-  void setParameters(Object map);
-
-  Object getDefaultParameters();
 }

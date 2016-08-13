@@ -22,7 +22,9 @@
  */
 package info.dc4j.toolbox.block;
 
-import java.util.EnumMap;
+import java.util.List;
+
+import info.dc4j.toolbox.element.Parameter;
 
 public class EmptyBlock extends BlockImpl {
 
@@ -36,7 +38,7 @@ public class EmptyBlock extends BlockImpl {
   private boolean b = false;
 
   public EmptyBlock(int id, String name) {
-    super(id, name, 1, 1,1,1,0,0);
+    super(id, name, 1, 1, 1, 1, 0, 0, 1, 1);
     setDesc(DESC);
   }
 
@@ -50,25 +52,6 @@ public class EmptyBlock extends BlockImpl {
     bY[0].set(y1);
   }
 
-  @Override
-  public Object getParameters() {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @SuppressWarnings("unchecked")
-  @Override
-  public void setParameters(Object map) {
-    EnumMap<P, Object> params = (EnumMap<P, Object>) map;
-    d = (Double)params.get(P.D);
-    b = (Boolean)params.get(P.B);
-  }
-
-  @Override
-  public Object getDefaultParameters() {
-    // TODO Auto-generated method stub
-    return null;
-  }
 
   public void setD(double d) {
     this.d = d;
@@ -83,6 +66,16 @@ public class EmptyBlock extends BlockImpl {
     return Block.Type.USER;
   }
 
+  @Override
+  public List<Parameter> getParameters(boolean defaults) {
+    // TODO Auto-generated method stub
+    return null;
+  }
 
+  @Override
+  public void setParameters(List<Parameter> params) {
+    // TODO Auto-generated method stub
+
+  }
 
 }

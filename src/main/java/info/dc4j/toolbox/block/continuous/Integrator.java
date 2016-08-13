@@ -22,14 +22,14 @@
  */
 package info.dc4j.toolbox.block.continuous;
 
-import java.util.EnumMap;
+import java.util.List;
 
 import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.block.BlockImpl;
+import info.dc4j.toolbox.element.Parameter;
 
 public class Integrator extends BlockImpl {
 
-  public static final String TYPE = "Integrator";
   public static final String DESC = "limited  integrate signal";
 
   public enum P {
@@ -39,7 +39,7 @@ public class Integrator extends BlockImpl {
   private double ti = 1.0;
 
   public Integrator(int id, String name) {
-    super(id, name,1,1,0,0,1,0);
+    super(id, name, 1, 1, 0, 0, 1, 0, 1, 0);
     setDesc(DESC);
   }
 
@@ -50,25 +50,6 @@ public class Integrator extends BlockImpl {
     double y = u * dt / ti + s;
     dS[0].set(y);
     dY[0].set(y);
-  }
-
-  @Override
-  public Object getParameters() {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @SuppressWarnings("unchecked")
-  @Override
-  public void setParameters(Object map) {
-    EnumMap<P, Object> params = (EnumMap<P, Object>) map;
-    ti = (Double)params.get(P.TI);
-  }
-
-  @Override
-  public Object getDefaultParameters() {
-    // TODO Auto-generated method stub
-    return null;
   }
 
   protected void setTi(double ti) {
@@ -83,6 +64,19 @@ public class Integrator extends BlockImpl {
   public Block.Type blockType() {
     return Block.Type.INTEGRATOR;
   }
+
+  @Override
+  public List<Parameter> getParameters(boolean defaults) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public void setParameters(List<Parameter> params) {
+    // TODO Auto-generated method stub
+
+  }
+
 
 
 }

@@ -20,13 +20,55 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package info.dc4j.toolbox.connector;
+package info.dc4j.toolbox.element;
 
-import info.dc4j.toolbox.block.Block;
-import info.dc4j.toolbox.element.Element;
+import java.io.Serializable;
 
-public interface Connectable extends Element {
+import info.dc4j.toolbox.connector.Connector;
 
-  void setConnector(Connector connector, Block.Port port, int pin);
+public class Data implements Serializable {
+
+  private static final long serialVersionUID = -2428130720125168559L;
+  private final Integer id;
+  private final Connector.Type type;
+  private Object value;
+
+  public Data(Integer id, Connector.Type type, Object value) {
+    this.value = value;
+    this.type = type;
+    this.id = id;
+  }
+
+  public Object getValue() {
+    return value;
+  }
+
+  public Connector.Type getType() {
+    return type;
+  }
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setValue(Object value) {
+    this.value = value;
+  }
+
+  public Double getDouble() {
+    return (Double) value;
+  }
+
+  public Integer getInteger() {
+    return (Integer) value;
+  }
+
+  public String getString() {
+    return (String) value;
+  }
+
+  public Boolean getBoolean() {
+    return (Boolean) value;
+  }
 
 }

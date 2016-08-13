@@ -22,8 +22,11 @@
  */
 package info.dc4j.toolbox.layout;
 
+import java.util.List;
+
 import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.connector.Connector;
+import info.dc4j.toolbox.element.Parameter;
 
 public interface LayoutService {
   void build();
@@ -32,8 +35,8 @@ public interface LayoutService {
 
   int createConnection(Integer id, String name, int fromId, int toId, int out, int in, Connector.Type type);
 
-  Object getBlockParameters(int blockId);
+  List<Parameter>  getBlockParameters(int blockId, boolean defaults);
 
-  void setBlockParameters(int blockId, Object parameters);
+  void setBlockParameters(int blockId, List<Parameter>  parameters);
 
 }

@@ -22,7 +22,7 @@
  */
 package info.dc4j.toolbox.block.continuous;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -30,6 +30,8 @@ import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.connector.DoubleConnector;
 
 public class IntegratorTest {
+
+  double delta = 0.005;
 
   @Test
   public void test01() {
@@ -42,10 +44,10 @@ public class IntegratorTest {
     u.setValue(1.0);
     for (int i = 1; i < 3000; i++) {
       block1.run(0);
-      //System.out.println(y.getValue());
+      // System.out.println(y.getValue());
     }
-    assertTrue(y.getValue() > 1.49);
-    assertTrue(y.getValue() < 1.51);
+    assertEquals(1, u.getValue(), delta);
+    assertEquals(1.5, y.getValue(), delta);
 
   }
 }

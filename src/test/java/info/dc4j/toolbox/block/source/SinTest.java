@@ -26,6 +26,8 @@ import org.junit.Test;
 
 public class SinTest {
 
+  double delta = 0.005;
+
   @Test
   public void testSin() {
     /*

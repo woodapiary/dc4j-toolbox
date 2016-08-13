@@ -26,6 +26,7 @@ import java.util.List;
 
 import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.connector.Connector;
+import info.dc4j.toolbox.element.Parameter;
 import info.dc4j.toolbox.layout.Layout;
 import info.dc4j.toolbox.monitor.Monitor;
 import info.dc4j.toolbox.monitor.TraceData;
@@ -127,18 +128,19 @@ public class ModelImpl implements Model {
     return monitor.getTraceData();
   }
 
+
   @Override
-  public Object getBlockParameters(int blockId) {
+  public List<Parameter> getBlockParameters(int blockId, boolean defaults) {
     switch (blockId) {
       case ModelConstants.MONITOR_ID:
-        return monitor.getParameters();
+        return monitor.getParameters(defaults); //true
       default:
-        return layout.getBlockParameters(blockId);
+        return layout.getBlockParameters(blockId, defaults);
     }
   }
 
   @Override
-  public void setBlockParameters(int blockId, Object parameters) {
+  public void setBlockParameters(int blockId, List<Parameter> parameters) {
     switch (blockId) {
       case ModelConstants.MONITOR_ID:
         monitor.setParameters(parameters);

@@ -28,6 +28,7 @@ import java.util.List;
 import info.dc4j.toolbox.connector.Connector;
 import info.dc4j.toolbox.element.Element;
 import info.dc4j.toolbox.element.ElementImpl;
+import info.dc4j.toolbox.element.Parameter;
 import info.dc4j.toolbox.layout.Layout;
 import info.dc4j.toolbox.model.ModelConstants;
 import info.dc4j.toolbox.model.ModelFactory;
@@ -65,7 +66,7 @@ public class MonitorImpl extends ElementImpl implements Monitor {
   }
 
   @Override
-  public void setTracer(TracerType  type) {
+  public void setTracer(TracerType type) {
     tracers.add(factory.createTracer(type));
   }
 
@@ -104,23 +105,7 @@ public class MonitorImpl extends ElementImpl implements Monitor {
     return res;
   }
 
-  @Override
-  public Object getParameters() {
-    // TODO Auto-generated method stub
-    return null;
-  }
 
-  @Override
-  public void setParameters(Object map) {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public Object getDefaultParameters() {
-    // TODO Auto-generated method stub
-    return null;
-  }
 
   @Override
   public void run(double maxTime) {
@@ -158,5 +143,16 @@ public class MonitorImpl extends ElementImpl implements Monitor {
     this.traceLevel = traceLevel;
   }
 
+  @Override
+  public List<Parameter> getParameters(boolean defaults) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public void setParameters(List<Parameter> params) {
+    // TODO Auto-generated method stub
+
+  }
 
 }

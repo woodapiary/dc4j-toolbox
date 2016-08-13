@@ -26,13 +26,15 @@ import org.junit.Test;
 
 public class GainTest {
 
+  double delta = 0.005;
+
   @Test
   public void testGain() {
     /*
      * DoubleConnector in = new DoubleConnector("const"); in.setValue(1.0); Gain
      * gain = new Gain(in); gain.run(); assertTrue(gain.out().getValue() ==
      * 1.0); for (int i = 1; i < 3000; i++) { gain.run();
-     * 
+     *
      * } assertTrue(gain.out().getValue() == 1.0);
      */
   }

@@ -26,7 +26,7 @@ import java.util.List;
 
 import info.dc4j.toolbox.connector.Connector;
 
-public interface Tracer  {
+public interface Tracer {
 
   void trace(long step, double t, List<Connector> connectors);
 

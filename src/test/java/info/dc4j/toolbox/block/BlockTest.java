@@ -58,15 +58,15 @@ public class BlockTest {
   @Test
   public void test02() {
     EmptyBlock block1 = new EmptyBlock(1, "block1");
-    assertEquals(1,block1.getId());
+    assertEquals(1, block1.getId());
     assertEquals("block1", block1.getName());
-    assertEquals(0,block1.getOrder());
+    assertEquals(0, block1.getOrder());
     assertEquals(0.001, block1.getScanTime(), delta);
-    assertEquals("block1",block1.getCanonicalName());
+    assertEquals("block1", block1.getCanonicalName());
     assertEquals("empty block", block1.getDesc());
     assertEquals("USER", block1.blockType().name());
     block1.run(0);
-    assertEquals(1,block1.getStep());
+    assertEquals(1, block1.getStep());
     assertEquals(0.001, block1.getT(), delta);
   }
 
@@ -89,7 +89,5 @@ public class BlockTest {
     assertTrue(u1.getValue());
     assertTrue(y1.getValue());
   }
-
-
 
 }

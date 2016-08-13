@@ -41,5 +41,4 @@ public class DoubleConnector extends ConnectorImpl {
     return Connector.Type.DOUBLE;
   }
 
-
 }

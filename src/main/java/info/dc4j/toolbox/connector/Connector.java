@@ -22,8 +22,8 @@
  */
 package info.dc4j.toolbox.connector;
 
+import info.dc4j.toolbox.element.Data;
 import info.dc4j.toolbox.element.Element;
-import info.dc4j.toolbox.monitor.Data;
 
 public interface Connector extends Element {
 

@@ -22,13 +22,16 @@
  */
 package info.dc4j.toolbox.block.math;
 
+import java.util.List;
+
 import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.block.BlockImpl;
+import info.dc4j.toolbox.element.Parameter;
 
 public class Sum extends BlockImpl {
 
   public Sum(int id, String name) {
-    super(id, name,2,1,0,0,0,0);
+    super(id, name, 2, 1, 0, 0, 0, 0, 0, 0);
   }
 
   @Override
@@ -39,27 +42,22 @@ public class Sum extends BlockImpl {
     dY[0].set(y);
   }
 
-  @Override
-  public Object getParameters() {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
-  public void setParameters(Object map) {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public Object getDefaultParameters() {
-    // TODO Auto-generated method stub
-    return null;
-  }
 
   @Override
   public Block.Type blockType() {
     return Block.Type.SUM;
+  }
+
+  @Override
+  public List<Parameter> getParameters(boolean defaults) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public void setParameters(List<Parameter> params) {
+    // TODO Auto-generated method stub
+
   }
 
 }

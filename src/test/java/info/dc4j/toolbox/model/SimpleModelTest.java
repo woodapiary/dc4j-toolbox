@@ -24,15 +24,12 @@ package info.dc4j.toolbox.model;
 
 public class SimpleModelTest {
 
-/*  @Test
-  public void test() {
-
-    long maxL = 0;
-    for (long i = 0; i < Long.MAX_VALUE; i++) {
-      maxL = i;
-    }
-    System.out.println(maxL - 1);
-  }*/
+  /*
+   * @Test public void test() {
+   * 
+   * long maxL = 0; for (long i = 0; i < Long.MAX_VALUE; i++) { maxL = i; }
+   * System.out.println(maxL - 1); }
+   */
   /*
    * @Test public void testSimpleModel() { SimpleModel model = new
    * SimpleModel(); model.setSettings(getSettings()); model.addTracer(new

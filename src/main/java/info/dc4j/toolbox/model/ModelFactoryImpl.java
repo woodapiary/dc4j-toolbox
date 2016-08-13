@@ -88,7 +88,6 @@ public class ModelFactoryImpl implements ModelFactory {
     throw new IllegalArgumentException("no user blocks");
   }
 
-
   @Override
   public Connector createConnector(Integer id, String name, Block source, Block target, Connector.Type type) {
     if (id == null) {
@@ -123,7 +122,6 @@ public class ModelFactoryImpl implements ModelFactory {
     }
     return tracer;
   }
-
 
   public static Model createModel() {
     ModelFactory factory = new ModelFactoryImpl();

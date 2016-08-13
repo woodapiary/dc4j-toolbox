@@ -37,23 +37,28 @@ public abstract class BlockImpl extends ElementImpl implements Block {
   protected final BoolSlot[] bY;
   protected final BoolSlot[] bU;
   protected final BoolSlot[] bS;
+  protected final BoolSlot[] bP;
   protected final DoubleSlot[] dY;
   protected final DoubleSlot[] dU;
   protected final DoubleSlot[] dS;
+  protected final DoubleSlot[] dP;
   protected long step;
   private Composite host;
   protected double dt = ModelConstants.DT;
   protected double t;
   private int order;
 
-  public BlockImpl(int id, String name, int sizeUd, int sizeYd, int sizeUb, int sizeYb, int sizeSd, int sizeSb) {
+  public BlockImpl(int id, String name, int sizeUd, int sizeYd, int sizeUb, int sizeYb, int sizeSd, int sizeSb,
+      int sizePd, int sizePb) {
     super(id, name);
     bY = new BoolSlot[sizeYb];
     bU = new BoolSlot[sizeUb];
     bS = new BoolSlot[sizeSb];
+    bP = new BoolSlot[sizePb];
     dY = new DoubleSlot[sizeYd];
     dU = new DoubleSlot[sizeUd];
     dS = new DoubleSlot[sizeSd];
+    dP = new DoubleSlot[sizePd];
     for (int i = 0; i < sizeYb; i++) {
       bY[i] = new BoolSlot();
     }
@@ -63,6 +68,9 @@ public abstract class BlockImpl extends ElementImpl implements Block {
     for (int i = 0; i < sizeSb; i++) {
       bS[i] = new BoolSlot();
     }
+    for (int i = 0; i < sizePb; i++) {
+      bP[i] = new BoolSlot();
+    }
     for (int i = 0; i < sizeUd; i++) {
       dU[i] = new DoubleSlot();
     }
@@ -71,6 +79,9 @@ public abstract class BlockImpl extends ElementImpl implements Block {
     }
     for (int i = 0; i < sizeSd; i++) {
       dS[i] = new DoubleSlot();
+    }
+    for (int i = 0; i < sizePd; i++) {
+      dP[i] = new DoubleSlot();
     }
   }
 
