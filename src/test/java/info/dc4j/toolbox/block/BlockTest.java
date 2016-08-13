@@ -64,7 +64,7 @@ public class BlockTest {
     assertEquals(0.001, block1.getScanTime(), delta);
     assertEquals("block1",block1.getCanonicalName());
     assertEquals("empty block", block1.getDesc());
-    assertEquals("Empty", block1.getType());
+    assertEquals("USER", block1.blockType().name());
     block1.run(0);
     assertEquals(1,block1.getStep());
     assertEquals(0.001, block1.getT(), delta);

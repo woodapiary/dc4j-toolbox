@@ -24,10 +24,12 @@ package info.dc4j.toolbox.model;
 
 import java.util.List;
 
+import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.connector.Connector;
 import info.dc4j.toolbox.layout.Layout;
 import info.dc4j.toolbox.monitor.Monitor;
 import info.dc4j.toolbox.monitor.TraceData;
+import info.dc4j.toolbox.monitor.TracerType;
 
 public class ModelImpl implements Model {
 
@@ -44,9 +46,8 @@ public class ModelImpl implements Model {
 
   @Override
   public void run(double maxTime) {
-    monitor.trace(step, t, null);
     while (t < maxTime) {
-      // step++;
+      step++;
       t = t + dt;
       layout.run(maxTime);
       monitor.run(maxTime);
@@ -92,8 +93,8 @@ public class ModelImpl implements Model {
   }
 
   @Override
-  public int createBlock(Integer id, String name, String type) {
-    return layout.createBlock(id, name, type);
+  public int createBlock(Integer id, String name, Block.Type type, Object param) {
+    return layout.createBlock(id, name, type, param);
   }
 
   @Override
@@ -112,7 +113,7 @@ public class ModelImpl implements Model {
   }
 
   @Override
-  public void setTracer(String type) {
+  public void setTracer(TracerType type) {
     monitor.setTracer(type);
   }
 
@@ -128,13 +129,23 @@ public class ModelImpl implements Model {
 
   @Override
   public Object getBlockParameters(int blockId) {
-    return layout.getBlockParameters(blockId);
+    switch (blockId) {
+      case ModelConstants.MONITOR_ID:
+        return monitor.getParameters();
+      default:
+        return layout.getBlockParameters(blockId);
+    }
   }
 
   @Override
   public void setBlockParameters(int blockId, Object parameters) {
-    layout.setBlockParameters(blockId, parameters);
-
+    switch (blockId) {
+      case ModelConstants.MONITOR_ID:
+        monitor.setParameters(parameters);
+        break;
+      default:
+        layout.setBlockParameters(blockId, parameters);
+    }
   }
 
 }

@@ -27,18 +27,16 @@ public abstract class ElementImpl implements Element {
   private final int id;
   private String name;
   private String desc;
-  private int order;
-  private String type;
+
 
   public ElementImpl(int id, String name) {
     this.id = id;
     if (name == null) {
-      this.name = getType() + "-" + ((Integer) id).toString();
+      this.name = typeElement().name() + "-" + ((Integer) id).toString();
     } else {
       this.name = name;
     }
     desc = DESC;
-    type = "element";
   }
 
   @Override
@@ -60,11 +58,6 @@ public abstract class ElementImpl implements Element {
   }
 
   @Override
-  public String getType() {
-    return type;
-  }
-
-  @Override
   public String getDesc() {
     return desc;
   }
@@ -74,23 +67,11 @@ public abstract class ElementImpl implements Element {
     this.desc = desc;
   }
 
-  @Override
-  public int getOrder() {
-    return order;
-  }
 
-  @Override
-  public void setOrder(int order) {
-    this.order = order;
-  }
 
   @Override
   public String getCanonicalName() {
     return getName();
-  }
-
-  public void setType(String type) {
-    this.type = type;
   }
 
 }

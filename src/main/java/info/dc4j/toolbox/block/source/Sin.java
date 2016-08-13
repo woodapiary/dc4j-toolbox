@@ -22,16 +22,16 @@
  */
 package info.dc4j.toolbox.block.source;
 
+import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.block.BlockImpl;
 
 public class Sin extends BlockImpl {
-  public static final String TYPE = "sin";
+
   private final double a = 1.0;
   private final double w = 1.0;
 
   public Sin(int id, String name) {
     super(id, name,0,1,0,0,0,0);
-    setType(TYPE);
   }
 
   @Override
@@ -58,6 +58,9 @@ public class Sin extends BlockImpl {
     return null;
   }
 
-
+  @Override
+  public Block.Type blockType() {
+    return Block.Type.SIN;
+  }
 
 }

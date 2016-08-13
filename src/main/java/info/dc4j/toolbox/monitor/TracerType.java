@@ -20,5 +20,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package info.dc4j.toolbox.connector;
+package info.dc4j.toolbox.monitor;
 
+public enum TracerType {
+CONSOLE, MEMORY
+}

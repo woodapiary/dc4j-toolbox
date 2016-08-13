@@ -23,7 +23,7 @@
 package info.dc4j.toolbox.monitor;
 import info.dc4j.toolbox.element.Parametrizable;
 import info.dc4j.toolbox.model.Runnable;
-public interface Monitor  extends Runnable, Tracer, MonitorService,Parametrizable  {
+public interface Monitor  extends Runnable, MonitorService,Parametrizable  {
 
 
 }

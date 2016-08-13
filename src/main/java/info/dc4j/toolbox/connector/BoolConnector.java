@@ -37,8 +37,8 @@ public class BoolConnector extends ConnectorImpl implements Connector {
   }
 
   @Override
-  public Type type() {
-    return Type.BOOL;
+  public Connector.Type connectorType() {
+    return Connector.Type.BOOL;
   }
 
 }

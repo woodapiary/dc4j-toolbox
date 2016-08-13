@@ -22,12 +22,13 @@
  */
 package info.dc4j.toolbox.layout;
 
+import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.connector.Connector;
 
 public interface LayoutService {
   void build();
 
-  int createBlock(Integer id, String name, String type);
+  int createBlock(Integer id, String name, Block.Type type, Object param);
 
   int createConnection(Integer id, String name, int fromId, int toId, int out, int in, Connector.Type type);
 

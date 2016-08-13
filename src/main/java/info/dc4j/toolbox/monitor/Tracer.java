@@ -25,14 +25,15 @@ package info.dc4j.toolbox.monitor;
 import java.util.List;
 
 import info.dc4j.toolbox.connector.Connector;
-import info.dc4j.toolbox.element.Typable;
 
-public interface Tracer extends Typable {
+public interface Tracer  {
 
   void trace(long step, double t, List<Connector> connectors);
 
   List<TraceData> getTraceData();
 
   void clear();
+
+  TracerType type();
 
 }

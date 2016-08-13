@@ -28,7 +28,6 @@ import java.util.List;
 import info.dc4j.toolbox.connector.Connector;
 
 public class ConsoleTracer implements Tracer {
-  public static final String TYPE = "console";
 
   @Override
   public void trace(long step, double t, List<Connector> connectors) {
@@ -55,8 +54,10 @@ public class ConsoleTracer implements Tracer {
   }
 
   @Override
-  public String getType() {
-    return TYPE;
+  public TracerType type() {
+    return TracerType.CONSOLE;
   }
+
+
 
 }

@@ -24,10 +24,11 @@ package info.dc4j.toolbox.block.continuous;
 
 import java.util.EnumMap;
 
+import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.block.BlockImpl;
 
 public class PT1 extends BlockImpl {
-  public static final String TYPE = "PT1";
+
   public enum P {
     K, TF
   };
@@ -36,7 +37,6 @@ public class PT1 extends BlockImpl {
 
   public PT1(int id, String name) {
     super(id, name,1,1,0,0,0,0);
-    setType(TYPE);
   }
 
   @Override
@@ -75,5 +75,10 @@ public class PT1 extends BlockImpl {
 
   protected void setTf(double tf) {
     this.tf = tf;
+  }
+
+  @Override
+  public Block.Type blockType() {
+    return Block.Type.PT1;
   }
 }

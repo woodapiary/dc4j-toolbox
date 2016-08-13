@@ -37,8 +37,9 @@ public class DoubleConnector extends ConnectorImpl {
   }
 
   @Override
-  public Type type() {
-    return Type.DOUBLE;
+  public Connector.Type connectorType() {
+    return Connector.Type.DOUBLE;
   }
+
 
 }

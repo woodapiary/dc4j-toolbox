@@ -27,12 +27,13 @@ import java.util.List;
 import info.dc4j.toolbox.connector.BoolConnector;
 import info.dc4j.toolbox.connector.Connector;
 import info.dc4j.toolbox.connector.DoubleConnector;
+import info.dc4j.toolbox.element.Element;
 import info.dc4j.toolbox.element.ElementImpl;
 import info.dc4j.toolbox.layout.Composite;
 import info.dc4j.toolbox.model.ModelConstants;
 
 public abstract class BlockImpl extends ElementImpl implements Block {
-  public static final String TYPE = "block";
+
   protected final BoolSlot[] bY;
   protected final BoolSlot[] bU;
   protected final BoolSlot[] bS;
@@ -43,6 +44,7 @@ public abstract class BlockImpl extends ElementImpl implements Block {
   private Composite host;
   protected double dt = ModelConstants.DT;
   protected double t;
+  private int order;
 
   public BlockImpl(int id, String name, int sizeUd, int sizeYd, int sizeUb, int sizeYb, int sizeSd, int sizeSb) {
     super(id, name);
@@ -70,14 +72,13 @@ public abstract class BlockImpl extends ElementImpl implements Block {
     for (int i = 0; i < sizeSd; i++) {
       dS[i] = new DoubleSlot();
     }
-    setType(TYPE);
   }
 
   @Override
   public void setConnector(Connector connector, Block.Port port, int pin) {
     switch (port) {
       case U:
-        switch (connector.type()) {
+        switch (connector.connectorType()) {
           case BOOL:
             bU[pin].setConnector((BoolConnector) connector);
             break;
@@ -89,7 +90,7 @@ public abstract class BlockImpl extends ElementImpl implements Block {
         }
         break;
       case Y:
-        switch (connector.type()) {
+        switch (connector.connectorType()) {
           case BOOL:
             bY[pin].setConnector((BoolConnector) connector);
             break;
@@ -101,7 +102,7 @@ public abstract class BlockImpl extends ElementImpl implements Block {
         }
         break;
       case S:
-        switch (connector.type()) {
+        switch (connector.connectorType()) {
           case BOOL:
             bS[pin].setConnector((BoolConnector) connector);
             break;
@@ -176,6 +177,21 @@ public abstract class BlockImpl extends ElementImpl implements Block {
   public void init() {
     t = 0;
     step = 0;
+  }
+
+  @Override
+  public int getOrder() {
+    return order;
+  }
+
+  @Override
+  public void setOrder(int order) {
+    this.order = order;
+  }
+
+  @Override
+  public Element.Type typeElement() {
+    return Element.Type.BLOCK;
   }
 
   public class BoolSlot {

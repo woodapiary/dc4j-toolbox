@@ -23,52 +23,75 @@
 package info.dc4j.toolbox.model;
 
 import info.dc4j.toolbox.block.Block;
-import info.dc4j.toolbox.block.BlockImpl;
 import info.dc4j.toolbox.block.continuous.Integrator;
 import info.dc4j.toolbox.block.continuous.PT1;
+import info.dc4j.toolbox.block.math.Gain;
+import info.dc4j.toolbox.block.math.Subtract;
+import info.dc4j.toolbox.block.math.Sum;
+import info.dc4j.toolbox.block.source.Sin;
+import info.dc4j.toolbox.block.source.Step;
 import info.dc4j.toolbox.connector.BoolConnector;
 import info.dc4j.toolbox.connector.Connector;
 import info.dc4j.toolbox.connector.DoubleConnector;
 import info.dc4j.toolbox.layout.Layout;
 import info.dc4j.toolbox.layout.LayoutImpl;
-import info.dc4j.toolbox.layout.UnitImpl;
 import info.dc4j.toolbox.monitor.ConsoleTracer;
 import info.dc4j.toolbox.monitor.MemoryTracer;
 import info.dc4j.toolbox.monitor.Monitor;
 import info.dc4j.toolbox.monitor.MonitorImpl;
 import info.dc4j.toolbox.monitor.Tracer;
+import info.dc4j.toolbox.monitor.TracerType;
 
 public class ModelFactoryIml implements ModelFactory {
 
   private final SequenceId seq = new SequenceId();
 
   @Override
-  public Block createBlock(Integer id, String name, String type) {
+  public Block createBlock(Integer id, String name, Block.Type type, Object param) {
     if (id == null) {
       id = seq.getBlockId();
     }
-    BlockImpl block = null;
+    Block block = null;
     switch (type) {
-      case UnitImpl.TYPE:
-        block = new UnitImpl(id, name);
-        break;
-      case Integrator.TYPE:
+      case INTEGRATOR:
         block = new Integrator(id, name);
         break;
-      case PT1.TYPE:
+      case PT1:
         block = new PT1(id, name);
         break;
-      // TODO add elements
+      case GAIN:
+        block = new Gain(id, name);
+        break;
+      case SUM:
+        block = new Sum(id, name);
+        break;
+      case SIN:
+        block = new Sin(id, name);
+        break;
+      case STEP:
+        block = new Step(id, name);
+        break;
+      case SUBSTRACT:
+        block = new Subtract(id, name);
+        break;
+      case USER:
+        createUserBlock(id, name, param);
+        break;
       default:
-        throw new IllegalArgumentException("bad type of block");
+        throw new IllegalArgumentException("wrong type block");
     }
     return block;
   }
 
   @Override
+  public Block createUserBlock(Integer id, String name, Object param) {
+    throw new IllegalArgumentException("no user blocks");
+  }
+
+  @Override
   public Model createModel() {
     Layout layout = new LayoutImpl(0, "", this);
-    Monitor monitor = new MonitorImpl(1, "monitor", this, layout);
+    Monitor monitor = new MonitorImpl(ModelConstants.MONITOR_ID, "monitor", this, layout);
     return new ModelImpl(layout, monitor);
   }
 
@@ -92,13 +115,13 @@ public class ModelFactoryIml implements ModelFactory {
   }
 
   @Override
-  public Tracer createTracer(String type) {
+  public Tracer createTracer(TracerType type) {
     Tracer tracer = null;
     switch (type) {
-      case ConsoleTracer.TYPE:
+      case CONSOLE:
         tracer = new ConsoleTracer();
         break;
-      case MemoryTracer.TYPE:
+      case MEMORY:
         tracer = new MemoryTracer();
         break;
       default:

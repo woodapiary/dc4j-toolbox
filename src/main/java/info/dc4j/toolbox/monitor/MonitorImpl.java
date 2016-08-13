@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import info.dc4j.toolbox.connector.Connector;
+import info.dc4j.toolbox.element.Element;
 import info.dc4j.toolbox.element.ElementImpl;
 import info.dc4j.toolbox.layout.Layout;
 import info.dc4j.toolbox.model.ModelConstants;
@@ -60,7 +61,7 @@ public class MonitorImpl extends ElementImpl implements Monitor {
   }
 
   @Override
-  public void setTracer(String type) {
+  public void setTracer(TracerType  type) {
     tracers.add(factory.createTracer(type));
   }
 
@@ -70,7 +71,6 @@ public class MonitorImpl extends ElementImpl implements Monitor {
     return null;
   }
 
-  @Override
   public void trace(long step, double t, List<Connector> conn) {
     if (step % traceLevel == 0 || step == 0) {
       for (Tracer tracer : tracers) {
@@ -83,7 +83,9 @@ public class MonitorImpl extends ElementImpl implements Monitor {
   public void init() {
     t = 0;
     step = 0;
-    clear();
+    for (Tracer tracer : tracers) {
+      tracer.clear();
+    }
   }
 
   @Override
@@ -96,13 +98,6 @@ public class MonitorImpl extends ElementImpl implements Monitor {
       }
     }
     return res;
-  }
-
-  @Override
-  public void clear() {
-    for (Tracer tracer : tracers) {
-      tracer.clear();
-    }
   }
 
   @Override
@@ -149,15 +144,9 @@ public class MonitorImpl extends ElementImpl implements Monitor {
   }
 
   @Override
-  public String getType() {
-    // TODO Auto-generated method stub
-    return null;
+  public Element.Type typeElement() {
+    return Element.Type.MONITOR;
   }
 
-  @Override
-  public String getCanonicalName() {
-    // TODO Auto-generated method stub
-    return null;
-  }
 
 }

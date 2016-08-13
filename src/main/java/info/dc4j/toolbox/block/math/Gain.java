@@ -22,16 +22,15 @@
  */
 package info.dc4j.toolbox.block.math;
 
+import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.block.BlockImpl;
 
 public class Gain extends BlockImpl {
-  public static final String TYPE = "Gain";
+
   private final double k = 1.0;
 
   public Gain(int id, String name) {
     super(id, name, 1,1,0,0,0,0);
-    setType(TYPE);
-
   }
 
   @Override
@@ -57,6 +56,11 @@ public class Gain extends BlockImpl {
   public Object getDefaultParameters() {
     // TODO Auto-generated method stub
     return null;
+  }
+
+  @Override
+  public Block.Type blockType() {
+    return Block.Type.GAIN;
   }
 
 

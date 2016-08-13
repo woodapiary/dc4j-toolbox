@@ -34,5 +34,13 @@ public interface Block extends Element, Composite, Connectable, Runnable, Parame
     Y, U, S
   };
 
+  public enum Type {
+    USER, INTEGRATOR, PT1, GAIN, SUBSTRACT, SUM, SIN, STEP
+  }
 
+  Type blockType();
+
+  int getOrder();
+
+  void setOrder(int order);
 }

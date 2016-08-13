@@ -25,5 +25,7 @@ package info.dc4j.toolbox.model;
 public class ModelConstants {
 
   public static final double DT = 0.001;
+  public static final int LAYER_ID = 0;
+  public static final int MONITOR_ID = 1;
 
 }

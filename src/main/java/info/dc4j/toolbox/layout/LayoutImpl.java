@@ -22,13 +22,29 @@
  */
 package info.dc4j.toolbox.layout;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.connector.Connector;
+import info.dc4j.toolbox.element.Element;
+import info.dc4j.toolbox.element.ElementImpl;
+import info.dc4j.toolbox.model.ModelConstants;
 import info.dc4j.toolbox.model.ModelFactory;
 import info.dc4j.toolbox.model.Runnable;
 
-public class LayoutImpl extends UnitImpl implements Layout {
+//TODO implements units
+
+public class LayoutImpl extends ElementImpl implements Layout {
   private final ModelFactory factory;
+  private final List<Block> blocks = new ArrayList<>();
+  private final List<Connector> connectors = new ArrayList<>();
+  private final HashMap<Integer, Block> mapBlocks = new HashMap<>();
+  private final HashMap<Integer, Connector> mapConnectors = new HashMap<>();
+  protected long step;
+  protected double dt = ModelConstants.DT;
+  protected double t;
 
   public LayoutImpl(int id, String name, ModelFactory factory) {
     super(id, name);
@@ -47,7 +63,8 @@ public class LayoutImpl extends UnitImpl implements Layout {
 
   @Override
   public void run(double maxTime) {
-    super.run(maxTime);
+    step++;
+    t = t + dt;
     for (Runnable block : getBlocks()) {
       block.run(maxTime);
     }
@@ -55,7 +72,8 @@ public class LayoutImpl extends UnitImpl implements Layout {
 
   @Override
   public void init() {
-    super.init();
+    t = 0;
+    step = 0;
     for (Runnable block : getBlocks()) {
       block.init();
     }
@@ -63,16 +81,17 @@ public class LayoutImpl extends UnitImpl implements Layout {
 
   @Override
   public void setScanTime(double dt) {
-    super.setScanTime(dt);
+    this.dt = dt;
     for (Runnable block : getBlocks()) {
       block.setScanTime(dt);
     }
   }
 
   @Override
-  public int createBlock(Integer id, String name, String type) {
-    Block block = factory.createBlock(id, name, type);
-    addBlock(block);
+  public int createBlock(Integer id, String name, Block.Type type, Object param) {
+    Block block = factory.createBlock(id, name, type, param);
+    blocks.add(block);
+    mapBlocks.put(block.getId(), block);
     return block.getId();
   }
 
@@ -81,7 +100,8 @@ public class LayoutImpl extends UnitImpl implements Layout {
     Block source = getBlock(fromId);
     Block target = getBlock(toId);
     Connector connector = factory.createConnector(id, name, source, target, type);
-    addConnector(connector);
+    connectors.add(connector);
+    mapConnectors.put(connector.getId(), connector);
     source.setConnector(connector, Block.Port.Y, out);
     target.setConnector(connector, Block.Port.U, in);
     return connector.getId();
@@ -99,8 +119,45 @@ public class LayoutImpl extends UnitImpl implements Layout {
     block.setParameters(parameters);
   }
 
+  @Override
+  public Connector getConnector(int id) {
+    return mapConnectors.get(id);
+  }
 
+  @Override
+  public Block getBlock(int id) {
+    return mapBlocks.get(id);
+  }
 
+  @Override
+  public List<Block> getBlocks() {
+    return blocks;
+  }
+
+  @Override
+  public List<Connector> getConnectors() {
+    return connectors;
+  }
+
+  @Override
+  public Type typeElement() {
+    return Element.Type.LAYOUT;
+  }
+
+  @Override
+  public double getScanTime() {
+    return dt;
+  }
+
+  @Override
+  public double getT() {
+    return t;
+  }
+
+  @Override
+  public long getStep() {
+    return step;
+  }
 
 
 }

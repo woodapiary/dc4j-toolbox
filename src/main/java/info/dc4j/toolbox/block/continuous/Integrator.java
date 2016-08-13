@@ -24,6 +24,7 @@ package info.dc4j.toolbox.block.continuous;
 
 import java.util.EnumMap;
 
+import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.block.BlockImpl;
 
 public class Integrator extends BlockImpl {
@@ -40,7 +41,6 @@ public class Integrator extends BlockImpl {
   public Integrator(int id, String name) {
     super(id, name,1,1,0,0,0,0);
     setDesc(DESC);
-    setType(TYPE);
   }
 
   @Override
@@ -76,6 +76,11 @@ public class Integrator extends BlockImpl {
 
   protected double getTi() {
     return ti;
+  }
+
+  @Override
+  public Block.Type blockType() {
+    return Block.Type.INTEGRATOR;
   }
 
 

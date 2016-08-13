@@ -22,6 +22,7 @@
  */
 package info.dc4j.toolbox.connector;
 
+import info.dc4j.toolbox.element.Element;
 import info.dc4j.toolbox.element.ElementImpl;
 import info.dc4j.toolbox.monitor.Data;
 
@@ -66,7 +67,12 @@ public abstract class ConnectorImpl extends ElementImpl implements Connector {
 
   @Override
   public Data getData() {
-    return new Data(getId(), getType(), value);
+    return new Data(getId(), connectorType().name(), value);
+  }
+
+  @Override
+  public Element.Type typeElement() {
+    return Element.Type.CONNECTOR;
   }
 
   @Override

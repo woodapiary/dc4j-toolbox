@@ -41,6 +41,6 @@ public interface Connector extends Element {
 
   Data getData();
 
-  Type type();
+  Connector.Type connectorType();
 
 }

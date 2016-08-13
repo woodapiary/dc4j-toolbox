@@ -22,14 +22,14 @@
  */
 package info.dc4j.toolbox.block.math;
 
+import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.block.BlockImpl;
 
 public class Subtract extends BlockImpl {
-  public static final String TYPE = "Subtract";
 
   public Subtract(int id, String name) {
     super(id, name,2,1,0,0,0,0);
-    setType(TYPE);
+
   }
 
   @Override
@@ -58,6 +58,9 @@ public class Subtract extends BlockImpl {
     return null;
   }
 
-
+  @Override
+  public Block.Type blockType() {
+    return Block.Type.SUBSTRACT;
+  }
 
 }

@@ -26,7 +26,6 @@ import java.util.EnumMap;
 
 public class EmptyBlock extends BlockImpl {
 
-  public static final String TYPE = "Empty";
   public static final String DESC = "empty block";
 
   public enum P {
@@ -39,7 +38,6 @@ public class EmptyBlock extends BlockImpl {
   public EmptyBlock(int id, String name) {
     super(id, name, 1, 1,1,1,0,0);
     setDesc(DESC);
-    setType(TYPE);
   }
 
   @Override
@@ -78,6 +76,11 @@ public class EmptyBlock extends BlockImpl {
 
   protected void setB(boolean b) {
     this.b = b;
+  }
+
+  @Override
+  public Block.Type blockType() {
+    return Block.Type.USER;
   }
 
 

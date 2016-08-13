@@ -22,6 +22,21 @@
  */
 package info.dc4j.toolbox.layout;
 
-public interface Layout extends Unit, LayoutService {
+import java.util.List;
+
+import info.dc4j.toolbox.block.Block;
+import info.dc4j.toolbox.connector.Connector;
+import info.dc4j.toolbox.element.Element;
+import info.dc4j.toolbox.model.Runnable;
+
+public interface Layout extends Element, Runnable, LayoutService {
+
+  Connector getConnector(int id);
+
+  Block getBlock(int id);
+
+  List<Block> getBlocks();
+
+  List<Connector> getConnectors();
 
 }

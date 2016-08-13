@@ -25,15 +25,18 @@ package info.dc4j.toolbox.model;
 import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.connector.Connector;
 import info.dc4j.toolbox.monitor.Tracer;
+import info.dc4j.toolbox.monitor.TracerType;
 
 public interface ModelFactory {
 
-  Block createBlock(Integer id, String name, String type);
+  Block createBlock(Integer id, String name, Block.Type type, Object param);
+
+  Block createUserBlock(Integer id, String name, Object param);
 
   Model createModel();
 
   Connector createConnector(Integer id, String name, Block source, Block target, Connector.Type type);
 
-  Tracer createTracer(String type);
+  Tracer createTracer(TracerType type);
 
 }

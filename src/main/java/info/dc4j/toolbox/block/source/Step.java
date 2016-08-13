@@ -22,17 +22,16 @@
  */
 package info.dc4j.toolbox.block.source;
 
+import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.block.BlockImpl;
 
 public class Step extends BlockImpl {
-  public static final String TYPE = "Step";
+
   private final double a = 1.0;
   private final double t0 = 1.0;
 
   public Step(int id, String name) {
     super(id, name, 0, 1, 0, 0, 0, 0);
-    setType(TYPE);
-
   }
 
   @Override
@@ -62,4 +61,8 @@ public class Step extends BlockImpl {
     return null;
   }
 
+  @Override
+  public Block.Type blockType() {
+    return Block.Type.STEP;
+  }
 }

@@ -30,7 +30,6 @@ import info.dc4j.toolbox.connector.Connector;
 public class MemoryTracer implements Tracer {
 
   private final List<TraceData> result = new ArrayList<TraceData>();
-  public static final String TYPE = "memory";
 
   @Override
   public void trace(long step, double t, List<Connector> connectors) {
@@ -52,7 +51,7 @@ public class MemoryTracer implements Tracer {
   }
 
   @Override
-  public String getType() {
-    return TYPE;
+  public TracerType type() {
+    return TracerType.CONSOLE;
   }
 }

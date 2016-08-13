@@ -23,33 +23,22 @@
 package info.dc4j.toolbox.layout;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import info.dc4j.toolbox.block.Block;
-import info.dc4j.toolbox.block.BlockImpl;
-import info.dc4j.toolbox.connector.Connector;
+import info.dc4j.toolbox.element.Element;
+import info.dc4j.toolbox.element.ElementImpl;
 
-public class UnitImpl extends BlockImpl implements Unit {
-  public static final String TYPE = "composite";
-  private final List<Block> blocks = new ArrayList<>();
-  private final List<Connector> connectors = new ArrayList<>();
-  private final HashMap<Integer, Block> mapBlocks = new HashMap<>();
-  private final HashMap<Integer, Connector> mapConnectors = new HashMap<>();
+public class UnitImpl extends ElementImpl implements Unit {
+
+  private final List<Composite> blocks = new ArrayList<>();
+  private Composite host;
 
   public UnitImpl(int id, String name) {
-    super(id, name,0,0,0,0,0,0);
+    super(id, name);
   }
 
-  @Override
-  protected void eval() {
-
-  }
-
-  @Override
-  public void addBlock(Block block) {
+  public void addBlock(Composite block) {
     blocks.add(block);
-    mapBlocks.put(block.getId(), block);
     block.setHost(this);
   }
 
@@ -69,62 +58,18 @@ public class UnitImpl extends BlockImpl implements Unit {
   }
 
   @Override
-  public List<Block> getBlocks() {
-    return blocks;
+  public Type typeElement() {
+    return Element.Type.UNIT;
   }
 
   @Override
-  public String toString() {
-    StringBuilder builder = new StringBuilder();
-    builder.append("CompositeBlock [childBlocks=");
-    builder.append(blocks);
-    builder.append(super.toString());
-    builder.append("]");
-    return builder.toString();
+  public Composite getHost() {
+    return host;
   }
 
   @Override
-  public String getType() {
-    return TYPE;
+  public void setHost(Composite host) {
+    this.host = host;
   }
-
-  @Override
-  public Connector getConnector(int id) {
-    return mapConnectors.get(id);
-  }
-
-  @Override
-  public Block getBlock(int id) {
-    return mapBlocks.get(id);
-  }
-
-  @Override
-  public void addConnector(Connector connector) {
-    connectors.add(connector);
-    mapConnectors.put(connector.getId(), connector);
-
-  }
-
-  @Override
-  public List<Connector> getConnectors() {
-    return connectors;
-  }
-
-
-  @Override
-  public Object getParameters() {
-    return null;
-  }
-
-  @Override
-  public void setParameters(Object map) {
-
-  }
-
-  @Override
-  public Object getDefaultParameters() {
-    return null;
-  }
-
 
 }
