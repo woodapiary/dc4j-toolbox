@@ -71,7 +71,7 @@ public abstract class ConnectorImpl extends ElementImpl implements Connector {
   }
 
   @Override
-  public Element.Type typeElement() {
+  public Element.Type elementType() {
     return Element.Type.CONNECTOR;
   }
 

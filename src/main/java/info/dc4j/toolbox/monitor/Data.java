@@ -28,7 +28,7 @@ public class Data implements Serializable {
 
   private static final long serialVersionUID = -2428130720125168559L;
   private final Integer id;
-  private final String type;
+  private final String type; //TODO enum
   private Object value;
 
   public Data(Integer id, String type, Object value) {

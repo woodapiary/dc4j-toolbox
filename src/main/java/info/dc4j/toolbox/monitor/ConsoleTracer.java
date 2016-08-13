@@ -34,11 +34,21 @@ public class ConsoleTracer implements Tracer {
     System.out.printf("%tT  ", new Date());
     System.out.printf("%07d  ", step);
     System.out.printf("t=");
-    System.out.printf("%8.3f  ", t);
+    System.out.printf("%-5.3f  ", t);
     for (Connector conn : connectors) {
-      System.out.printf(conn.getName() + "=");
-      // TODO case for type
-      System.out.printf("%8.3f  ", conn.getValue());
+      System.out.printf("%5.4s", conn.getName());
+      System.out.printf("=");
+      switch (conn.connectorType()) {
+        case BOOL:
+          System.out.printf("%-6.5b", conn.getValue());
+          break;
+        case DOUBLE:
+          System.out.printf("%-8.3f  ", conn.getValue());
+          break;
+        default:
+          throw new IllegalStateException("bad type of connector");
+      }
+
     }
     System.out.printf("%n");
   }
@@ -57,7 +67,5 @@ public class ConsoleTracer implements Tracer {
   public TracerType type() {
     return TracerType.CONSOLE;
   }
-
-
 
 }

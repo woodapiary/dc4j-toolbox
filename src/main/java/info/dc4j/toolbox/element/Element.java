@@ -62,6 +62,7 @@ public interface Element {
 
   String getCanonicalName();
 
-  Type typeElement();
+  Type elementType();
+
 
 }

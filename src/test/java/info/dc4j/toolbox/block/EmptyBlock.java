@@ -70,11 +70,11 @@ public class EmptyBlock extends BlockImpl {
     return null;
   }
 
-  protected void setD(double d) {
+  public void setD(double d) {
     this.d = d;
   }
 
-  protected void setB(boolean b) {
+  public void setB(boolean b) {
     this.b = b;
   }
 

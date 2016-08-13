@@ -190,7 +190,7 @@ public abstract class BlockImpl extends ElementImpl implements Block {
   }
 
   @Override
-  public Element.Type typeElement() {
+  public Element.Type elementType() {
     return Element.Type.BLOCK;
   }
 

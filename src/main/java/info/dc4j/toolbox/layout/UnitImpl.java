@@ -37,6 +37,7 @@ public class UnitImpl extends ElementImpl implements Unit {
     super(id, name);
   }
 
+  @Override
   public void addBlock(Composite block) {
     blocks.add(block);
     block.setHost(this);
@@ -58,7 +59,7 @@ public class UnitImpl extends ElementImpl implements Unit {
   }
 
   @Override
-  public Type typeElement() {
+  public Element.Type elementType() {
     return Element.Type.UNIT;
   }
 

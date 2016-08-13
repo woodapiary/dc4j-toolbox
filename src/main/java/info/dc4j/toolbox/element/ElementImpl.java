@@ -32,7 +32,7 @@ public abstract class ElementImpl implements Element {
   public ElementImpl(int id, String name) {
     this.id = id;
     if (name == null) {
-      this.name = typeElement().name() + "-" + ((Integer) id).toString();
+      this.name = elementType().name() + "-" + ((Integer) id).toString();
     } else {
       this.name = name;
     }

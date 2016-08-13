@@ -42,7 +42,7 @@ import info.dc4j.toolbox.monitor.MonitorImpl;
 import info.dc4j.toolbox.monitor.Tracer;
 import info.dc4j.toolbox.monitor.TracerType;
 
-public class ModelFactoryIml implements ModelFactory {
+public class ModelFactoryImpl implements ModelFactory {
 
   private final SequenceId seq = new SequenceId();
 
@@ -88,12 +88,6 @@ public class ModelFactoryIml implements ModelFactory {
     throw new IllegalArgumentException("no user blocks");
   }
 
-  @Override
-  public Model createModel() {
-    Layout layout = new LayoutImpl(0, "", this);
-    Monitor monitor = new MonitorImpl(ModelConstants.MONITOR_ID, "monitor", this, layout);
-    return new ModelImpl(layout, monitor);
-  }
 
   @Override
   public Connector createConnector(Integer id, String name, Block source, Block target, Connector.Type type) {
@@ -128,6 +122,19 @@ public class ModelFactoryIml implements ModelFactory {
         throw new IllegalArgumentException("bad type of tracer");
     }
     return tracer;
+  }
+
+
+  public static Model createModel() {
+    ModelFactory factory = new ModelFactoryImpl();
+    Layout layout = new LayoutImpl(0, "", factory);
+    Monitor monitor = new MonitorImpl(ModelConstants.MONITOR_ID, "monitor", factory, layout);
+    Model model = new ModelImpl(layout, monitor);
+    return model;
+  }
+
+  public static ModelFactory getInstanse() {
+    return new ModelFactoryImpl();
   }
 
   class SequenceId {

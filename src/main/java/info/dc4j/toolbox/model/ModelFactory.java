@@ -33,8 +33,6 @@ public interface ModelFactory {
 
   Block createUserBlock(Integer id, String name, Object param);
 
-  Model createModel();
-
   Connector createConnector(Integer id, String name, Block source, Block target, Connector.Type type);
 
   Tracer createTracer(TracerType type);

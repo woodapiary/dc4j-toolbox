@@ -140,7 +140,7 @@ public class LayoutImpl extends ElementImpl implements Layout {
   }
 
   @Override
-  public Type typeElement() {
+  public Element.Type elementType() {
     return Element.Type.LAYOUT;
   }
 

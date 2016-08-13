@@ -33,7 +33,7 @@ import info.dc4j.toolbox.model.ModelConstants;
 import info.dc4j.toolbox.model.ModelFactory;
 
 public class MonitorImpl extends ElementImpl implements Monitor {
-  private final int traceLevel = 100;
+  private int traceLevel = 100;
   private final List<Tracer> tracers = new ArrayList<>();
   private final List<Connector> connectors = new ArrayList<>();
   private final Layout layout;
@@ -54,6 +54,10 @@ public class MonitorImpl extends ElementImpl implements Monitor {
     connectors.add(connector);
   }
 
+  protected void setMonitoredConnector(Connector connector) {
+    connectors.add(connector);
+  }
+
   @Override
   public List<Integer> getMonitoredConnectors() {
     // TODO
@@ -71,7 +75,7 @@ public class MonitorImpl extends ElementImpl implements Monitor {
     return null;
   }
 
-  public void trace(long step, double t, List<Connector> conn) {
+  private void trace(long step, double t, List<Connector> conn) {
     if (step % traceLevel == 0 || step == 0) {
       for (Tracer tracer : tracers) {
         tracer.trace(step, t, conn != null ? conn : connectors);
@@ -120,6 +124,8 @@ public class MonitorImpl extends ElementImpl implements Monitor {
 
   @Override
   public void run(double maxTime) {
+    t = t + dt;
+    step++;
     trace(getStep(), getT(), null);
   }
 
@@ -144,8 +150,12 @@ public class MonitorImpl extends ElementImpl implements Monitor {
   }
 
   @Override
-  public Element.Type typeElement() {
+  public Element.Type elementType() {
     return Element.Type.MONITOR;
+  }
+
+  protected void setTraceLevel(int traceLevel) {
+    this.traceLevel = traceLevel;
   }
 
 
