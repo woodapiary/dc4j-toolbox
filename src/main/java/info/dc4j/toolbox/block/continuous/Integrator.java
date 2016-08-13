@@ -22,38 +22,61 @@
  */
 package info.dc4j.toolbox.block.continuous;
 
+import java.util.EnumMap;
+
 import info.dc4j.toolbox.block.BlockImpl;
-import info.dc4j.toolbox.element.TypeEnum;
 
 public class Integrator extends BlockImpl {
+
   public static final String TYPE = "Integrator";
   public static final String DESC = "limited  integrate signal";
 
-  public static final double TI = 1.0;
-  public static final String TI_NAME = "Ti";
+  public enum P {
+    TI
+  };
+
+  private double ti = 1.0;
 
   public Integrator(int id, String name) {
-    super(id, name,1,1);
-    addParameter(TI_NAME, TI, TypeEnum.DOUBLE);
+    super(id, name,1,1,0,0,0,0);
+    setDesc(DESC);
+    setType(TYPE);
   }
 
   @Override
   protected void eval() {
-    double y0 = getDoubleY(0);
-    double u = getDoubleU(0);
-    double dt = getScanTime();
-    double ti = getDoubleParameter(TI_NAME);
-    double y = u * dt / ti + y0;
-    setValueY(0, y);
+    double u0 = dU[0].get();
+    double y0 = dY[0].get();
+    double y = u0 * dt / ti + y0;
+    dY[0].set(y);
   }
 
   @Override
-  public String getType() {
-    return TYPE;
+  public Object getParameters() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @SuppressWarnings("unchecked")
+  @Override
+  public void setParameters(Object map) {
+    EnumMap<P, Object> params = (EnumMap<P, Object>) map;
+    ti = (Double)params.get(P.TI);
   }
 
   @Override
-  public String getDesc() {
-    return DESC;
+  public Object getDefaultParameters() {
+    // TODO Auto-generated method stub
+    return null;
   }
+
+  protected void setTi(double ti) {
+    this.ti = ti;
+  }
+
+  protected double getTi() {
+    return ti;
+  }
+
+
 }

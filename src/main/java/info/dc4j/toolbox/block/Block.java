@@ -22,17 +22,17 @@
  */
 package info.dc4j.toolbox.block;
 
-import java.util.List;
-
 import info.dc4j.toolbox.connector.Connectable;
 import info.dc4j.toolbox.element.Element;
+import info.dc4j.toolbox.element.Parametrizable;
 import info.dc4j.toolbox.layout.Composite;
 import info.dc4j.toolbox.model.Runnable;
 
-public interface Block extends Element, Composite, Connectable, Runnable {
+public interface Block extends Element, Composite, Connectable, Runnable, Parametrizable {
 
-  List<Parameter> getParameters();
+  public enum Port {
+    Y, U, S
+  };
 
-  void setParameters(List<Parameter> parameters);
 
 }

@@ -38,7 +38,7 @@ public class UnitImpl extends BlockImpl implements Unit {
   private final HashMap<Integer, Connector> mapConnectors = new HashMap<>();
 
   public UnitImpl(int id, String name) {
-    super(id, name,0,0);
+    super(id, name,0,0,0,0,0,0);
   }
 
   @Override
@@ -109,5 +109,22 @@ public class UnitImpl extends BlockImpl implements Unit {
   public List<Connector> getConnectors() {
     return connectors;
   }
+
+
+  @Override
+  public Object getParameters() {
+    return null;
+  }
+
+  @Override
+  public void setParameters(Object map) {
+
+  }
+
+  @Override
+  public Object getDefaultParameters() {
+    return null;
+  }
+
 
 }

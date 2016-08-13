@@ -22,44 +22,64 @@
  */
 package info.dc4j.toolbox.block;
 
-import info.dc4j.toolbox.element.TypeEnum;
+import java.util.EnumMap;
 
 public class EmptyBlock extends BlockImpl {
+
   public static final String TYPE = "Empty";
   public static final String DESC = "empty block";
 
-  public static final double D = 1.0;
-  public static final String D_NAME = "d";
-  public static final boolean B = true;
-  public static final String B_NAME = "b";
-  public static final int I = 2;
-  public static final String I_NAME = "i";
-  public static final String S = "3";
-  public static final String S_NAME = "s";
+  public enum P {
+    D, B
+  };
+
+  private double d = 1.0;
+  private boolean b = false;
 
   public EmptyBlock(int id, String name) {
-    super(id, name,4,4);
-    addParameter(D_NAME, D, TypeEnum.DOUBLE);
-    addParameter(B_NAME, B, TypeEnum.BOOL);
-    addParameter(I_NAME, I, TypeEnum.INTEGER);
-    addParameter(S_NAME, S, TypeEnum.STRING);
+    super(id, name, 1, 1,1,1,0,0);
+    setDesc(DESC);
+    setType(TYPE);
   }
 
   @Override
   protected void eval() {
-    double u0 = getDoubleU(0);
-    double p0 = getDoubleParameter(D_NAME);
-    double y0 = u0 * p0;
-    setValueY(0, y0);
+    double u0 = dU[0].get();
+    boolean u1 = bU[0].get();
+    double y0 = u0 * d;
+    boolean y1 = u1 && b;
+    dY[0].set(y0);
+    bY[0].set(y1);
   }
 
   @Override
-  public String getType() {
-    return TYPE;
+  public Object getParameters() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @SuppressWarnings("unchecked")
+  @Override
+  public void setParameters(Object map) {
+    EnumMap<P, Object> params = (EnumMap<P, Object>) map;
+    d = (Double)params.get(P.D);
+    b = (Boolean)params.get(P.B);
   }
 
   @Override
-  public String getDesc() {
-    return DESC;
+  public Object getDefaultParameters() {
+    // TODO Auto-generated method stub
+    return null;
   }
+
+  protected void setD(double d) {
+    this.d = d;
+  }
+
+  protected void setB(boolean b) {
+    this.b = b;
+  }
+
+
+
 }

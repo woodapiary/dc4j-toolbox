@@ -23,30 +23,43 @@
 package info.dc4j.toolbox.block.source;
 
 import info.dc4j.toolbox.block.BlockImpl;
-import info.dc4j.toolbox.element.TypeEnum;
 
 public class Step extends BlockImpl {
-  public static final String TYPE = "step";
-  private static final double A = 1.0;
-  private static final double T0 = 1.0;
+  public static final String TYPE = "Step";
+  private final double a = 1.0;
+  private final double t0 = 1.0;
 
   public Step(int id, String name) {
-    super(id, name,0,1);
-    addParameter("a", A, TypeEnum.DOUBLE);
-    addParameter("t0", T0, TypeEnum.DOUBLE);
+    super(id, name, 0, 1, 0, 0, 0, 0);
+    setType(TYPE);
+
   }
 
   @Override
   protected void eval() {
-    // TODO
-    /*
-     * double y = 0; if (t >= t0) { y = a; } out().setValue(y);
-     */
+    double y = 0;
+    if (t >= t0) {
+      y = a;
+    }
+    dY[0].set(y);
   }
 
   @Override
-  public String getType() {
-    return TYPE;
+  public Object getParameters() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public void setParameters(Object map) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public Object getDefaultParameters() {
+    // TODO Auto-generated method stub
+    return null;
   }
 
 }

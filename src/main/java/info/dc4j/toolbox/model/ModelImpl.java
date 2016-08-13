@@ -24,7 +24,7 @@ package info.dc4j.toolbox.model;
 
 import java.util.List;
 
-import info.dc4j.toolbox.block.Parameter;
+import info.dc4j.toolbox.connector.Connector;
 import info.dc4j.toolbox.layout.Layout;
 import info.dc4j.toolbox.monitor.Monitor;
 import info.dc4j.toolbox.monitor.TraceData;
@@ -97,7 +97,7 @@ public class ModelImpl implements Model {
   }
 
   @Override
-  public int createConnection(Integer id, String name, int fromId, int toId, int out, int in, String type) {
+  public int createConnection(Integer id, String name, int fromId, int toId, int out, int in, Connector.Type type) {
     return layout.createConnection(id, name, fromId, toId, out, in, type);
   }
 
@@ -127,13 +127,14 @@ public class ModelImpl implements Model {
   }
 
   @Override
-  public List<Parameter> getParameters(int blockId) {
-    return layout.getParameters(blockId);
+  public Object getBlockParameters(int blockId) {
+    return layout.getBlockParameters(blockId);
   }
 
   @Override
-  public void setParameters(int blockId, List<Parameter> parameters) {
-    layout.setParameters(blockId, parameters);
+  public void setBlockParameters(int blockId, Object parameters) {
+    layout.setBlockParameters(blockId, parameters);
+
   }
 
 }

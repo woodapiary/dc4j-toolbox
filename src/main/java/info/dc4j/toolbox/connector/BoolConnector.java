@@ -23,10 +23,8 @@
 package info.dc4j.toolbox.connector;
 
 import info.dc4j.toolbox.block.Block;
-import info.dc4j.toolbox.element.TypeEnum;
 
 public class BoolConnector extends ConnectorImpl implements Connector {
-  public static final String TYPE = TypeEnum.BOOL;
 
   public BoolConnector(int id, String name, Block source, Block target) {
     super(id, name, source, target);
@@ -39,8 +37,8 @@ public class BoolConnector extends ConnectorImpl implements Connector {
   }
 
   @Override
-  public String getType() {
-    return TYPE;
+  public Type type() {
+    return Type.BOOL;
   }
 
 }

@@ -25,24 +25,39 @@ package info.dc4j.toolbox.block.math;
 import info.dc4j.toolbox.block.BlockImpl;
 
 public class Subtract extends BlockImpl {
-  public static final String TYPE = "sub";
+  public static final String TYPE = "Subtract";
 
   public Subtract(int id, String name) {
-    super(id, name,2,1);
+    super(id, name,2,1,0,0,0,0);
+    setType(TYPE);
   }
 
   @Override
   protected void eval() {
-    // TODO
-    /*
-     * double u1 = getU0().getValue(); double u2 = getU1().getValue(); double y
-     * = u1 - u2; out().setValue(y);
-     */
+    double u0 = dU[0].get();
+    double u1 = dU[1].get();
+    double y = u1 - u0;
+    dY[0].set(y);
   }
 
   @Override
-  public String getType() {
-    return TYPE;
+  public Object getParameters() {
+    // TODO Auto-generated method stub
+    return null;
   }
+
+  @Override
+  public void setParameters(Object map) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public Object getDefaultParameters() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+
 
 }

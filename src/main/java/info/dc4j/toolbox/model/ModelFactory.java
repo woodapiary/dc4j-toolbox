@@ -32,7 +32,7 @@ public interface ModelFactory {
 
   Model createModel();
 
-  Connector createConnector(Integer id, String name, Block source, Block target, String type);
+  Connector createConnector(Integer id, String name, Block source, Block target, Connector.Type type);
 
   Tracer createTracer(String type);
 

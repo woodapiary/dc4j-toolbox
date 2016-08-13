@@ -35,6 +35,7 @@ import info.dc4j.toolbox.layout.UnitImpl;
 import info.dc4j.toolbox.monitor.ConsoleTracer;
 import info.dc4j.toolbox.monitor.MemoryTracer;
 import info.dc4j.toolbox.monitor.Monitor;
+import info.dc4j.toolbox.monitor.MonitorImpl;
 import info.dc4j.toolbox.monitor.Tracer;
 
 public class ModelFactoryIml implements ModelFactory {
@@ -67,21 +68,21 @@ public class ModelFactoryIml implements ModelFactory {
   @Override
   public Model createModel() {
     Layout layout = new LayoutImpl(0, "", this);
-    Monitor monitor = new Monitor(1, "monitor", this, layout);
+    Monitor monitor = new MonitorImpl(1, "monitor", this, layout);
     return new ModelImpl(layout, monitor);
   }
 
   @Override
-  public Connector createConnector(Integer id, String name, Block source, Block target, String type) {
+  public Connector createConnector(Integer id, String name, Block source, Block target, Connector.Type type) {
     if (id == null) {
       id = seq.getConnectorId();
     }
     Connector connector = null;
     switch (type) {
-      case BoolConnector.TYPE:
+      case BOOL:
         connector = new BoolConnector(id, name, source, target);
         break;
-      case DoubleConnector.TYPE:
+      case DOUBLE:
         connector = new DoubleConnector(id, name, source, target);
         break;
       default:

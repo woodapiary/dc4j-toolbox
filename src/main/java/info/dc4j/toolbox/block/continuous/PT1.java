@@ -22,32 +22,58 @@
  */
 package info.dc4j.toolbox.block.continuous;
 
+import java.util.EnumMap;
+
 import info.dc4j.toolbox.block.BlockImpl;
-import info.dc4j.toolbox.element.TypeEnum;
 
 public class PT1 extends BlockImpl {
-  public static final String TYPE = "pt1";
-  private static final double K = 1.0;
-  private static final double TF = 1.0;
+  public static final String TYPE = "PT1";
+  public enum P {
+    K, TF
+  };
+  private double k = 1.0;
+  private double tf = 1.0;
 
   public PT1(int id, String name) {
-    super(id, name,1,1);
-    addParameter("tf", TF, TypeEnum.DOUBLE);
-    addParameter("k", K, TypeEnum.DOUBLE);
+    super(id, name,1,1,0,0,0,0);
+    setType(TYPE);
   }
 
   @Override
   protected void eval() {
-    // TODO
-    /*
-     * double ku = k / (1 + tf / dt); double ky1 = 1 / (1 + dt / tf); double y1
-     * = out().getValue(); double u = getU0().getValue(); double y = ky1 * y1 +
-     * ku * u; out().setValue(y);
-     */
+    double u0 = dU[0].get();
+    double y0 = dY[0].get();
+    double ku = k / (1 + tf / dt);
+    double ky0 = 1 / (1 + dt / tf);
+    double y = ky0 * y0 + ku * u0;
+    dY[0].set(y);
   }
 
   @Override
-  public String getType() {
-    return TYPE;
+  public Object getParameters() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @SuppressWarnings("unchecked")
+  @Override
+  public void setParameters(Object map) {
+    EnumMap<P, Object> params = (EnumMap<P, Object>) map;
+    tf = (Double)params.get(P.TF);
+    k = (Double)params.get(P.K);
+  }
+
+  @Override
+  public Object getDefaultParameters() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  protected void setK(double k) {
+    this.k = k;
+  }
+
+  protected void setTf(double tf) {
+    this.tf = tf;
   }
 }

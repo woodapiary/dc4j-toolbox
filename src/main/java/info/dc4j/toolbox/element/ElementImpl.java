@@ -28,6 +28,7 @@ public abstract class ElementImpl implements Element {
   private String name;
   private String desc;
   private int order;
+  private String type;
 
   public ElementImpl(int id, String name) {
     this.id = id;
@@ -37,6 +38,7 @@ public abstract class ElementImpl implements Element {
       this.name = name;
     }
     desc = DESC;
+    type = "element";
   }
 
   @Override
@@ -58,7 +60,9 @@ public abstract class ElementImpl implements Element {
   }
 
   @Override
-  public abstract String getType();
+  public String getType() {
+    return type;
+  }
 
   @Override
   public String getDesc() {
@@ -81,6 +85,12 @@ public abstract class ElementImpl implements Element {
   }
 
   @Override
-  public abstract String getCanonicalName();
+  public String getCanonicalName() {
+    return getName();
+  }
+
+  public void setType(String type) {
+    this.type = type;
+  }
 
 }

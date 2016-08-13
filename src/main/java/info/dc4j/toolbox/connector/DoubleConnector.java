@@ -23,10 +23,8 @@
 package info.dc4j.toolbox.connector;
 
 import info.dc4j.toolbox.block.Block;
-import info.dc4j.toolbox.element.TypeEnum;
 
 public class DoubleConnector extends ConnectorImpl {
-  public static final String TYPE = TypeEnum.DOUBLE;
 
   public DoubleConnector(int id, String name, Block source, Block target) {
     super(id, name, source, target);
@@ -39,7 +37,8 @@ public class DoubleConnector extends ConnectorImpl {
   }
 
   @Override
-  public String getType() {
-    return TYPE;
+  public Type type() {
+    return Type.DOUBLE;
   }
+
 }

@@ -23,30 +23,41 @@
 package info.dc4j.toolbox.block.source;
 
 import info.dc4j.toolbox.block.BlockImpl;
-import info.dc4j.toolbox.element.TypeEnum;
 
 public class Sin extends BlockImpl {
   public static final String TYPE = "sin";
-  private static final double A = 1.0;
-  private static final double W = 1.0;
+  private final double a = 1.0;
+  private final double w = 1.0;
 
   public Sin(int id, String name) {
-    super(id, name,0,1);
-    addParameter("a", A, TypeEnum.DOUBLE);
-    addParameter("w", W, TypeEnum.DOUBLE);
+    super(id, name,0,1,0,0,0,0);
+    setType(TYPE);
   }
 
   @Override
   protected void eval() {
-    // TODO
-    /*
-     * double y = a * Math.sin(t * w); out().setValue(y);
-     */
+    double y = a * Math.sin(t * w);
+    dY[0].set(y);
   }
 
   @Override
-  public String getType() {
-    return TYPE;
+  public Object getParameters() {
+    // TODO Auto-generated method stub
+    return null;
   }
+
+  @Override
+  public void setParameters(Object map) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public Object getDefaultParameters() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+
 
 }

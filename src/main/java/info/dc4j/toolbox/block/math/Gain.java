@@ -23,31 +23,42 @@
 package info.dc4j.toolbox.block.math;
 
 import info.dc4j.toolbox.block.BlockImpl;
-import info.dc4j.toolbox.element.TypeEnum;
 
 public class Gain extends BlockImpl {
-  public static final String TYPE = "gain";
-  private static final double K = 1.0;
+  public static final String TYPE = "Gain";
+  private final double k = 1.0;
 
   public Gain(int id, String name) {
-    super(id, name, 1,1);
-    addParameter("k", K, TypeEnum.DOUBLE);
+    super(id, name, 1,1,0,0,0,0);
+    setType(TYPE);
+
   }
 
   @Override
   protected void eval() {
-    // TODO
-    /*
-     * double u = getU0().getValue(); double y = k * u; out().setValue(y);
-     */
-  }
-
-  public static String type() {
-    return Gain.class.getSimpleName();
+    double u0 = dU[0].get();
+    double y = k * u0;
+    dY[0].set(y);
   }
 
   @Override
-  public String getType() {
-    return TYPE;
+  public Object getParameters() {
+    // TODO Auto-generated method stub
+    return null;
   }
+
+  @Override
+  public void setParameters(Object map) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public Object getDefaultParameters() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+
+
 }

@@ -22,26 +22,12 @@
  */
 package info.dc4j.toolbox.connector;
 
-import java.util.List;
-
+import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.element.Element;
 
 public interface Connectable extends Element {
 
-  void setY(Connector y, int out);
+  void setConnector(Connector connector, Block.Port  port,  int pin);
 
-  void addY(Connector y);
-
-  void setU(Connector u, int in);
-
-  void addU(Connector u);
-
-  Connector getY(int out);
-
-  Connector getU(int in);
-
-  List<Connector> getListY();
-
-  List<Connector> getListU();
 
 }

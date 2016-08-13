@@ -22,10 +22,7 @@
  */
 package info.dc4j.toolbox.layout;
 
-import java.util.List;
-
 import info.dc4j.toolbox.block.Block;
-import info.dc4j.toolbox.block.Parameter;
 import info.dc4j.toolbox.connector.Connector;
 import info.dc4j.toolbox.model.ModelFactory;
 import info.dc4j.toolbox.model.Runnable;
@@ -80,26 +77,30 @@ public class LayoutImpl extends UnitImpl implements Layout {
   }
 
   @Override
-  public int createConnection(Integer id, String name, int fromId, int toId, int out, int in, String type) {
+  public int createConnection(Integer id, String name, int fromId, int toId, int out, int in, Connector.Type type) {
     Block source = getBlock(fromId);
     Block target = getBlock(toId);
     Connector connector = factory.createConnector(id, name, source, target, type);
     addConnector(connector);
-    source.setY(connector, out);
-    target.setU(connector, in);
+    source.setConnector(connector, Block.Port.Y, out);
+    target.setConnector(connector, Block.Port.U, in);
     return connector.getId();
   }
 
   @Override
-  public List<Parameter> getParameters(int blockId) {
+  public Object getBlockParameters(int blockId) {
     Block block = getBlock(blockId);
     return block.getParameters();
   }
 
   @Override
-  public void setParameters(int blockId, List<Parameter> parameters) {
+  public void setBlockParameters(int blockId, Object parameters) {
     Block block = getBlock(blockId);
     block.setParameters(parameters);
   }
+
+
+
+
 
 }

@@ -21,90 +21,9 @@
  * THE SOFTWARE.
  */
 package info.dc4j.toolbox.monitor;
+import info.dc4j.toolbox.element.Parametrizable;
+import info.dc4j.toolbox.model.Runnable;
+public interface Monitor  extends Runnable, Tracer, MonitorService,Parametrizable  {
 
-import java.util.ArrayList;
-import java.util.List;
-
-import info.dc4j.toolbox.block.BlockImpl;
-import info.dc4j.toolbox.connector.Connector;
-import info.dc4j.toolbox.element.TypeEnum;
-import info.dc4j.toolbox.layout.Layout;
-import info.dc4j.toolbox.model.ModelFactory;
-
-public class Monitor extends BlockImpl implements Tracer, MonitorService {
-  public static final int TRACE_LEVEL = 100;
-  private final List<Tracer> tracers = new ArrayList<>();
-  private final Layout layout;
-  private final ModelFactory factory;
-
-  public Monitor(int id, String name, ModelFactory factory, Layout layout) {
-    super(id, name,0,0);
-    this.layout = layout;
-    this.factory = factory;
-    addParameter("traceLevel", TRACE_LEVEL, TypeEnum.STRING);
-  }
-
-  @Override
-  protected void eval() {
-    trace(getStep(), getT(), null);
-  }
-
-  @Override
-  public void setMonitoredConnector(int connectorId) {
-    Connector connector = layout.getConnector(connectorId);
-    addU(connector);
-  }
-
-  @Override
-  public List<Integer> getMonitoredConnectors() {
-    // TODO
-    return null;
-  }
-
-  @Override
-  public void setTracer(String type) {
-    tracers.add(factory.createTracer(type));
-  }
-
-  @Override
-  public List<String> getTracers() {
-    // TODO
-    return null;
-  }
-
-  @Override
-  public void trace(long step, double t, List<Connector> connectors) {
-    int traceLevel = getIntegerParameter("traceLevel");
-    if (getStep() % traceLevel == 0 || getStep() == 0) {
-      for (Tracer tracer : tracers) {
-        tracer.trace(step, t, connectors != null ? connectors : getListU());
-      }
-    }
-  }
-
-  @Override
-  public void init() {
-    super.init();
-    clear();
-  }
-
-  @Override
-  public List<TraceData> getTraceData() {
-    List<TraceData> res = null;
-    for (Tracer tracer : tracers) {
-      res = tracer.getTraceData();
-      if (res != null) {
-        break;
-      }
-    }
-    return res;
-  }
-
-  @Override
-  public void clear() {
-    for (Tracer tracer : tracers) {
-      tracer.clear();
-    }
-  }
 
 }

@@ -27,6 +27,10 @@ import info.dc4j.toolbox.monitor.Data;
 
 public interface Connector extends Element {
 
+  public enum Type {
+    DOUBLE, BOOL
+  };
+
   Object getValue();
 
   void setValue(Object value);
@@ -36,5 +40,7 @@ public interface Connector extends Element {
   Connectable getTarget();
 
   Data getData();
+
+  Type type();
 
 }

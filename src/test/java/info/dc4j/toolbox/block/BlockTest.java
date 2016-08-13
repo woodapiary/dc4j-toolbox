@@ -22,44 +22,74 @@
  */
 package info.dc4j.toolbox.block;
 
-import java.util.Arrays;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import info.dc4j.toolbox.connector.BoolConnector;
 import info.dc4j.toolbox.connector.DoubleConnector;
-import info.dc4j.toolbox.element.TypeEnum;
 
 public class BlockTest {
+
+  double delta = 0.005;
 
   @Test
   public void test01() {
     EmptyBlock block1 = new EmptyBlock(1, "block1");
     DoubleConnector u1 = new DoubleConnector(1, "in1", null, block1);
     DoubleConnector y1 = new DoubleConnector(2, "out1", block1, null);
-    block1.setU(u1, 0);
-    block1.setY(y1, 0);
+    block1.setConnector(u1, Block.Port.U, 0);
+    block1.setConnector(y1, Block.Port.Y, 0);
     block1.run(0);
-    System.out.println(u1.getValue());
-    System.out.println(y1.getValue());
+    assertEquals(0, u1.getValue(), delta);
+    assertEquals(0, y1.getValue(), delta);
     u1.setValue(5.0);
     block1.run(0);
-    System.out.println(u1.getValue());
-    System.out.println(y1.getValue());
-    Parameter p = new Parameter("d", TypeEnum.DOUBLE, 10.0);
-    block1.setParameters(Arrays.asList(p));
+    assertEquals(5, u1.getValue(), delta);
+    assertEquals(5, y1.getValue(), delta);
+    block1.setD(10.0);
     block1.run(0);
-    System.out.println(u1.getValue());
-    System.out.println(y1.getValue());
-
-    System.out.println(block1.getId());
-    System.out.println(block1.getName());
-    System.out.println(block1.getOrder());
-    System.out.println(block1.getScanTime());
-    System.out.println(block1.getStep());
-    System.out.println(block1.getCanonicalName());
-    System.out.println(block1.getDesc());
-    System.out.println(block1.getT());
-    System.out.println(block1.getType());
+    assertEquals(5, u1.getValue(), delta);
+    assertEquals(50, y1.getValue(), delta);
   }
+
+  @Test
+  public void test02() {
+    EmptyBlock block1 = new EmptyBlock(1, "block1");
+    assertEquals(1,block1.getId());
+    assertEquals("block1", block1.getName());
+    assertEquals(0,block1.getOrder());
+    assertEquals(0.001, block1.getScanTime(), delta);
+    assertEquals("block1",block1.getCanonicalName());
+    assertEquals("empty block", block1.getDesc());
+    assertEquals("Empty", block1.getType());
+    block1.run(0);
+    assertEquals(1,block1.getStep());
+    assertEquals(0.001, block1.getT(), delta);
+  }
+
+  @Test
+  public void test03() {
+    EmptyBlock block1 = new EmptyBlock(1, "block1");
+    BoolConnector u1 = new BoolConnector(1, "in1", null, block1);
+    BoolConnector y1 = new BoolConnector(2, "out1", block1, null);
+    block1.setConnector(u1, Block.Port.U, 0);
+    block1.setConnector(y1, Block.Port.Y, 0);
+    block1.run(0);
+    assertFalse(u1.getValue());
+    assertFalse(y1.getValue());
+    u1.setValue(true);
+    block1.run(0);
+    assertTrue(u1.getValue());
+    assertFalse(y1.getValue());
+    block1.setB(true);
+    block1.run(0);
+    assertTrue(u1.getValue());
+    assertTrue(y1.getValue());
+  }
+
+
 
 }
