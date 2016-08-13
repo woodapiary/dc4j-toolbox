@@ -30,8 +30,8 @@ import info.dc4j.toolbox.element.Parameter;
 
 public class Sin extends BlockImpl {
 
-  private final double a = 1.0;
-  private final double w = 1.0;
+  private double a = 1.0;
+  private double w = 1.0;
 
   public Sin(int id, String name) {
     super(id, name, 0, 1, 0, 0, 0, 0, 2, 0);
@@ -60,6 +60,14 @@ public class Sin extends BlockImpl {
   public void setParameters(List<Parameter> params) {
     // TODO Auto-generated method stub
 
+  }
+
+  protected void setA(double a) {
+    this.a = a;
+  }
+
+  protected void setW(double w) {
+    this.w = w;
   }
 
 }

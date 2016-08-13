@@ -30,7 +30,7 @@ import info.dc4j.toolbox.element.Parameter;
 
 public class Gain extends BlockImpl {
 
-  private final double k = 1.0;
+  private double k = 1.0;
 
   public Gain(int id, String name) {
     super(id, name, 1, 1, 0, 0, 0, 0, 1, 1);
@@ -59,6 +59,10 @@ public class Gain extends BlockImpl {
   public void setParameters(List<Parameter> params) {
     // TODO Auto-generated method stub
 
+  }
+
+  protected void setK(double k) {
+    this.k = k;
   }
 
 }

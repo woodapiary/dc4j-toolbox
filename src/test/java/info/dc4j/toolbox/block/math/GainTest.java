@@ -22,20 +22,30 @@
  */
 package info.dc4j.toolbox.block.math;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
+
+import info.dc4j.toolbox.block.Block;
+import info.dc4j.toolbox.connector.DoubleConnector;
 
 public class GainTest {
 
   double delta = 0.005;
 
   @Test
-  public void testGain() {
-    /*
-     * DoubleConnector in = new DoubleConnector("const"); in.setValue(1.0); Gain
-     * gain = new Gain(in); gain.run(); assertTrue(gain.out().getValue() ==
-     * 1.0); for (int i = 1; i < 3000; i++) { gain.run();
-     *
-     * } assertTrue(gain.out().getValue() == 1.0);
-     */
+  public void test01() {
+    Gain block1 = new Gain(1, "block1");
+    DoubleConnector u = new DoubleConnector(1, "in", null, block1);
+    DoubleConnector y = new DoubleConnector(2, "out", block1, null);
+    block1.setConnector(u, Block.Port.U, 0);
+    block1.setConnector(y, Block.Port.Y, 0);
+    u.setValue(2.0);
+    for (int i = 1; i < 3000; i++) {
+      block1.run(0);
+      //System.out.println(y.getValue());
+    }
+    assertEquals(2, y.getValue(), delta);
+
   }
 }

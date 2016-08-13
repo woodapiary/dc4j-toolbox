@@ -22,19 +22,31 @@
  */
 package info.dc4j.toolbox.block.source;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
+
+import info.dc4j.toolbox.block.Block;
+import info.dc4j.toolbox.connector.DoubleConnector;
 
 public class SinTest {
 
   double delta = 0.005;
 
   @Test
-  public void testSin() {
-    /*
-     * Sin sin = new Sin(0,""); for (int i = 0; i < 3000; i++) { sin.run(10);
-     *
-     * } //assertTrue(sin.getDoubleY(0) > 0.1); //
-     * assertTrue(sin.out().getValue() < 0.2);
-     */
+  public void test01() {
+    Sin block1 = new Sin(1, "block1");
+    DoubleConnector y = new DoubleConnector(2, "out", block1, null);
+    block1.setConnector(y, Block.Port.Y, 0);
+    block1.setA(2.0);
+    block1.setW(1.0);
+    block1.run(0);
+    assertEquals(0.0, y.getValue(), delta);
+    for (int i = 1; i < 3000; i++) {
+      block1.run(0);
+      //System.out.println(y.getValue());
+    }
+    assertEquals(0.28, y.getValue(), delta);
+
   }
 }

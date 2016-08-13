@@ -64,17 +64,10 @@ public class Step extends BlockImpl {
 
   }
 
-  protected double getA() {
-    return a;
-  }
-
   protected void setA(double a) {
     this.a = a;
   }
 
-  protected double getT0() {
-    return t0;
-  }
 
   protected void setT0(double t0) {
     this.t0 = t0;

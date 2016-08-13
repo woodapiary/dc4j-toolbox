@@ -22,22 +22,34 @@
  */
 package info.dc4j.toolbox.block.math;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
+
+import info.dc4j.toolbox.block.Block;
+import info.dc4j.toolbox.connector.DoubleConnector;
 
 public class SubstractTest {
 
   double delta = 0.005;
 
   @Test
-  public void testLoopBack() {
-    /*
-     * Step spUa = new Step("Ua"); spUa.setT0(1.0); Step spUb = new Step("Ub");
-     * spUb.setT0(2.0); Subtract dU = new Subtract("dUa", spUa.out(),
-     * spUb.out()); spUa.run(); spUb.run(); dU.run();
-     * assertTrue(dU.out().getValue() == 0.0); for (int i = 1; i < 1500; i++) {
-     * spUa.run(); spUb.run(); dU.run(); } assertTrue(dU.out().getValue() ==
-     * 1.0); for (int i = 1500; i < 3000; i++) { spUa.run(); spUb.run();
-     * dU.run(); } assertTrue(dU.out().getValue() == 0.0);
-     */
+  public void test01() {
+    Subtract block1 = new Subtract(1, "block1");
+    DoubleConnector u1 = new DoubleConnector(1, "in1", null, block1);
+    DoubleConnector u2 = new DoubleConnector(3, "in2", null, block1);
+    DoubleConnector y = new DoubleConnector(2, "out", block1, null);
+    block1.setConnector(u1, Block.Port.U, 0);
+    block1.setConnector(u2, Block.Port.U, 1);
+    block1.setConnector(y, Block.Port.Y, 0);
+    u1.setValue(4.0);
+    u2.setValue(1.0);
+    for (int i = 1; i < 3000; i++) {
+      block1.run(0);
+      //System.out.println(y.getValue());
+    }
+    assertEquals(3, y.getValue(), delta);
+
   }
+
 }

@@ -39,7 +39,7 @@ public class Subtract extends BlockImpl {
   protected void eval() {
     double u0 = dU[0].get();
     double u1 = dU[1].get();
-    double y = u1 - u0;
+    double y = u0 - u1;
     dY[0].set(y);
   }
 
