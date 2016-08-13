@@ -39,15 +39,16 @@ public class Integrator extends BlockImpl {
   private double ti = 1.0;
 
   public Integrator(int id, String name) {
-    super(id, name,1,1,0,0,0,0);
+    super(id, name,1,1,0,0,1,0);
     setDesc(DESC);
   }
 
   @Override
   protected void eval() {
-    double u0 = dU[0].get();
-    double y0 = dY[0].get();
-    double y = u0 * dt / ti + y0;
+    double u = dU[0].get();
+    double s = dS[0].get();
+    double y = u * dt / ti + s;
+    dS[0].set(y);
     dY[0].set(y);
   }
 
