@@ -22,19 +22,32 @@
  */
 package info.dc4j.toolbox.block.source;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
+import info.dc4j.toolbox.block.Block;
+import info.dc4j.toolbox.connector.DoubleConnector;
+
 public class StepTest {
+
 
   double delta = 0.005;
 
   @Test
-  public void testStep() {
+  public void test01() {
+    Step block1 = new Step(1, "block1");
+    DoubleConnector y = new DoubleConnector(2, "out", block1, null);
+    block1.setConnector(y, Block.Port.Y, 0);
+    block1.setA(2.0);
+    block1.setT0(1.0);
+    block1.run(0);
+    assertEquals(0.0, y.getValue(), delta);
+    for (int i = 1; i < 3000; i++) {
+      block1.run(0);
+      //System.out.println(y.getValue());
+    }
+    assertEquals(2.0, y.getValue(), delta);
 
-    /*
-     * Step step = new Step(0,""); step.setT0(0.5); step.run();
-     * assertTrue(step.out().getValue() == 0); for (int i = 0; i < 3000; i++) {
-     * step.run(10); } assertTrue(step.out().getValue() == 1);
-     */
   }
 }

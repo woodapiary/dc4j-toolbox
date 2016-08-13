@@ -30,8 +30,8 @@ import info.dc4j.toolbox.element.Parameter;
 
 public class Step extends BlockImpl {
 
-  private final double a = 1.0;
-  private final double t0 = 1.0;
+  private double a = 1.0;
+  private double t0 = 1.0;
 
   public Step(int id, String name) {
     super(id, name, 0, 1, 0, 0, 0, 0, 2, 0);
@@ -63,4 +63,22 @@ public class Step extends BlockImpl {
     // TODO Auto-generated method stub
 
   }
+
+  protected double getA() {
+    return a;
+  }
+
+  protected void setA(double a) {
+    this.a = a;
+  }
+
+  protected double getT0() {
+    return t0;
+  }
+
+  protected void setT0(double t0) {
+    this.t0 = t0;
+  }
+
+
 }
