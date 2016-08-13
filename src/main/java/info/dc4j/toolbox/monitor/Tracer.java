@@ -28,12 +28,16 @@ import info.dc4j.toolbox.connector.Connector;
 
 public interface Tracer {
 
+  public enum Type {
+    CONSOLE, MEMORY
+  }
+
   void trace(long step, double t, List<Connector> connectors);
 
   List<TraceData> getTraceData();
 
   void clear();
 
-  TracerType type();
+  Tracer.Type tracerType();
 
 }

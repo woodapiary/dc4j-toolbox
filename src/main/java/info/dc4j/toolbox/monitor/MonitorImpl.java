@@ -66,7 +66,7 @@ public class MonitorImpl extends ElementImpl implements Monitor {
   }
 
   @Override
-  public void setTracer(TracerType type) {
+  public void setTracer(Tracer.Type type) {
     tracers.add(factory.createTracer(type));
   }
 

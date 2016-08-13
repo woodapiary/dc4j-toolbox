@@ -30,7 +30,7 @@ import info.dc4j.toolbox.element.Parameter;
 import info.dc4j.toolbox.layout.Layout;
 import info.dc4j.toolbox.monitor.Monitor;
 import info.dc4j.toolbox.monitor.TraceData;
-import info.dc4j.toolbox.monitor.TracerType;
+import info.dc4j.toolbox.monitor.Tracer;
 
 public class ModelImpl implements Model {
 
@@ -99,8 +99,19 @@ public class ModelImpl implements Model {
   }
 
   @Override
-  public int createConnection(Integer id, String name, int fromId, int toId, int out, int in, Connector.Type type) {
+  public int createBlock(String name, Block.Type type) {
+    return createBlock(null, name, type, null);
+  }
+
+  @Override
+  public int createConnection(Integer id, String name, Integer fromId, Integer toId, Integer out, Integer in,
+      Connector.Type type) {
     return layout.createConnection(id, name, fromId, toId, out, in, type);
+  }
+
+  @Override
+  public int createConnection(String name, Integer fromId, Integer toId, int out, int in, Connector.Type type) {
+    return createConnection(null, name, fromId, toId, out, in, type);
   }
 
   @Override
@@ -114,7 +125,7 @@ public class ModelImpl implements Model {
   }
 
   @Override
-  public void setTracer(TracerType type) {
+  public void setTracer(Tracer.Type type) {
     monitor.setTracer(type);
   }
 
@@ -128,26 +139,32 @@ public class ModelImpl implements Model {
     return monitor.getTraceData();
   }
 
-
   @Override
-  public List<Parameter> getBlockParameters(int blockId, boolean defaults) {
-    switch (blockId) {
-      case ModelConstants.MONITOR_ID:
-        return monitor.getParameters(defaults); //true
-      default:
-        return layout.getBlockParameters(blockId, defaults);
+  public List<Parameter> getBlockParameters(Integer blockId, boolean defaults) {
+    if (blockId != null) {
+      switch (blockId) {
+        case ModelConstants.MONITOR_ID:
+          return monitor.getParameters(defaults);
+        default:
+          return layout.getBlockParameters(blockId, defaults);
+      }
+    } else {
+      return layout.getBlockParameters(blockId, defaults);
     }
   }
 
   @Override
-  public void setBlockParameters(int blockId, List<Parameter> parameters) {
-    switch (blockId) {
-      case ModelConstants.MONITOR_ID:
-        monitor.setParameters(parameters);
-        break;
-      default:
-        layout.setBlockParameters(blockId, parameters);
+  public void setBlockParameters(Integer blockId, List<Parameter> parameters) {
+    if (blockId != null) {
+      switch (blockId) {
+        case ModelConstants.MONITOR_ID:
+          monitor.setParameters(parameters);
+          break;
+        default:
+          layout.setBlockParameters(blockId, parameters);
+      }
+    } else {
+      layout.setBlockParameters(blockId, parameters);
     }
   }
-
 }

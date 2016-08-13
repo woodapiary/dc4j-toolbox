@@ -97,25 +97,32 @@ public class LayoutImpl extends ElementImpl implements Layout {
   }
 
   @Override
-  public int createConnection(Integer id, String name, int fromId, int toId, int out, int in, Connector.Type type) {
-    Block source = getBlock(fromId);
-    Block target = getBlock(toId);
+  public int createConnection(Integer id, String name, Integer fromId, Integer toId, Integer out, Integer in,
+      Connector.Type type) {
+    Block source = fromId != null ? getBlock(fromId) : null;
+    Block target = toId != null ? getBlock(toId) : null;
     Connector connector = factory.createConnector(id, name, source, target, type);
     connectors.add(connector);
     mapConnectors.put(connector.getId(), connector);
-    source.setConnector(connector, Block.Port.Y, out);
-    target.setConnector(connector, Block.Port.U, in);
+    if (source != null && out != null) {
+      source.setConnector(connector, Block.Port.Y, out);
+    }
+    if (target != null && in != null) {
+      target.setConnector(connector, Block.Port.U, in);
+    }
     return connector.getId();
   }
 
   @Override
-  public List<Parameter>  getBlockParameters(int blockId, boolean defaults) {
+  public List<Parameter> getBlockParameters(Integer blockId, boolean defaults) {
+    // TODO get all on null
     Block block = getBlock(blockId);
     return block.getParameters(defaults);
   }
 
   @Override
-  public void setBlockParameters(int blockId, List<Parameter>  parameters) {
+  public void setBlockParameters(Integer blockId, List<Parameter> parameters) {
+    // TODO set all on null
     Block block = getBlock(blockId);
     block.setParameters(parameters);
   }

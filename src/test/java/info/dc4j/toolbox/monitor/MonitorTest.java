@@ -52,7 +52,7 @@ public class MonitorTest {
     monitor.setMonitoredConnector(u2);
     monitor.setMonitoredConnector(y1);
     monitor.setMonitoredConnector(y2);
-    monitor.setTracer(TracerType.CONSOLE);
+    monitor.setTracer(Tracer.Type.CONSOLE);
     monitor.setTraceLevel(1);
     monitor.run(0);
     block1.run(0);
@@ -80,7 +80,7 @@ public class MonitorTest {
     monitor.setMonitoredConnector(u2);
     monitor.setMonitoredConnector(y1);
     monitor.setMonitoredConnector(y2);
-    monitor.setTracer(TracerType.MEMORY);
+    monitor.setTracer(Tracer.Type.MEMORY);
     monitor.setTraceLevel(1);
     monitor.run(0);
     block1.run(0);

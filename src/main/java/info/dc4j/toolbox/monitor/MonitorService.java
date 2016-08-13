@@ -30,7 +30,7 @@ public interface MonitorService {
 
   List<Integer> getMonitoredConnectors();
 
-  void setTracer(TracerType type);
+  void setTracer(Tracer.Type type);
 
   List<String> getTracers();
 

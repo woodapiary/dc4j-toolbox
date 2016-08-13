@@ -25,7 +25,6 @@ package info.dc4j.toolbox.model;
 import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.connector.Connector;
 import info.dc4j.toolbox.monitor.Tracer;
-import info.dc4j.toolbox.monitor.TracerType;
 
 public interface ModelFactory {
 
@@ -35,6 +34,6 @@ public interface ModelFactory {
 
   Connector createConnector(Integer id, String name, Block source, Block target, Connector.Type type);
 
-  Tracer createTracer(TracerType type);
+  Tracer createTracer(Tracer.Type type);
 
 }

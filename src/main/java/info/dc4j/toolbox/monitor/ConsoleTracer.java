@@ -64,8 +64,8 @@ public class ConsoleTracer implements Tracer {
   }
 
   @Override
-  public TracerType type() {
-    return TracerType.CONSOLE;
+  public Tracer.Type tracerType() {
+    return Tracer.Type.CONSOLE;
   }
 
 }

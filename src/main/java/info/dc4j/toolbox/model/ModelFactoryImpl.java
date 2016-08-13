@@ -40,7 +40,6 @@ import info.dc4j.toolbox.monitor.MemoryTracer;
 import info.dc4j.toolbox.monitor.Monitor;
 import info.dc4j.toolbox.monitor.MonitorImpl;
 import info.dc4j.toolbox.monitor.Tracer;
-import info.dc4j.toolbox.monitor.TracerType;
 
 public class ModelFactoryImpl implements ModelFactory {
 
@@ -108,7 +107,7 @@ public class ModelFactoryImpl implements ModelFactory {
   }
 
   @Override
-  public Tracer createTracer(TracerType type) {
+  public Tracer createTracer(Tracer.Type type) {
     Tracer tracer = null;
     switch (type) {
       case CONSOLE:

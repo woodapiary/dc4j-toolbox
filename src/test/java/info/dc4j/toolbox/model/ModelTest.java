@@ -22,13 +22,40 @@
  */
 package info.dc4j.toolbox.model;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.List;
+
 import org.junit.Test;
 
-public class TestModel {
+import info.dc4j.toolbox.block.Block;
+import info.dc4j.toolbox.connector.Connector;
+import info.dc4j.toolbox.element.Data;
+import info.dc4j.toolbox.monitor.TraceData;
+import info.dc4j.toolbox.monitor.Tracer;
+
+public class ModelTest {
+
+  double delta = 0.005;
 
   @Test
   public void test01() {
-    //Model model = ModelFactoryImpl.createModel();
+    Model model = ModelFactoryImpl.createModel();
+    int b1 = model.createBlock("block1", Block.Type.STEP);
+    int b2 = model.createBlock("block2", Block.Type.PT1);
+    int c1 = model.createConnection("c1", b1, b2, 0, 0, Connector.Type.DOUBLE);
+    int c2 = model.createConnection("c2", b2, null, 0, 0, Connector.Type.DOUBLE);
+    model.setMonitoredConnector(c1);
+    model.setMonitoredConnector(c2);
+    model.setTracer(Tracer.Type.CONSOLE);
+    model.setTracer(Tracer.Type.MEMORY);
+    model.build();
+    model.run(3.0);
+    List<TraceData> res = model.getTraceData();
+    assertEquals(30, res.size());
+    Data data = res.get(res.size() - 1).getIndicators().get(1);
+    assertEquals(0.865, data.getDouble(),delta);
+
   }
 
 }

@@ -22,9 +22,14 @@
  */
 package info.dc4j.toolbox.model;
 
+import info.dc4j.toolbox.block.Block;
+import info.dc4j.toolbox.connector.Connector;
 import info.dc4j.toolbox.layout.LayoutService;
 import info.dc4j.toolbox.monitor.MonitorService;
 
 public interface Model extends Runnable, LayoutService, MonitorService {
+
+  int createBlock(String name, Block.Type type);
+  int createConnection(String name, Integer fromId, Integer toId, int out, int in, Connector.Type type);
 
 }

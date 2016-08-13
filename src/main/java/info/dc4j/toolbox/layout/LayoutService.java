@@ -33,10 +33,11 @@ public interface LayoutService {
 
   int createBlock(Integer id, String name, Block.Type type, Object param);
 
-  int createConnection(Integer id, String name, int fromId, int toId, int out, int in, Connector.Type type);
+  int createConnection(Integer id, String name, Integer fromId, Integer toId, Integer out, Integer in,
+      Connector.Type type);
 
-  List<Parameter>  getBlockParameters(int blockId, boolean defaults);
+  List<Parameter> getBlockParameters(Integer blockId, boolean defaults);
 
-  void setBlockParameters(int blockId, List<Parameter>  parameters);
+  void setBlockParameters(Integer blockId, List<Parameter> parameters);
 
 }
