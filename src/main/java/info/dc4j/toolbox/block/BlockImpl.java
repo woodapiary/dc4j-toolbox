@@ -22,6 +22,7 @@
  */
 package info.dc4j.toolbox.block;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import info.dc4j.toolbox.connector.BoolConnector;
@@ -34,14 +35,14 @@ import info.dc4j.toolbox.model.ModelConstants;
 
 public abstract class BlockImpl extends ElementImpl implements Block {
 
-  protected final BoolSlot[] bY;
-  protected final BoolSlot[] bU;
-  protected final BoolSlot[] bS;
-  protected final BoolSlot[] bP;
-  protected final DoubleSlot[] dY;
-  protected final DoubleSlot[] dU;
-  protected final DoubleSlot[] dS;
-  protected final DoubleSlot[] dP;
+  protected final BoolSocket[] bY;
+  protected final BoolSocket[] bU;
+  protected final BoolSocket[] bS;
+  protected final BoolSocket[] bP;
+  protected final DoubleSocket[] dY;
+  protected final DoubleSocket[] dU;
+  protected final DoubleSocket[] dS;
+  protected final DoubleSocket[] dP;
   protected long step;
   private Composite host;
   protected double dt = ModelConstants.DT;
@@ -51,37 +52,37 @@ public abstract class BlockImpl extends ElementImpl implements Block {
   public BlockImpl(int id, String name, int sizeUd, int sizeYd, int sizeUb, int sizeYb, int sizeSd, int sizeSb,
       int sizePd, int sizePb) {
     super(id, name);
-    bY = new BoolSlot[sizeYb];
-    bU = new BoolSlot[sizeUb];
-    bS = new BoolSlot[sizeSb];
-    bP = new BoolSlot[sizePb];
-    dY = new DoubleSlot[sizeYd];
-    dU = new DoubleSlot[sizeUd];
-    dS = new DoubleSlot[sizeSd];
-    dP = new DoubleSlot[sizePd];
+    bY = new BoolSocket[sizeYb];
+    bU = new BoolSocket[sizeUb];
+    bS = new BoolSocket[sizeSb];
+    bP = new BoolSocket[sizePb];
+    dY = new DoubleSocket[sizeYd];
+    dU = new DoubleSocket[sizeUd];
+    dS = new DoubleSocket[sizeSd];
+    dP = new DoubleSocket[sizePd];
     for (int i = 0; i < sizeYb; i++) {
-      bY[i] = new BoolSlot();
+      bY[i] = new BoolSocket();
     }
     for (int i = 0; i < sizeUb; i++) {
-      bU[i] = new BoolSlot();
+      bU[i] = new BoolSocket();
     }
     for (int i = 0; i < sizeSb; i++) {
-      bS[i] = new BoolSlot();
+      bS[i] = new BoolSocket();
     }
     for (int i = 0; i < sizePb; i++) {
-      bP[i] = new BoolSlot();
+      bP[i] = new BoolSocket();
     }
     for (int i = 0; i < sizeUd; i++) {
-      dU[i] = new DoubleSlot();
+      dU[i] = new DoubleSocket();
     }
     for (int i = 0; i < sizeYd; i++) {
-      dY[i] = new DoubleSlot();
+      dY[i] = new DoubleSocket();
     }
     for (int i = 0; i < sizeSd; i++) {
-      dS[i] = new DoubleSlot();
+      dS[i] = new DoubleSocket();
     }
     for (int i = 0; i < sizePd; i++) {
-      dP[i] = new DoubleSlot();
+      dP[i] = new DoubleSocket();
     }
   }
 
@@ -205,54 +206,54 @@ public abstract class BlockImpl extends ElementImpl implements Block {
     return Element.Type.BLOCK;
   }
 
-  public class BoolSlot {
-
-    private BoolConnector connector;
-    private boolean val;
-
-    public void setConnector(BoolConnector connector) {
-      this.connector = connector;
-    }
-
-    public boolean get() {
-      if (connector == null || connector.getValue() == null) {
-        return val;
-      }
-      return connector.getValue();
-    }
-
-    public void set(boolean value) {
-      if (connector != null) {
-        connector.setValue(value);
-      }
-      val = value;
-    }
-
+  @Override
+  public boolean isOrdered() {
+    return order > 0;
   }
 
-  public class DoubleSlot {
-
-    private DoubleConnector connector;
-    private double val;
-
-    public void setConnector(DoubleConnector connector) {
-      this.connector = connector;
-    }
-
-    public double get() {
-      if (connector == null || connector.getValue() == null) {
-        return val;
+  @Override
+  public List<Block> getSourceBlock() {
+    List<Block> blocks = new ArrayList<>();
+    //TODO add bool
+    for (DoubleSocket s : dU) {
+      Connector c = s.getConnector();
+      if (c != null) {
+        Block b = c.getSource();
+        if (b != null) {
+          blocks.add(b);
+        }
       }
-      return connector.getValue();
     }
-
-    public void set(double value) {
-      if (connector != null) {
-        connector.setValue(value);
-      }
-      val = value;
-    }
-
+    return blocks;
   }
+
+  @Override
+  public List<Block> getTargetBlock() {
+    List<Block> blocks = new ArrayList<>();
+    //TODO add bool
+    for (DoubleSocket s : dY) {
+      Connector c = s.getConnector();
+      if (c != null) {
+        Block b = c.getTarget();
+        if (b != null) {
+          blocks.add(b);
+        }
+      }
+    }
+    return blocks;
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder builder = new StringBuilder();
+    builder.append("BlockImpl [order=");
+    builder.append(order);
+    builder.append(super.toString());
+    builder.append("]");
+    return builder.toString();
+  }
+
+
+
 
 }

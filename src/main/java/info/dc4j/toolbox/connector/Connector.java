@@ -22,6 +22,7 @@
  */
 package info.dc4j.toolbox.connector;
 
+import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.element.Data;
 import info.dc4j.toolbox.element.Element;
 
@@ -35,9 +36,9 @@ public interface Connector extends Element {
 
   void setValue(Object value);
 
-  Connectable getSource();
+  Block getSource();
 
-  Connectable getTarget();
+  Block getTarget();
 
   Data getData();
 

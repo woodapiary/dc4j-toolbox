@@ -71,4 +71,18 @@ public abstract class ElementImpl implements Element {
     return getName();
   }
 
+  @Override
+  public String toString() {
+    StringBuilder builder = new StringBuilder();
+    builder.append("ElementImpl [id=");
+    builder.append(id);
+    builder.append(", ");
+    if (name != null) {
+      builder.append("name=");
+      builder.append(name);
+    }
+    builder.append("]");
+    return builder.toString();
+  }
+
 }

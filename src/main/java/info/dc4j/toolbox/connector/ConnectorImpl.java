@@ -22,17 +22,18 @@
  */
 package info.dc4j.toolbox.connector;
 
+import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.element.Data;
 import info.dc4j.toolbox.element.Element;
 import info.dc4j.toolbox.element.ElementImpl;
 
 public abstract class ConnectorImpl extends ElementImpl implements Connector {
 
-  private final Connectable source;
-  private final Connectable target;
+  private final Block source;
+  private final Block target;
   private Object value;
 
-  public ConnectorImpl(int id, String name, Connectable source, Connectable target) {
+  public ConnectorImpl(int id, String name, Block source, Block target) {
     super(id, name);
     this.source = source;
     this.target = target;
@@ -56,12 +57,12 @@ public abstract class ConnectorImpl extends ElementImpl implements Connector {
   }
 
   @Override
-  public Connectable getSource() {
+  public Block getSource() {
     return source;
   }
 
   @Override
-  public Connectable getTarget() {
+  public Block getTarget() {
     return target;
   }
 

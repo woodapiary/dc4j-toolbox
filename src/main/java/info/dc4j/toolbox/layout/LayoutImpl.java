@@ -54,12 +54,7 @@ public class LayoutImpl extends ElementImpl implements Layout {
 
   @Override
   public void build() {
-    int order = 0;
-    for (Block block : getBlocks()) {
-      order++;
-      block.setOrder(order);
-    }
-    // TODO sort list by order
+    new OrderStrategy1().execute(getBlocks());
   }
 
   @Override

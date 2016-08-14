@@ -22,13 +22,15 @@
  */
 package info.dc4j.toolbox.block;
 
-import info.dc4j.toolbox.connector.Connectable;
+import java.util.List;
+
+import info.dc4j.toolbox.connector.Connector;
 import info.dc4j.toolbox.element.Element;
 import info.dc4j.toolbox.element.Parametrizable;
 import info.dc4j.toolbox.layout.Composite;
 import info.dc4j.toolbox.model.Runnable;
 
-public interface Block extends Element, Composite, Connectable, Runnable, Parametrizable {
+public interface Block extends Element, Composite, Runnable, Parametrizable {
 
   public enum Port {
     Y, U, S
@@ -43,4 +45,11 @@ public interface Block extends Element, Composite, Connectable, Runnable, Parame
   int getOrder();
 
   void setOrder(int order);
+
+  List<Block> getSourceBlock();
+  List<Block> getTargetBlock();
+  boolean isOrdered();
+
+  void setConnector(Connector connector, Block.Port port, int pin);
+
 }
