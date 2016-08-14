@@ -8,7 +8,11 @@ public class BoolSocket {
   private boolean val;
 
   public void setConnector(BoolConnector connector) {
-    this.connector = connector;
+    if (this.connector == null) {
+      this.connector = connector;
+    } else {
+      throw new IllegalStateException("socket connected already");
+    }
   }
 
   public boolean get() {

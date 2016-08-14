@@ -7,7 +7,7 @@ import info.dc4j.toolbox.block.Block;
 
 public class OrderStrategy1 {
 
-  private static final  boolean DEBUG = true;
+  private static final boolean DEBUG = false;
 
   List<Block> layoutBlocks;
   List<Block> pointers;
@@ -29,11 +29,12 @@ public class OrderStrategy1 {
       do {
         countOp = 0;
         snapPointers(pointers);
-        countOp = addTargetWhichAllSourceOrderedToPointer(countOp); // all source done
+        // all source done
+        countOp = addTargetWhichAllSourceOrderedToPointer(countOp);
         level++;
         setLevelOnNewBlocksInPointer(level);
         countOp = delAllTargetOrderedBlocksFromPointer(countOp);
-        System.out.println(countOp);
+        //System.out.println(countOp);
       } while (countOp > 0);
       snapPointers(pointers);
       flagOut = addAllNoOrderedTargetsToPointer(); // dead point, add all
@@ -184,6 +185,14 @@ public class OrderStrategy1 {
       }
       System.out.println();
     }
+  }
+
+  @SuppressWarnings("unused")
+  private void printBlocks(List<Block> bs) {
+    for (Block b : bs) {
+      System.out.print(b.toString() + ",   ");
+    }
+    System.out.println();
   }
 
 }

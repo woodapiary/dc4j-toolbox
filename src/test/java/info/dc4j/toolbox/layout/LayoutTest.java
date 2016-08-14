@@ -52,15 +52,15 @@ public class LayoutTest {
     int c1 = model.createConnection("c1", b1, b5, 0, 0, Connector.Type.DOUBLE);
     int c2 = model.createConnection("c2", b2, b4, 0, 0, Connector.Type.DOUBLE);
     int c3 = model.createConnection("c3", b3, b9, 0, 0, Connector.Type.DOUBLE);
-    int c4 = model.createConnection("c4", b4, b5, 0, 0, Connector.Type.DOUBLE);
+    int c4 = model.createConnection("c4", b4, b5, 0, 1, Connector.Type.DOUBLE);
     int c5 = model.createConnection("c5", b5, b6, 0, 0, Connector.Type.DOUBLE);
     int c6 = model.createConnection("c6", b6, b7, 0, 0, Connector.Type.DOUBLE);
-    int c7 = model.createConnection("c7", b6, b8, 0, 0, Connector.Type.DOUBLE);
+    int c7 = model.createConnection("c7", b6, b8, 1, 0, Connector.Type.DOUBLE);
     int c8 = model.createConnection("c8", b7, b10, 0, 0, Connector.Type.DOUBLE);
-    int c9 = model.createConnection("c9", b8, b9, 0, 0, Connector.Type.DOUBLE);
+    int c9 = model.createConnection("c9", b8, b9, 0, 1, Connector.Type.DOUBLE);
     int c10 = model.createConnection("c10", b9, b11, 0, 0, Connector.Type.DOUBLE);
-    int c11 = model.createConnection("c11", b11, b6, 0, 0, Connector.Type.DOUBLE);
-    int c12 = model.createConnection("c12", b10, b9, 0, 0, Connector.Type.DOUBLE);
+    int c11 = model.createConnection("c11", b11, b7, 0, 1, Connector.Type.DOUBLE);
+    int c12 = model.createConnection("c12", b10, b8, 0, 1, Connector.Type.DOUBLE);
     model.build();
 
   }

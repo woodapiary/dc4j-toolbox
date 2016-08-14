@@ -8,7 +8,11 @@ public class DoubleSocket {
   private double val;
 
   public void setConnector(DoubleConnector connector) {
-    this.connector = connector;
+    if (this.connector == null) {
+      this.connector = connector;
+    } else {
+      throw new IllegalStateException("socket connected already");
+    }
   }
 
   public double get() {
