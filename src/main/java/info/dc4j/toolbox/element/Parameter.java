@@ -24,53 +24,15 @@ package info.dc4j.toolbox.element;
 
 import java.io.Serializable;
 
-import info.dc4j.toolbox.connector.Connector;
-
-public class Parameter implements Serializable {
+public class Parameter extends Data implements Serializable {
 
   private static final long serialVersionUID = -2424130720125168559L;
-  private final int id;
+
   private final String name;
-  private final Connector.Type type;
-  private Object value;
 
-  public Parameter(int id, String name, Connector.Type type, Object value) {
-    this.value = value;
-    this.type = type;
-    this.id = id;
+  public Parameter(int id, String name, DataType type, Object value) {
+    super(id, type, value);
     this.name = name;
-  }
-
-  public Object getValue() {
-    return value;
-  }
-
-  public Connector.Type getType() {
-    return type;
-  }
-
-  public int getId() {
-    return id;
-  }
-
-  public void setValue(Object value) {
-    this.value = value;
-  }
-
-  public Double getDouble() {
-    return (Double) value;
-  }
-
-  public Integer getInteger() {
-    return (Integer) value;
-  }
-
-  public String getString() {
-    return (String) value;
-  }
-
-  public Boolean getBoolean() {
-    return (Boolean) value;
   }
 
   public String getName() {

@@ -33,7 +33,7 @@ public class Gain extends BlockImpl {
   private double k = 1.0;
 
   public Gain(int id, String name) {
-    super(id, name, 1, 1, 0, 0, 0, 0, 1, 1);
+    super(id, name, 1, 1, 0, 0, 0, 0);
   }
 
   @Override

@@ -25,7 +25,7 @@ package info.dc4j.toolbox.model;
 import java.util.List;
 
 import info.dc4j.toolbox.block.Block;
-import info.dc4j.toolbox.connector.Connector;
+import info.dc4j.toolbox.element.DataType;
 import info.dc4j.toolbox.element.Parameter;
 import info.dc4j.toolbox.layout.Layout;
 import info.dc4j.toolbox.monitor.Monitor;
@@ -105,12 +105,12 @@ public class ModelImpl implements Model {
 
   @Override
   public int createConnection(Integer id, String name, Integer fromId, Integer toId, Integer out, Integer in,
-      Connector.Type type) {
+      DataType type) {
     return layout.createConnection(id, name, fromId, toId, out, in, type);
   }
 
   @Override
-  public int createConnection(String name, Integer fromId, Integer toId, int out, int in, Connector.Type type) {
+  public int createConnection(String name, Integer fromId, Integer toId, int out, int in, DataType type) {
     return createConnection(null, name, fromId, toId, out, in, type);
   }
 

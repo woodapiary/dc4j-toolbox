@@ -1,36 +1,50 @@
+/**
+ * The MIT License
+ * Copyright (c) 2002-2016 dc4j.info
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 package info.dc4j.toolbox.block;
 
 import info.dc4j.toolbox.connector.DoubleConnector;
+import info.dc4j.toolbox.element.DataType;
 
-public class DoubleSocket {
+public class DoubleSocket extends SocketImpl {
 
-  private DoubleConnector connector;
-  private double val;
-
-  public void setConnector(DoubleConnector connector) {
-    if (this.connector == null) {
-      this.connector = connector;
-    } else {
-      throw new IllegalStateException("socket connected already");
-    }
+  public DoubleSocket(int id, String name) {
+    super(id, name);
+    set(0.0);
   }
 
-  public double get() {
-    if (connector == null || connector.getValue() == null) {
-      return val;
-    }
-    return connector.getValue();
+  @Override
+  public Double get() {
+    return (double) super.get();
   }
 
-  public void set(double value) {
-    if (connector != null) {
-      connector.setValue(value);
-    }
-    val = value;
-  }
-
+  @Override
   public DoubleConnector getConnector() {
-    return connector;
+    return (DoubleConnector)super.getConnector();
+  }
+
+  @Override
+  public DataType socketType() {
+    return DataType.DOUBLE;
   }
 
 }

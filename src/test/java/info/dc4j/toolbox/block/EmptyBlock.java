@@ -38,7 +38,7 @@ public class EmptyBlock extends BlockImpl {
   private boolean b = false;
 
   public EmptyBlock(int id, String name) {
-    super(id, name, 1, 1, 1, 1, 0, 0, 1, 1);
+    super(id, name, 1, 1, 1, 1, 0, 0);
     setDesc(DESC);
   }
 

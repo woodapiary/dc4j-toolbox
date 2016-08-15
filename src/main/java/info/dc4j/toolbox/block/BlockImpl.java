@@ -25,9 +25,7 @@ package info.dc4j.toolbox.block;
 import java.util.ArrayList;
 import java.util.List;
 
-import info.dc4j.toolbox.connector.BoolConnector;
 import info.dc4j.toolbox.connector.Connector;
-import info.dc4j.toolbox.connector.DoubleConnector;
 import info.dc4j.toolbox.element.Element;
 import info.dc4j.toolbox.element.ElementImpl;
 import info.dc4j.toolbox.layout.Composite;
@@ -38,51 +36,41 @@ public abstract class BlockImpl extends ElementImpl implements Block {
   protected final BoolSocket[] bY;
   protected final BoolSocket[] bU;
   protected final BoolSocket[] bS;
-  protected final BoolSocket[] bP;
   protected final DoubleSocket[] dY;
   protected final DoubleSocket[] dU;
   protected final DoubleSocket[] dS;
-  protected final DoubleSocket[] dP;
   protected long step;
   private Composite host;
   protected double dt = ModelConstants.DT;
   protected double t;
   private int order;
 
-  public BlockImpl(int id, String name, int sizeUd, int sizeYd, int sizeUb, int sizeYb, int sizeSd, int sizeSb,
-      int sizePd, int sizePb) {
+  public BlockImpl(int id, String name, int sizeUd, int sizeYd, int sizeUb, int sizeYb, int sizeSd, int sizeSb) {
     super(id, name);
     bY = new BoolSocket[sizeYb];
     bU = new BoolSocket[sizeUb];
     bS = new BoolSocket[sizeSb];
-    bP = new BoolSocket[sizePb];
     dY = new DoubleSocket[sizeYd];
     dU = new DoubleSocket[sizeUd];
     dS = new DoubleSocket[sizeSd];
-    dP = new DoubleSocket[sizePd];
     for (int i = 0; i < sizeYb; i++) {
-      bY[i] = new BoolSocket();
+      bY[i] = new BoolSocket(i, null);
     }
     for (int i = 0; i < sizeUb; i++) {
-      bU[i] = new BoolSocket();
+      bU[i] = new BoolSocket(i, null);
     }
     for (int i = 0; i < sizeSb; i++) {
-      bS[i] = new BoolSocket();
+      bS[i] = new BoolSocket(i, null);
     }
-    for (int i = 0; i < sizePb; i++) {
-      bP[i] = new BoolSocket();
-    }
+
     for (int i = 0; i < sizeUd; i++) {
-      dU[i] = new DoubleSocket();
+      dU[i] = new DoubleSocket(i, null);
     }
     for (int i = 0; i < sizeYd; i++) {
-      dY[i] = new DoubleSocket();
+      dY[i] = new DoubleSocket(i, null);
     }
     for (int i = 0; i < sizeSd; i++) {
-      dS[i] = new DoubleSocket();
-    }
-    for (int i = 0; i < sizePd; i++) {
-      dP[i] = new DoubleSocket();
+      dS[i] = new DoubleSocket(i, null);
     }
   }
 
@@ -92,10 +80,10 @@ public abstract class BlockImpl extends ElementImpl implements Block {
       case U:
         switch (connector.connectorType()) {
           case BOOL:
-            bU[pin].setConnector((BoolConnector) connector);
+            bU[pin].setConnector(connector);
             break;
           case DOUBLE:
-            dU[pin].setConnector((DoubleConnector) connector);
+            dU[pin].setConnector(connector);
             break;
           default:
             break;
@@ -104,10 +92,10 @@ public abstract class BlockImpl extends ElementImpl implements Block {
       case Y:
         switch (connector.connectorType()) {
           case BOOL:
-            bY[pin].setConnector((BoolConnector) connector);
+            bY[pin].setConnector(connector);
             break;
           case DOUBLE:
-            dY[pin].setConnector((DoubleConnector) connector);
+            dY[pin].setConnector(connector);
             break;
           default:
             break;
@@ -116,10 +104,10 @@ public abstract class BlockImpl extends ElementImpl implements Block {
       case S:
         switch (connector.connectorType()) {
           case BOOL:
-            bS[pin].setConnector((BoolConnector) connector);
+            bS[pin].setConnector(connector);
             break;
           case DOUBLE:
-            dS[pin].setConnector((DoubleConnector) connector);
+            dS[pin].setConnector(connector);
             break;
           default:
             break;
@@ -215,7 +203,7 @@ public abstract class BlockImpl extends ElementImpl implements Block {
   public List<Block> getSourceBlock() {
     List<Block> blocks = new ArrayList<>();
     //TODO add bool
-    for (DoubleSocket s : dU) {
+    for (Socket s : dU) {
       Connector c = s.getConnector();
       if (c != null) {
         Block b = c.getSource();
@@ -231,7 +219,7 @@ public abstract class BlockImpl extends ElementImpl implements Block {
   public List<Block> getTargetBlock() {
     List<Block> blocks = new ArrayList<>();
     //TODO add bool
-    for (DoubleSocket s : dY) {
+    for (Socket s : dY) {
       Connector c = s.getConnector();
       if (c != null) {
         Block b = c.getTarget();

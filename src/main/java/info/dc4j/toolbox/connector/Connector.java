@@ -24,13 +24,10 @@ package info.dc4j.toolbox.connector;
 
 import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.element.Data;
+import info.dc4j.toolbox.element.DataType;
 import info.dc4j.toolbox.element.Element;
 
 public interface Connector extends Element {
-
-  public enum Type {
-    DOUBLE, BOOL
-  };
 
   Object getValue();
 
@@ -42,6 +39,6 @@ public interface Connector extends Element {
 
   Data getData();
 
-  Connector.Type connectorType();
+  DataType connectorType();
 
 }

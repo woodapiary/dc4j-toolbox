@@ -34,6 +34,7 @@ import info.dc4j.toolbox.connector.BoolConnector;
 import info.dc4j.toolbox.connector.Connector;
 import info.dc4j.toolbox.connector.DoubleConnector;
 import info.dc4j.toolbox.connector.Splitter;
+import info.dc4j.toolbox.element.DataType;
 import info.dc4j.toolbox.layout.Layout;
 import info.dc4j.toolbox.layout.LayoutImpl;
 import info.dc4j.toolbox.monitor.ConsoleTracer;
@@ -92,7 +93,7 @@ public class ModelFactoryImpl implements ModelFactory {
   }
 
   @Override
-  public Connector createConnector(Integer id, String name, Block source, Block target, Connector.Type type) {
+  public Connector createConnector(Integer id, String name, Block source, Block target, DataType type) {
     if (id == null) {
       id = seq.getConnectorId();
     }
@@ -133,6 +134,9 @@ public class ModelFactoryImpl implements ModelFactory {
     Model model = new ModelImpl(layout, monitor);
     return model;
   }
+
+  //TODO socket factory
+  //TODO orderStrategy  factory
 
   public static ModelFactory getInstanse() {
     return new ModelFactoryImpl();

@@ -36,16 +36,27 @@ public class Integrator extends BlockImpl {
     TI
   };
 
-  private double ti = 1.0;
+  public static final class Size {
+    public int bY = 0;
+    public int bU = 0;
+    public int bS = 0;
+    public int dY = 0;
+    public int dU = 0;
+    public int dS = 0;
+  }
+
+  private static double tiDefault = 1.0;
+
+  private double ti = tiDefault;
 
   public Integrator(int id, String name) {
-    super(id, name, 1, 1, 0, 0, 1, 0, 1, 0);
+    super(id, name, 1, 1, 0, 0, 1, 0);
     setDesc(DESC);
   }
 
   @Override
   protected void eval() {
-    double u = dU[0].get();
+    Double u = dU[0].get();
     double s = dS[0].get();
     double y = u * dt / ti + s;
     dS[0].set(y);
@@ -77,6 +88,10 @@ public class Integrator extends BlockImpl {
 
   }
 
+ /* public static Size getSize() {
+    return Integrator.Size;
+  }
+*/
 
 
 }

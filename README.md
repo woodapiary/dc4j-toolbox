@@ -8,7 +8,6 @@
 * **Derivative** - output time derivative of input.
 * **Integrator** - limited  integrate signal.
 * **PID** - simulate continuous PID controllers.
-* **TransferFcn** - model linear system by transfer function.
 * **TransportDelay** - delay input by given amount of time.
 * **PT1** - first order lowpass filter.
 

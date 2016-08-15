@@ -23,6 +23,7 @@
 package info.dc4j.toolbox.connector;
 
 import info.dc4j.toolbox.block.Block;
+import info.dc4j.toolbox.element.DataType;
 
 public class DoubleConnector extends ConnectorImpl {
 
@@ -37,8 +38,8 @@ public class DoubleConnector extends ConnectorImpl {
   }
 
   @Override
-  public Connector.Type connectorType() {
-    return Connector.Type.DOUBLE;
+  public DataType connectorType() {
+    return DataType.DOUBLE;
   }
 
 }

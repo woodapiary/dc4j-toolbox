@@ -23,6 +23,7 @@
 package info.dc4j.toolbox.connector;
 
 import info.dc4j.toolbox.block.Block;
+import info.dc4j.toolbox.element.DataType;
 
 public class BoolConnector extends ConnectorImpl implements Connector {
 
@@ -37,8 +38,8 @@ public class BoolConnector extends ConnectorImpl implements Connector {
   }
 
   @Override
-  public Connector.Type connectorType() {
-    return Connector.Type.BOOL;
+  public DataType connectorType() {
+    return DataType.BOOL;
   }
 
 }

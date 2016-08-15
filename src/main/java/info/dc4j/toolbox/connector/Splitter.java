@@ -31,7 +31,7 @@ import info.dc4j.toolbox.element.Parameter;
 public class Splitter extends BlockImpl {
 
   public Splitter(int id, String name) {
-    super(id, name, 1, 2, 0, 0, 0, 0, 0, 0);
+    super(id, name, 1, 2, 0, 0, 0, 0);
   }
 
   @Override

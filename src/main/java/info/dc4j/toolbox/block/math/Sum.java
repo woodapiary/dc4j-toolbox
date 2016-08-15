@@ -31,7 +31,7 @@ import info.dc4j.toolbox.element.Parameter;
 public class Sum extends BlockImpl {
 
   public Sum(int id, String name) {
-    super(id, name, 2, 1, 0, 0, 0, 0, 0, 0);
+    super(id, name, 2, 1, 0, 0, 0, 0);
   }
 
   @Override

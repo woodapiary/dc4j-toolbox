@@ -25,7 +25,7 @@ package info.dc4j.toolbox.layout;
 import java.util.List;
 
 import info.dc4j.toolbox.block.Block;
-import info.dc4j.toolbox.connector.Connector;
+import info.dc4j.toolbox.element.DataType;
 import info.dc4j.toolbox.element.Parameter;
 
 public interface LayoutService {
@@ -34,7 +34,7 @@ public interface LayoutService {
   int createBlock(Integer id, String name, Block.Type type, Object param);
 
   int createConnection(Integer id, String name, Integer fromId, Integer toId, Integer out, Integer in,
-      Connector.Type type);
+      DataType type);
 
   List<Parameter> getBlockParameters(Integer blockId, boolean defaults);
 

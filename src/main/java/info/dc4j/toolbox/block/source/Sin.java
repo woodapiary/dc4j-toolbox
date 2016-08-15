@@ -34,7 +34,7 @@ public class Sin extends BlockImpl {
   private double w = 1.0;
 
   public Sin(int id, String name) {
-    super(id, name, 0, 1, 0, 0, 0, 0, 2, 0);
+    super(id, name, 0, 1, 0, 0, 0, 0);
   }
 
   @Override

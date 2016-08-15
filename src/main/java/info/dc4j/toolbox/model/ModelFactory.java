@@ -24,6 +24,7 @@ package info.dc4j.toolbox.model;
 
 import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.connector.Connector;
+import info.dc4j.toolbox.element.DataType;
 import info.dc4j.toolbox.monitor.Tracer;
 
 public interface ModelFactory {
@@ -32,7 +33,7 @@ public interface ModelFactory {
 
   Block createUserBlock(Integer id, String name, Object param);
 
-  Connector createConnector(Integer id, String name, Block source, Block target, Connector.Type type);
+  Connector createConnector(Integer id, String name, Block source, Block target, DataType type);
 
   Tracer createTracer(Tracer.Type type);
 

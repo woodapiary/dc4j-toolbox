@@ -27,7 +27,7 @@ import java.util.List;
 
 import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.block.BlockImpl;
-import info.dc4j.toolbox.connector.Connector;
+import info.dc4j.toolbox.element.DataType;
 import info.dc4j.toolbox.element.Parameter;
 
 public class PT1 extends BlockImpl {
@@ -40,11 +40,12 @@ public class PT1 extends BlockImpl {
 
   private static double kDefault = 1.0;
   private static double tDefault = 1.0;
+
   private double k = kDefault;
   private double tf = tDefault;
 
   public PT1(int id, String name) {
-    super(id, name, 1, 1, 0, 0, 0, 0, 2, 0);
+    super(id, name, 1, 1, 0, 0, 0, 0);
   }
 
   @Override
@@ -78,8 +79,8 @@ public class PT1 extends BlockImpl {
   public List<Parameter> getParameters(boolean defaults) {
     List<Parameter> data = new ArrayList<>();
     if (!defaults) {
-      data.add(new Parameter(getId(), P.K.name(), Connector.Type.DOUBLE, k));
-      data.add(new Parameter(getId(), P.TF.name(), Connector.Type.DOUBLE, tf));
+      data.add(new Parameter(getId(), P.K.name(), DataType.DOUBLE, k));
+      data.add(new Parameter(getId(), P.TF.name(), DataType.DOUBLE, tf));
     }
     return data;
   }

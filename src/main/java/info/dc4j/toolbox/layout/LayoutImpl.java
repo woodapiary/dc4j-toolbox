@@ -28,6 +28,7 @@ import java.util.List;
 
 import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.connector.Connector;
+import info.dc4j.toolbox.element.DataType;
 import info.dc4j.toolbox.element.Element;
 import info.dc4j.toolbox.element.ElementImpl;
 import info.dc4j.toolbox.element.Parameter;
@@ -93,7 +94,7 @@ public class LayoutImpl extends ElementImpl implements Layout {
 
   @Override
   public int createConnection(Integer id, String name, Integer fromId, Integer toId, Integer out, Integer in,
-      Connector.Type type) {
+      DataType type) {
     Block source = fromId != null ? getBlock(fromId) : null;
     Block target = toId != null ? getBlock(toId) : null;
     Connector connector = factory.createConnector(id, name, source, target, type);

@@ -24,16 +24,15 @@ package info.dc4j.toolbox.element;
 
 import java.io.Serializable;
 
-import info.dc4j.toolbox.connector.Connector;
-
 public class Data implements Serializable {
 
   private static final long serialVersionUID = -2428130720125168559L;
   private final Integer id;
-  private final Connector.Type type;
-  private Object value;
+  private final DataType type;
+  private final Object value;
 
-  public Data(Integer id, Connector.Type type, Object value) {
+  public Data(Integer id, DataType type, Object value) {
+    //TODO check type
     this.value = value;
     this.type = type;
     this.id = id;
@@ -43,7 +42,7 @@ public class Data implements Serializable {
     return value;
   }
 
-  public Connector.Type getType() {
+  public DataType getType() {
     return type;
   }
 
@@ -51,11 +50,8 @@ public class Data implements Serializable {
     return id;
   }
 
-  public void setValue(Object value) {
-    this.value = value;
-  }
-
   public Double getDouble() {
+    //TODO check type
     return (Double) value;
   }
 
