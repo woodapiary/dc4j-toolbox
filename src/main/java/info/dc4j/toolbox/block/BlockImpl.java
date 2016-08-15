@@ -29,7 +29,7 @@ import info.dc4j.toolbox.connector.Connector;
 import info.dc4j.toolbox.element.Element;
 import info.dc4j.toolbox.element.ElementImpl;
 import info.dc4j.toolbox.layout.Composite;
-import info.dc4j.toolbox.model.ModelConstants;
+import info.dc4j.toolbox.model.Model;
 
 public abstract class BlockImpl extends ElementImpl implements Block {
 
@@ -41,7 +41,7 @@ public abstract class BlockImpl extends ElementImpl implements Block {
   protected final DoubleSocket[] dS;
   protected long step;
   private Composite host;
-  protected double dt = ModelConstants.DT;
+  protected double dt = Model.DT;
   protected double t;
   private int order;
 

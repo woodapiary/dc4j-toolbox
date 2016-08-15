@@ -29,6 +29,10 @@ import info.dc4j.toolbox.monitor.MonitorService;
 
 public interface Model extends Runnable, LayoutService, MonitorService {
 
+  double DT = 0.001;
+  int LAYER_ID = 0;
+  int MONITOR_ID = 1;
+
   int createBlock(String name, Block.Type type);
   int createConnection(String name, Integer fromId, Integer toId, int out, int in, DataType type);
 

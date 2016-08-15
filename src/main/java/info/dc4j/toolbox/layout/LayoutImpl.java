@@ -32,7 +32,7 @@ import info.dc4j.toolbox.element.DataType;
 import info.dc4j.toolbox.element.Element;
 import info.dc4j.toolbox.element.ElementImpl;
 import info.dc4j.toolbox.element.Parameter;
-import info.dc4j.toolbox.model.ModelConstants;
+import info.dc4j.toolbox.model.Model;
 import info.dc4j.toolbox.model.ModelFactory;
 import info.dc4j.toolbox.model.Runnable;
 
@@ -45,7 +45,7 @@ public class LayoutImpl extends ElementImpl implements Layout {
   private final HashMap<Integer, Block> mapBlocks = new HashMap<>();
   private final HashMap<Integer, Connector> mapConnectors = new HashMap<>();
   protected long step;
-  protected double dt = ModelConstants.DT;
+  protected double dt = Model.DT;
   protected double t;
 
   public LayoutImpl(int id, String name, ModelFactory factory) {

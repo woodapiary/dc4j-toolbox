@@ -30,7 +30,7 @@ import info.dc4j.toolbox.element.Element;
 import info.dc4j.toolbox.element.ElementImpl;
 import info.dc4j.toolbox.element.Parameter;
 import info.dc4j.toolbox.layout.Layout;
-import info.dc4j.toolbox.model.ModelConstants;
+import info.dc4j.toolbox.model.Model;
 import info.dc4j.toolbox.model.ModelFactory;
 
 public class MonitorImpl extends ElementImpl implements Monitor {
@@ -40,7 +40,7 @@ public class MonitorImpl extends ElementImpl implements Monitor {
   private final Layout layout;
   private final ModelFactory factory;
   protected long step;
-  protected double dt = ModelConstants.DT;
+  protected double dt = Model.DT;
   protected double t;
 
   public MonitorImpl(int id, String name, ModelFactory factory, Layout layout) {

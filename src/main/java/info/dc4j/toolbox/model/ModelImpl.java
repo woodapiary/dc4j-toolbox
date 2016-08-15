@@ -36,7 +36,7 @@ public class ModelImpl implements Model {
 
   private final Layout layout;
   private final Monitor monitor;
-  private double dt = ModelConstants.DT;
+  private double dt = Model.DT;
   private double t;
   private long step;
 
@@ -143,7 +143,7 @@ public class ModelImpl implements Model {
   public List<Parameter> getBlockParameters(Integer blockId, boolean defaults) {
     if (blockId != null) {
       switch (blockId) {
-        case ModelConstants.MONITOR_ID:
+        case Model.MONITOR_ID:
           return monitor.getParameters(defaults);
         default:
           return layout.getBlockParameters(blockId, defaults);
@@ -157,7 +157,7 @@ public class ModelImpl implements Model {
   public void setBlockParameters(Integer blockId, List<Parameter> parameters) {
     if (blockId != null) {
       switch (blockId) {
-        case ModelConstants.MONITOR_ID:
+        case Model.MONITOR_ID:
           monitor.setParameters(parameters);
           break;
         default:

@@ -130,7 +130,7 @@ public class ModelFactoryImpl implements ModelFactory {
   public static Model createModel() {
     ModelFactory factory = new ModelFactoryImpl();
     Layout layout = new LayoutImpl(0, "", factory);
-    Monitor monitor = new MonitorImpl(ModelConstants.MONITOR_ID, "monitor", factory, layout);
+    Monitor monitor = new MonitorImpl(Model.MONITOR_ID, "monitor", factory, layout);
     Model model = new ModelImpl(layout, monitor);
     return model;
   }
