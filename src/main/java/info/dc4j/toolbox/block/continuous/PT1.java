@@ -38,6 +38,15 @@ public class PT1 extends BlockImpl {
     K, TF
   };
 
+  public interface Size {
+    int U_D = 1;
+    int U_B = 0;
+    int Y_D = 1;
+    int Y_B = 0;
+    int S_D = 0;
+    int S_B = 0;
+  }
+
   private static double kDefault = 1.0;
   private static double tDefault = 1.0;
 
@@ -45,7 +54,7 @@ public class PT1 extends BlockImpl {
   private double tf = tDefault;
 
   public PT1(int id, String name) {
-    super(id, name, 1, 1, 0, 0, 0, 0);
+    super(id, name, Size.U_D, Size.Y_D, Size.U_B, Size.Y_B,  Size.S_D, Size.S_B);
   }
 
   @Override

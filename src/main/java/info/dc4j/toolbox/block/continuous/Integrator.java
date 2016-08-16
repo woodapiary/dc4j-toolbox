@@ -22,10 +22,12 @@
  */
 package info.dc4j.toolbox.block.continuous;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.block.BlockImpl;
+import info.dc4j.toolbox.element.DataType;
 import info.dc4j.toolbox.element.Parameter;
 
 public class Integrator extends BlockImpl {
@@ -36,13 +38,13 @@ public class Integrator extends BlockImpl {
     TI
   };
 
-  public static final class Size {
-    public int bY = 0;
-    public int bU = 0;
-    public int bS = 0;
-    public int dY = 0;
-    public int dU = 0;
-    public int dS = 0;
+  public interface Size {
+    int U_D = 1;
+    int U_B = 0;
+    int Y_D = 1;
+    int Y_B = 0;
+    int S_D = 1;
+    int S_B = 0;
   }
 
   private static double tiDefault = 1.0;
@@ -50,7 +52,7 @@ public class Integrator extends BlockImpl {
   private double ti = tiDefault;
 
   public Integrator(int id, String name) {
-    super(id, name, 1, 1, 0, 0, 1, 0);
+    super(id, name, Size.U_D, Size.Y_D, Size.U_B, Size.Y_B,  Size.S_D, Size.S_B);
     setDesc(DESC);
   }
 
@@ -78,20 +80,24 @@ public class Integrator extends BlockImpl {
 
   @Override
   public List<Parameter> getParameters(boolean defaults) {
-    // TODO Auto-generated method stub
-    return null;
+    List<Parameter> data = new ArrayList<>();
+    if (!defaults) {
+      data.add(new Parameter(getId(), P.TI.name(), DataType.DOUBLE, ti));
+    }
+    return data;
   }
 
   @Override
   public void setParameters(List<Parameter> params) {
-    // TODO Auto-generated method stub
-
+    for (Parameter param : params) {
+      switch (P.valueOf(param.getName())) {
+        case TI:
+          ti = param.getDouble();
+          break;
+        default:
+          throw new IllegalArgumentException("wrong parameter");
+      }
+    }
   }
-
- /* public static Size getSize() {
-    return Integrator.Size;
-  }
-*/
-
 
 }

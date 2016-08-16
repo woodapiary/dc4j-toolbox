@@ -202,7 +202,7 @@ public abstract class BlockImpl extends ElementImpl implements Block {
   @Override
   public List<Block> getSourceBlock() {
     List<Block> blocks = new ArrayList<>();
-    //TODO add bool
+    // TODO add bool
     for (Socket s : dU) {
       Connector c = s.getConnector();
       if (c != null) {
@@ -218,7 +218,7 @@ public abstract class BlockImpl extends ElementImpl implements Block {
   @Override
   public List<Block> getTargetBlock() {
     List<Block> blocks = new ArrayList<>();
-    //TODO add bool
+    // TODO add bool
     for (Socket s : dY) {
       Connector c = s.getConnector();
       if (c != null) {
@@ -240,8 +240,5 @@ public abstract class BlockImpl extends ElementImpl implements Block {
     builder.append("]");
     return builder.toString();
   }
-
-
-
 
 }
