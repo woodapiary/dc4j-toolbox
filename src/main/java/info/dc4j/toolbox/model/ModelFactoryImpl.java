@@ -134,7 +134,7 @@ public class ModelFactoryImpl implements ModelFactory {
     ModelFactory factory = new ModelFactoryImpl();
     Layout layout = new LayoutImpl(factory);
     Monitor monitor = new MonitorImpl(factory, layout);
-    Model model = new ModelImpl(layout, monitor);
+    Model model = new ModelImpl(factory, layout, monitor);
     return model;
   }
 

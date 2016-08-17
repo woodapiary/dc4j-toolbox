@@ -26,9 +26,8 @@ import java.util.List;
 
 import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.connector.Connector;
-import info.dc4j.toolbox.model.Runnable;
 
-public interface Layout extends Runnable, LayoutService {
+public interface Layout extends LayoutService {
 
   Connector getConnector(int id);
 

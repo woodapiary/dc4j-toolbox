@@ -28,6 +28,7 @@ import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.element.DataType;
 import info.dc4j.toolbox.element.Parameter;
 import info.dc4j.toolbox.layout.Layout;
+import info.dc4j.toolbox.layout.OrderStrategy;
 import info.dc4j.toolbox.monitor.Monitor;
 import info.dc4j.toolbox.monitor.TraceData;
 import info.dc4j.toolbox.monitor.Tracer;
@@ -39,10 +40,12 @@ public class ModelImpl implements Model {
   private double dt = Model.DT;
   private double t;
   private long step;
+  private final ModelFactory factory;
 
-  protected ModelImpl(Layout layout, Monitor monitor) {
+  protected ModelImpl(ModelFactory factory, Layout layout, Monitor monitor) {
     this.layout = layout;
     this.monitor = monitor;
+    this.factory = factory;
   }
 
   @Override
@@ -50,7 +53,9 @@ public class ModelImpl implements Model {
     while (t < maxTime) {
       step++;
       t = t + dt;
-      layout.run(maxTime);
+      for (Runnable block : layout.getBlocks()) {
+        block.run(maxTime);
+      }
       monitor.run(maxTime);
     }
   }
@@ -61,7 +66,9 @@ public class ModelImpl implements Model {
       throw new IllegalArgumentException("dt must be over zero");
     }
     this.dt = dt;
-    layout.setScanTime(dt);
+    for (Runnable block : layout.getBlocks()) {
+      block.setScanTime(dt);
+    }
     monitor.setScanTime(dt);
   }
 
@@ -74,7 +81,9 @@ public class ModelImpl implements Model {
   public void init() {
     t = 0;
     step = 0;
-    layout.init();
+    for (Runnable block : layout.getBlocks()) {
+      block.init();
+    }
     monitor.init();
   }
 
@@ -90,7 +99,18 @@ public class ModelImpl implements Model {
 
   @Override
   public void build() {
-    layout.build();
+    OrderStrategy strategy = factory.createOrderStrategy(Model.ORDER_STRAREGY_TYPE);
+    strategy.execute(layout.getBlocks());
+    check();
+    //TODO sort
+  }
+
+  private void check() {
+    for (Block block : layout.getBlocks()) {
+      if (!block.isOrdered()) {
+        throw new IllegalStateException("no order for block: " + block.getCanonicalName());
+      }
+    }
   }
 
   @Override

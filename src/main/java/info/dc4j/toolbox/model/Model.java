@@ -28,7 +28,7 @@ import info.dc4j.toolbox.layout.LayoutService;
 import info.dc4j.toolbox.layout.OrderStrategy;
 import info.dc4j.toolbox.monitor.MonitorService;
 
-public interface Model extends Runnable, LayoutService, MonitorService {
+public interface Model extends ModelService, LayoutService, MonitorService {
 
   double DT = 0.001;
   int LAYER_ID = 0;

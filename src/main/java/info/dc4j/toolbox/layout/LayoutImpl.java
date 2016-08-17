@@ -31,9 +31,7 @@ import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.connector.Connector;
 import info.dc4j.toolbox.element.DataType;
 import info.dc4j.toolbox.element.Parameter;
-import info.dc4j.toolbox.model.Model;
 import info.dc4j.toolbox.model.ModelFactory;
-import info.dc4j.toolbox.model.Runnable;
 
 //TODO implements units
 
@@ -43,55 +41,13 @@ public class LayoutImpl implements Layout {
   private final List<Connector> connectors = new ArrayList<>();
   private final HashMap<Integer, Block> mapBlocks = new HashMap<>();
   private final HashMap<Integer, Connector> mapConnectors = new HashMap<>();
-  protected long step;
-  protected double dt = Model.DT;
-  protected double t;
+
 
   public LayoutImpl(ModelFactory factory) {
     this.factory = factory;
   }
 
-  @Override
-  public void build() {
-    OrderStrategy strategy = factory.createOrderStrategy(Model.ORDER_STRAREGY_TYPE);
-    strategy.execute(getBlocks());
-    check();
-    //TODO sort
-  }
 
-  private void check() {
-    for (Block block : blocks) {
-      if (!block.isOrdered()) {
-        throw new IllegalStateException("no order for block: " + block.getCanonicalName());
-      }
-    }
-  }
-
-  @Override
-  public void run(double maxTime) {
-    step++;
-    t = t + dt;
-    for (Runnable block : getBlocks()) {
-      block.run(maxTime);
-    }
-  }
-
-  @Override
-  public void init() {
-    t = 0;
-    step = 0;
-    for (Runnable block : getBlocks()) {
-      block.init();
-    }
-  }
-
-  @Override
-  public void setScanTime(double dt) {
-    this.dt = dt;
-    for (Runnable block : getBlocks()) {
-      block.setScanTime(dt);
-    }
-  }
 
   @Override
   public int createBlock(Integer id, String name, Block.Type type, Object param) {
@@ -153,21 +109,6 @@ public class LayoutImpl implements Layout {
   }
 
   @Override
-  public double getScanTime() {
-    return dt;
-  }
-
-  @Override
-  public double getT() {
-    return t;
-  }
-
-  @Override
-  public long getStep() {
-    return step;
-  }
-
-  @Override
   public String toString() {
     StringBuilder builder = new StringBuilder();
     builder.append("LayoutImpl [");
@@ -181,12 +122,6 @@ public class LayoutImpl implements Layout {
       builder.append(Arrays.toString(connectors.toArray()));
       builder.append(", ");
     }
-    builder.append("step=");
-    builder.append(step);
-    builder.append(", dt=");
-    builder.append(dt);
-    builder.append(", t=");
-    builder.append(t);
     builder.append("]");
     return builder.toString();
   }

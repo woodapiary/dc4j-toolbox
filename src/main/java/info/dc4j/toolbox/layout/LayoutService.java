@@ -29,7 +29,6 @@ import info.dc4j.toolbox.element.DataType;
 import info.dc4j.toolbox.element.Parameter;
 
 public interface LayoutService {
-  void build();
 
   int createBlock(Integer id, String name, Block.Type type, Object param);
 
