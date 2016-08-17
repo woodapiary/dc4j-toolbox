@@ -23,14 +23,13 @@
 package info.dc4j.toolbox.layout;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.connector.Connector;
 import info.dc4j.toolbox.element.DataType;
-import info.dc4j.toolbox.element.Element;
-import info.dc4j.toolbox.element.ElementImpl;
 import info.dc4j.toolbox.element.Parameter;
 import info.dc4j.toolbox.model.Model;
 import info.dc4j.toolbox.model.ModelFactory;
@@ -38,7 +37,7 @@ import info.dc4j.toolbox.model.Runnable;
 
 //TODO implements units
 
-public class LayoutImpl extends ElementImpl implements Layout {
+public class LayoutImpl implements Layout {
   private final ModelFactory factory;
   private final List<Block> blocks = new ArrayList<>();
   private final List<Connector> connectors = new ArrayList<>();
@@ -48,14 +47,24 @@ public class LayoutImpl extends ElementImpl implements Layout {
   protected double dt = Model.DT;
   protected double t;
 
-  public LayoutImpl(int id, String name, ModelFactory factory) {
-    super(id, name);
+  public LayoutImpl(ModelFactory factory) {
     this.factory = factory;
   }
 
   @Override
   public void build() {
-    new OrderStrategy1().execute(getBlocks());
+    OrderStrategy strategy = factory.createOrderStrategy(Model.ORDER_STRAREGY_TYPE);
+    strategy.execute(getBlocks());
+    check();
+    //TODO sort
+  }
+
+  private void check() {
+    for (Block block : blocks) {
+      if (!block.isOrdered()) {
+        throw new IllegalStateException("no order for block: " + block.getCanonicalName());
+      }
+    }
   }
 
   @Override
@@ -144,11 +153,6 @@ public class LayoutImpl extends ElementImpl implements Layout {
   }
 
   @Override
-  public Element.Type elementType() {
-    return Element.Type.LAYOUT;
-  }
-
-  @Override
   public double getScanTime() {
     return dt;
   }
@@ -161,6 +165,30 @@ public class LayoutImpl extends ElementImpl implements Layout {
   @Override
   public long getStep() {
     return step;
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder builder = new StringBuilder();
+    builder.append("LayoutImpl [");
+    if (blocks != null) {
+      builder.append("blocks=");
+      builder.append(Arrays.toString(blocks.toArray()));
+      builder.append(", ");
+    }
+    if (connectors != null) {
+      builder.append("connectors=");
+      builder.append(Arrays.toString(connectors.toArray()));
+      builder.append(", ");
+    }
+    builder.append("step=");
+    builder.append(step);
+    builder.append(", dt=");
+    builder.append(dt);
+    builder.append(", t=");
+    builder.append(t);
+    builder.append("]");
+    return builder.toString();
   }
 
 }

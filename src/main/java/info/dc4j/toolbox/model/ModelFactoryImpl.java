@@ -37,6 +37,9 @@ import info.dc4j.toolbox.connector.Splitter;
 import info.dc4j.toolbox.element.DataType;
 import info.dc4j.toolbox.layout.Layout;
 import info.dc4j.toolbox.layout.LayoutImpl;
+import info.dc4j.toolbox.layout.OrderStrategy;
+import info.dc4j.toolbox.layout.OrderStrategyByInsert;
+import info.dc4j.toolbox.layout.OrderStrategyByWave;
 import info.dc4j.toolbox.monitor.ConsoleTracer;
 import info.dc4j.toolbox.monitor.MemoryTracer;
 import info.dc4j.toolbox.monitor.Monitor;
@@ -99,7 +102,7 @@ public class ModelFactoryImpl implements ModelFactory {
     }
     Connector connector = null;
     switch (type) {
-      case BOOL:
+      case BOOLEAN:
         connector = new BoolConnector(id, name, source, target);
         break;
       case DOUBLE:
@@ -129,14 +132,28 @@ public class ModelFactoryImpl implements ModelFactory {
 
   public static Model createModel() {
     ModelFactory factory = new ModelFactoryImpl();
-    Layout layout = new LayoutImpl(0, "", factory);
-    Monitor monitor = new MonitorImpl(Model.MONITOR_ID, "monitor", factory, layout);
+    Layout layout = new LayoutImpl(factory);
+    Monitor monitor = new MonitorImpl(factory, layout);
     Model model = new ModelImpl(layout, monitor);
     return model;
   }
 
   //TODO socket factory
-  //TODO orderStrategy  factory
+  @Override
+  public OrderStrategy createOrderStrategy(OrderStrategy.Type type) {
+    OrderStrategy orderStrategy = null;
+    switch (type) {
+      case  BY_INSERT:
+        orderStrategy = new OrderStrategyByInsert();
+        break;
+      case  BY_WAVE:
+        orderStrategy = new OrderStrategyByWave();
+        break;
+      default:
+        throw new IllegalArgumentException("bad type of order strategy");
+    }
+    return orderStrategy;
+  }
 
   public static ModelFactory getInstanse() {
     return new ModelFactoryImpl();

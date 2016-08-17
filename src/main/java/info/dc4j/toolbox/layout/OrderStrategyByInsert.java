@@ -26,11 +26,12 @@ import java.util.List;
 
 import info.dc4j.toolbox.block.Block;
 
-public class OrderStrategy2 {
+public class OrderStrategyByInsert implements OrderStrategy {
 
-  List<Block> layoutBlocks;
+  private List<Block> layoutBlocks;
 
 
+  @Override
   public void execute(List<Block> blocks) {
     int level = 0;
     this.layoutBlocks = blocks;

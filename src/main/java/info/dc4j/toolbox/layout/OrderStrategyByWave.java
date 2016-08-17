@@ -27,20 +27,19 @@ import java.util.List;
 
 import info.dc4j.toolbox.block.Block;
 
-public class OrderStrategy1 {
+public class OrderStrategyByWave implements OrderStrategy {
 
   private static final boolean DEBUG = false;
 
-  List<Block> layoutBlocks;
-  List<Block> pointers;
-  List<Block> snapPointers;
-  int level = 0;
+  private List<Block> pointers;
+  private List<Block> snapPointers;
+  private int level = 0;
 
+  @Override
   public void execute(List<Block> layoutBlocks) {
     int countOp = 0;
     int flagOut = 0;
     level = 0;
-    this.layoutBlocks = layoutBlocks;
     pointers = new ArrayList<>();
     snapPointers(layoutBlocks);
     addStartedBlocksToPointer(countOp); // no source
@@ -62,8 +61,6 @@ public class OrderStrategy1 {
       flagOut = addAllNoOrderedTargetsToPointer(); // dead point, add all
       setLevelOnNewBlocksInPointer(level);
     } while (flagOut > 0);
-    check();
-    sort();
   }
 
   private int addStartedBlocksToPointer(int count) {
@@ -168,33 +165,10 @@ public class OrderStrategy1 {
         pointer.setOrder(level);
       }
     }
-
   }
 
   private void snapPointers(List<Block> blocks) {
     snapPointers = new ArrayList<>(blocks);
-  }
-
-  private void sort() {
-    // TODO Auto-generated method stub
-
-  }
-
-  private void check() {
-    for (Block block : layoutBlocks) {
-      if (!block.isOrdered()) {
-        throw new IllegalStateException("no order for block: " + block.getCanonicalName());
-      }
-      if (DEBUG) {
-        System.out.print(block.getName() + " - ");
-        System.out.print(block.getOrder());
-        System.out.print(", ");
-      }
-    }
-    if (DEBUG) {
-      System.out.println();
-    }
-
   }
 
   private void printf(String str) {
@@ -207,14 +181,6 @@ public class OrderStrategy1 {
       }
       System.out.println();
     }
-  }
-
-  @SuppressWarnings("unused")
-  private void printBlocks(List<Block> bs) {
-    for (Block b : bs) {
-      System.out.print(b.toString() + ",   ");
-    }
-    System.out.println();
   }
 
 }

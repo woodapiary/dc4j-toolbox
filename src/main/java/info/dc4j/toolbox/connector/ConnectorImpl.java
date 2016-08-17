@@ -24,6 +24,7 @@ package info.dc4j.toolbox.connector;
 
 import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.element.Data;
+import info.dc4j.toolbox.element.DataType;
 import info.dc4j.toolbox.element.Element;
 import info.dc4j.toolbox.element.ElementImpl;
 
@@ -46,6 +47,12 @@ public abstract class ConnectorImpl extends ElementImpl implements Connector {
 
   @Override
   public void setValue(Object value) {
+    if (value == null) {
+      throw new IllegalArgumentException("value is null");
+    }
+    if (DataType.getType(value.getClass()) != connectorType()) {
+      throw new IllegalArgumentException("bad type of value");
+    }
     this.value = value;
   }
 

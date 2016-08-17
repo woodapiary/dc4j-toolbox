@@ -47,7 +47,7 @@ package info.dc4j.toolbox.element;
 public interface Element {
 
   public enum Type {
-    LAYOUT, MONITOR, BLOCK, CONNECTOR, UNIT, SOCKET
+    MONITOR, BLOCK, CONNECTOR, UNIT, SOCKET
   }
 
   int getId();

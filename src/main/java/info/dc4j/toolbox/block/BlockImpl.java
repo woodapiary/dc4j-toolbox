@@ -79,7 +79,7 @@ public abstract class BlockImpl extends ElementImpl implements Block {
     switch (port) {
       case U:
         switch (connector.connectorType()) {
-          case BOOL:
+          case BOOLEAN:
             bU[pin].setConnector(connector);
             break;
           case DOUBLE:
@@ -91,7 +91,7 @@ public abstract class BlockImpl extends ElementImpl implements Block {
         break;
       case Y:
         switch (connector.connectorType()) {
-          case BOOL:
+          case BOOLEAN:
             bY[pin].setConnector(connector);
             break;
           case DOUBLE:
@@ -103,7 +103,7 @@ public abstract class BlockImpl extends ElementImpl implements Block {
         break;
       case S:
         switch (connector.connectorType()) {
-          case BOOL:
+          case BOOLEAN:
             bS[pin].setConnector(connector);
             break;
           case DOUBLE:

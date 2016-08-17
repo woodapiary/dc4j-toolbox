@@ -44,7 +44,7 @@ public class BoolSocket  extends SocketImpl {
 
   @Override
   public DataType socketType() {
-    return DataType.BOOL;
+    return DataType.BOOLEAN;
   }
 
 }

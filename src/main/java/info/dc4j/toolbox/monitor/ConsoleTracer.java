@@ -39,7 +39,7 @@ public class ConsoleTracer implements Tracer {
       System.out.printf("%5.4s", conn.getName());
       System.out.printf("=");
       switch (conn.connectorType()) {
-        case BOOL:
+        case BOOLEAN:
           System.out.printf("%-6.5b", conn.getValue());
           break;
         case DOUBLE:

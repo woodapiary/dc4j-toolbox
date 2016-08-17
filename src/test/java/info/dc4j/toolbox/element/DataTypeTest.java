@@ -20,26 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package info.dc4j.toolbox.connector;
+package info.dc4j.toolbox.element;
 
-import info.dc4j.toolbox.block.Block;
-import info.dc4j.toolbox.element.DataType;
+import org.junit.Test;
 
-public class BoolConnector extends ConnectorImpl implements Connector {
+public class DataTypeTest {
 
-  public BoolConnector(int id, String name, Block source, Block target) {
-    super(id, name, source, target);
-    setValue(false);
-  }
-
-  @Override
-  public Boolean getValue() {
-    return (Boolean) super.getValue();
-  }
-
-  @Override
-  public DataType connectorType() {
-    return DataType.BOOLEAN;
+  @Test(expected = IllegalArgumentException.class)
+  public void test01() {
+    DataType.getType(Object.class);
   }
 
 }

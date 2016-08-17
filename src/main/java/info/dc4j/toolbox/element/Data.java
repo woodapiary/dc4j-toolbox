@@ -27,12 +27,20 @@ import java.io.Serializable;
 public class Data implements Serializable {
 
   private static final long serialVersionUID = -2428130720125168559L;
-  private final Integer id;
+  private final int id;
   private final DataType type;
   private final Object value;
 
-  public Data(Integer id, DataType type, Object value) {
-    //TODO check type
+  public Data(int id, DataType type, Object value) {
+    if (type == null) {
+      throw new IllegalArgumentException("type is null");
+    }
+    if (value == null) {
+      throw new IllegalArgumentException("value is null");
+    }
+    if (DataType.getType(value.getClass()) != type) {
+      throw new IllegalArgumentException("bad type of value");
+    }
     this.value = value;
     this.type = type;
     this.id = id;
@@ -46,24 +54,32 @@ public class Data implements Serializable {
     return type;
   }
 
-  public Integer getId() {
+  public int getId() {
     return id;
   }
 
   public Double getDouble() {
-    //TODO check type
+    if (type != DataType.DOUBLE) {
+      throw new IllegalStateException("bad type of value");
+    }
     return (Double) value;
   }
 
   public Integer getInteger() {
+    if (type != DataType.INTEGER) {
+      throw new IllegalStateException("bad type of value");
+    }
     return (Integer) value;
   }
 
   public String getString() {
-    return (String) value;
+    return value.toString();
   }
 
   public Boolean getBoolean() {
+    if (type != DataType.BOOLEAN) {
+      throw new IllegalStateException("bad type of value");
+    }
     return (Boolean) value;
   }
 

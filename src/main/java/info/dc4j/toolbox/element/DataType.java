@@ -21,6 +21,21 @@
  * THE SOFTWARE.
  */
 package info.dc4j.toolbox.element;
+
+import java.util.Arrays;
+
 public enum DataType {
-  DOUBLE, BOOL, INTEGER, STRING
+
+  BYTE, BOOLEAN, SHORT, CHAR, INTEGER, FLOAT, LONG, DOUBLE, STRING;
+
+  private static final String ALL_TYPES_STRING = Arrays.toString(DataType.values());
+
+  public static DataType getType(Class<?> clazz) {
+    String className = clazz.getSimpleName().toUpperCase();
+    if (ALL_TYPES_STRING.contains(className)) {
+      return DataType.valueOf(className);
+    } else {
+      throw new IllegalArgumentException("bad type");
+    }
+  }
 };

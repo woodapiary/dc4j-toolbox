@@ -23,6 +23,7 @@
 package info.dc4j.toolbox.block;
 
 import info.dc4j.toolbox.connector.Connector;
+import info.dc4j.toolbox.element.DataType;
 import info.dc4j.toolbox.element.Element;
 import info.dc4j.toolbox.element.ElementImpl;
 
@@ -37,7 +38,9 @@ public abstract class SocketImpl extends ElementImpl implements Socket {
 
   @Override
   public void setConnector(Connector connector) {
-    //TODO check type
+    if (connector != null && socketType() != connector.connectorType()) {
+      throw new IllegalArgumentException("bad type of connector");
+    }
     if (this.connector == null) {
       this.connector = connector;
     } else {
@@ -55,7 +58,12 @@ public abstract class SocketImpl extends ElementImpl implements Socket {
 
   @Override
   public void set(Object value) {
-    //TODO check type
+    if (value == null) {
+      throw new IllegalArgumentException("value is null");
+    }
+    if (DataType.getType(value.getClass()) != socketType()) {
+      throw new IllegalArgumentException("bad type of value");
+    }
     if (connector != null) {
       connector.setValue(value);
     }

@@ -32,6 +32,9 @@ public class Parameter extends Data implements Serializable {
 
   public Parameter(int id, String name, DataType type, Object value) {
     super(id, type, value);
+    if (name == null) {
+      throw new IllegalArgumentException("name is null");
+    }
     this.name = name;
   }
 

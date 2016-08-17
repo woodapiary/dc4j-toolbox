@@ -20,26 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package info.dc4j.toolbox.connector;
+package info.dc4j.toolbox.layout;
+
+import java.util.List;
 
 import info.dc4j.toolbox.block.Block;
-import info.dc4j.toolbox.element.DataType;
 
-public class BoolConnector extends ConnectorImpl implements Connector {
+public interface OrderStrategy {
 
-  public BoolConnector(int id, String name, Block source, Block target) {
-    super(id, name, source, target);
-    setValue(false);
+  public enum Type {
+    BY_INSERT, BY_WAVE
   }
 
-  @Override
-  public Boolean getValue() {
-    return (Boolean) super.getValue();
-  }
-
-  @Override
-  public DataType connectorType() {
-    return DataType.BOOLEAN;
-  }
+  void execute(List<Block> blocks);
 
 }

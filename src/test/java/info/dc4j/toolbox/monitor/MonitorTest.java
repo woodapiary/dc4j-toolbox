@@ -38,7 +38,7 @@ public class MonitorTest {
 
   @Test
   public void test01() {
-    MonitorImpl monitor = new MonitorImpl(0, "", ModelFactoryImpl.getInstanse(), null);
+    MonitorImpl monitor = new MonitorImpl(ModelFactoryImpl.getInstanse(), null);
     EmptyBlock block1 = new EmptyBlock(1, "block1");
     DoubleConnector u1 = new DoubleConnector(1, "in1", null, block1);
     DoubleConnector y1 = new DoubleConnector(2, "out1", block1, null);
@@ -66,7 +66,7 @@ public class MonitorTest {
 
   @Test
   public void test02() {
-    MonitorImpl monitor = new MonitorImpl(0, "", ModelFactoryImpl.getInstanse(), null);
+    MonitorImpl monitor = new MonitorImpl(ModelFactoryImpl.getInstanse(), null);
     EmptyBlock block1 = new EmptyBlock(1, "block1");
     DoubleConnector u1 = new DoubleConnector(1, "in1", null, block1);
     DoubleConnector y1 = new DoubleConnector(2, "out1", block1, null);
