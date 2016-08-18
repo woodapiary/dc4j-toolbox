@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package info.dc4j.toolbox.layout;
+package info.dc4j.toolbox.model;
 
 import java.util.ArrayList;
 import java.util.List;

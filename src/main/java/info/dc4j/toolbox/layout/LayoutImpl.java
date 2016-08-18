@@ -28,6 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import info.dc4j.toolbox.block.Block;
+import info.dc4j.toolbox.block.BlockInfo;
 import info.dc4j.toolbox.connector.Connector;
 import info.dc4j.toolbox.element.DataType;
 import info.dc4j.toolbox.element.Parameter;
@@ -46,8 +47,6 @@ public class LayoutImpl implements Layout {
   public LayoutImpl(ModelFactory factory) {
     this.factory = factory;
   }
-
-
 
   @Override
   public int createBlock(Integer id, String name, Block.Type type, Object param) {
@@ -96,6 +95,11 @@ public class LayoutImpl implements Layout {
   @Override
   public Block getBlock(int id) {
     return mapBlocks.get(id);
+  }
+
+  @Override
+  public BlockInfo getBlockInfo(int id) {
+    return mapBlocks.get(id).getBlockInfo();
   }
 
   @Override

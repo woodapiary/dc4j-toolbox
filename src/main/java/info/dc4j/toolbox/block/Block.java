@@ -51,5 +51,6 @@ public interface Block extends Element, Composite, Runnable, Parametrizable {
   boolean isOrdered();
 
   void setConnector(Connector connector, Block.Port port, int pin);
+  BlockInfo getBlockInfo();
 
 }

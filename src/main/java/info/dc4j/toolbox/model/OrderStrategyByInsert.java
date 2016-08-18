@@ -20,25 +20,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package info.dc4j.toolbox.layout;
+package info.dc4j.toolbox.model;
 
 import java.util.List;
 
 import info.dc4j.toolbox.block.Block;
-import info.dc4j.toolbox.block.BlockInfo;
-import info.dc4j.toolbox.element.DataType;
-import info.dc4j.toolbox.element.Parameter;
 
-public interface LayoutService {
+public class OrderStrategyByInsert implements OrderStrategy {
 
-  int createBlock(Integer id, String name, Block.Type type, Object param);
+  private List<Block> layoutBlocks;
 
-  int createConnection(Integer id, String name, Integer fromId, Integer toId, Integer out, Integer in,
-      DataType type);
 
-  List<Parameter> getBlockParameters(Integer blockId, boolean defaults);
+  @Override
+  public void execute(List<Block> blocks) {
+    int level = 0;
+    this.layoutBlocks = blocks;
+    for (Block block : layoutBlocks) {
+      level ++;
+      block.setOrder(level);
+    }
+    check();
+  }
 
-  void setBlockParameters(Integer blockId, List<Parameter> parameters);
+  private void check() {
+    for (Block block : layoutBlocks) {
+      if (!block.isOrdered()) {
+        throw new IllegalStateException("no order for block: " + block.getCanonicalName());
+      }
+    }
+  }
 
-  BlockInfo getBlockInfo(int blockId);
+
 }

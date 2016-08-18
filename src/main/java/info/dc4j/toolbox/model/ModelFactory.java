@@ -25,7 +25,6 @@ package info.dc4j.toolbox.model;
 import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.connector.Connector;
 import info.dc4j.toolbox.element.DataType;
-import info.dc4j.toolbox.layout.OrderStrategy;
 import info.dc4j.toolbox.monitor.Tracer;
 
 public interface ModelFactory {
@@ -39,5 +38,7 @@ public interface ModelFactory {
   Tracer createTracer(Tracer.Type type);
 
   OrderStrategy createOrderStrategy(OrderStrategy.Type type);
+
+  Model createModel();
 
 }

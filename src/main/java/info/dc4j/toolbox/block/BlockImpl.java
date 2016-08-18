@@ -231,6 +231,10 @@ public abstract class BlockImpl extends ElementImpl implements Block {
     return blocks;
   }
 
+  public BlockInfo getBlockInfo() {
+    return new BlockInfo(this);
+  }
+
   @Override
   public String toString() {
     StringBuilder builder = new StringBuilder();

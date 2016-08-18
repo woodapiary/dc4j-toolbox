@@ -20,35 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package info.dc4j.toolbox.layout;
+package info.dc4j.toolbox.model;
 
 import java.util.List;
 
 import info.dc4j.toolbox.block.Block;
 
-public class OrderStrategyByInsert implements OrderStrategy {
+public interface OrderStrategy {
 
-  private List<Block> layoutBlocks;
-
-
-  @Override
-  public void execute(List<Block> blocks) {
-    int level = 0;
-    this.layoutBlocks = blocks;
-    for (Block block : layoutBlocks) {
-      level ++;
-      block.setOrder(level);
-    }
-    check();
+  public enum Type {
+    BY_INSERT, BY_WAVE
   }
 
-  private void check() {
-    for (Block block : layoutBlocks) {
-      if (!block.isOrdered()) {
-        throw new IllegalStateException("no order for block: " + block.getCanonicalName());
-      }
-    }
-  }
-
+  void execute(List<Block> blocks);
 
 }

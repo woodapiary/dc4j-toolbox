@@ -22,13 +22,15 @@
  */
 package info.dc4j.toolbox.model;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import info.dc4j.toolbox.block.Block;
+import info.dc4j.toolbox.block.BlockInfo;
 import info.dc4j.toolbox.element.DataType;
 import info.dc4j.toolbox.element.Parameter;
 import info.dc4j.toolbox.layout.Layout;
-import info.dc4j.toolbox.layout.OrderStrategy;
 import info.dc4j.toolbox.monitor.Monitor;
 import info.dc4j.toolbox.monitor.TraceData;
 import info.dc4j.toolbox.monitor.Tracer;
@@ -99,10 +101,17 @@ public class ModelImpl implements Model {
 
   @Override
   public void build() {
+    List<Block> list = layout.getBlocks();
     OrderStrategy strategy = factory.createOrderStrategy(Model.ORDER_STRAREGY_TYPE);
-    strategy.execute(layout.getBlocks());
+    strategy.execute(list);
     check();
-    //TODO sort
+    Collections.sort(list, new Comparator<Block>() {
+      @Override
+      public int compare(Block o1, Block o2) {
+        return ((Integer) o1.getOrder()).compareTo(o2.getOrder());
+      }
+    });
+    //System.out.println(layout.toString());
   }
 
   private void check() {
@@ -186,5 +195,10 @@ public class ModelImpl implements Model {
     } else {
       layout.setBlockParameters(blockId, parameters);
     }
+  }
+
+  @Override
+  public BlockInfo getBlockInfo(int blockId) {
+    return layout.getBlockInfo(blockId);
   }
 }

@@ -20,18 +20,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package info.dc4j.toolbox.layout;
+package info.dc4j.toolbox.element;
 
-import java.util.List;
+public class ElementInfo {
 
-import info.dc4j.toolbox.block.Block;
+  private final int id;
+  private final String name;
+  private final String desc;
 
-public interface OrderStrategy {
-
-  public enum Type {
-    BY_INSERT, BY_WAVE
+  public ElementInfo(Element element) {
+    this.id = element.getId();
+    this.name = element.getName();
+    this.desc = element.getDesc();
   }
 
-  void execute(List<Block> blocks);
+  public int getId() {
+    return id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public String getDesc() {
+    return desc;
+  }
 
 }

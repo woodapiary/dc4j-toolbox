@@ -72,6 +72,11 @@ public abstract class ElementImpl implements Element {
   }
 
   @Override
+  public ElementInfo getElementInfo() {
+    return new ElementInfo(this);
+  }
+
+  @Override
   public String toString() {
     StringBuilder builder = new StringBuilder();
     builder.append("ElementImpl [id=");

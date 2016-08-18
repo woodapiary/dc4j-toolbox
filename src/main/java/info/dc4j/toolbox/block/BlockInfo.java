@@ -20,25 +20,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package info.dc4j.toolbox.layout;
+package info.dc4j.toolbox.block;
 
-import java.util.List;
+import info.dc4j.toolbox.element.ElementInfo;
 
-import info.dc4j.toolbox.block.Block;
-import info.dc4j.toolbox.block.BlockInfo;
-import info.dc4j.toolbox.element.DataType;
-import info.dc4j.toolbox.element.Parameter;
+public class BlockInfo {
 
-public interface LayoutService {
+  private final ElementInfo element;
+  private final int order;
 
-  int createBlock(Integer id, String name, Block.Type type, Object param);
+  public BlockInfo(Block block) {
+    element = block.getElementInfo();
+    this.order = block.getOrder();
+  }
 
-  int createConnection(Integer id, String name, Integer fromId, Integer toId, Integer out, Integer in,
-      DataType type);
+  public ElementInfo getElement() {
+    return element;
+  }
 
-  List<Parameter> getBlockParameters(Integer blockId, boolean defaults);
+  public int getOrder() {
+    return order;
+  }
 
-  void setBlockParameters(Integer blockId, List<Parameter> parameters);
 
-  BlockInfo getBlockInfo(int blockId);
+
 }

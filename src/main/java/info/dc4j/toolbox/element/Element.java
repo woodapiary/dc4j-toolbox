@@ -64,4 +64,6 @@ public interface Element {
 
   Type elementType();
 
+  ElementInfo getElementInfo();
+
 }

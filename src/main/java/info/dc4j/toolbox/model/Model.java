@@ -22,10 +22,7 @@
  */
 package info.dc4j.toolbox.model;
 
-import info.dc4j.toolbox.block.Block;
-import info.dc4j.toolbox.element.DataType;
 import info.dc4j.toolbox.layout.LayoutService;
-import info.dc4j.toolbox.layout.OrderStrategy;
 import info.dc4j.toolbox.monitor.MonitorService;
 
 public interface Model extends ModelService, LayoutService, MonitorService {
@@ -35,8 +32,6 @@ public interface Model extends ModelService, LayoutService, MonitorService {
   int MONITOR_ID = 1;
   OrderStrategy.Type ORDER_STRAREGY_TYPE = OrderStrategy.Type.BY_WAVE;
 
-  int createBlock(String name, Block.Type type);
 
-  int createConnection(String name, Integer fromId, Integer toId, int out, int in, DataType type);
 
 }

@@ -37,9 +37,6 @@ import info.dc4j.toolbox.connector.Splitter;
 import info.dc4j.toolbox.element.DataType;
 import info.dc4j.toolbox.layout.Layout;
 import info.dc4j.toolbox.layout.LayoutImpl;
-import info.dc4j.toolbox.layout.OrderStrategy;
-import info.dc4j.toolbox.layout.OrderStrategyByInsert;
-import info.dc4j.toolbox.layout.OrderStrategyByWave;
 import info.dc4j.toolbox.monitor.ConsoleTracer;
 import info.dc4j.toolbox.monitor.MemoryTracer;
 import info.dc4j.toolbox.monitor.Monitor;
@@ -48,7 +45,7 @@ import info.dc4j.toolbox.monitor.Tracer;
 
 public class ModelFactoryImpl implements ModelFactory {
 
-  private final SequenceId seq = new SequenceId();
+  protected final SequenceId seq = new SequenceId();
 
   @Override
   public Block createBlock(Integer id, String name, Block.Type type, Object param) {
@@ -130,14 +127,6 @@ public class ModelFactoryImpl implements ModelFactory {
     return tracer;
   }
 
-  public static Model createModel() {
-    ModelFactory factory = new ModelFactoryImpl();
-    Layout layout = new LayoutImpl(factory);
-    Monitor monitor = new MonitorImpl(factory, layout);
-    Model model = new ModelImpl(factory, layout, monitor);
-    return model;
-  }
-
   //TODO socket factory
   @Override
   public OrderStrategy createOrderStrategy(OrderStrategy.Type type) {
@@ -155,13 +144,21 @@ public class ModelFactoryImpl implements ModelFactory {
     return orderStrategy;
   }
 
+  public Model createModel() {
+    ModelFactory factory = this;
+    Layout layout = new LayoutImpl(factory);
+    Monitor monitor = new MonitorImpl(factory, layout);
+    Model model = new ModelImpl(factory, layout, monitor);
+    return model;
+  }
+
   public static ModelFactory getInstanse() {
     return new ModelFactoryImpl();
   }
 
-  class SequenceId {
+  protected class SequenceId {
 
-    private int seqBlock = 1; // 0 is layout, 1 is monitor
+    private int seqBlock = 0;
     private int seqConnector = 0;
 
     public int getBlockId() {
