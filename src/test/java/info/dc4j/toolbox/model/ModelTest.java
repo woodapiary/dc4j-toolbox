@@ -70,7 +70,7 @@ public class ModelTest {
     ModelFactory factory = new ModelFactoryImpl();
     Model model = factory.createModel();
     int[] b = new int[12];
-    b[6] = model.createBlock("block6", Block.Type.SPLITTER);
+    b[6] = model.createBlock("block6", Block.Type.SPLITTER_D);
     b[7] = model.createBlock("block7", Block.Type.SUM);
     b[8] = model.createBlock("block8", Block.Type.SUM);
     b[9] = model.createBlock("block9", Block.Type.SUM);
@@ -81,7 +81,6 @@ public class ModelTest {
     b[3] = model.createBlock("block3", Block.Type.STEP);
     b[4] = model.createBlock("block4", Block.Type.PT1);
     b[5] = model.createBlock("block5", Block.Type.SUM);
-
 
     int c1 = model.createConnection("c1", b[1], b[5], 0, 0, DataType.DOUBLE);
     int c2 = model.createConnection("c2", b[2], b[4], 0, 0, DataType.DOUBLE);

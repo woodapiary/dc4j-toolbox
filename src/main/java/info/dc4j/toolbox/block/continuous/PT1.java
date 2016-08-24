@@ -54,7 +54,7 @@ public class PT1 extends BlockImpl {
   private double tf = tDefault;
 
   public PT1(int id, String name) {
-    super(id, name, Size.U_D, Size.Y_D, Size.U_B, Size.Y_B,  Size.S_D, Size.S_B);
+    super(id, name, Size.U_D, Size.Y_D, Size.U_B, Size.Y_B, Size.S_D, Size.S_B);
   }
 
   @Override
@@ -66,7 +66,6 @@ public class PT1 extends BlockImpl {
     double y = ky0 * y0 + ku * u0;
     dY[0].set(y);
   }
-
 
   @Override
   public void setParameters(List<Parameter> params) {

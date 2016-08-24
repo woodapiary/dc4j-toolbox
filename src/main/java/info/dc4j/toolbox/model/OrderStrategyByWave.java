@@ -55,7 +55,7 @@ public class OrderStrategyByWave implements OrderStrategy {
         level++;
         setLevelOnNewBlocksInPointer(level);
         countOp = delAllTargetOrderedBlocksFromPointer(countOp);
-        //System.out.println(countOp);
+        // System.out.println(countOp);
       } while (countOp > 0);
       snapPointers(pointers);
       flagOut = addAllNoOrderedTargetsToPointer(); // dead point, add all

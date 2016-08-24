@@ -42,7 +42,7 @@ public class Sum extends BlockImpl {
   }
 
   public Sum(int id, String name) {
-    super(id, name, Size.U_D, Size.Y_D, Size.U_B, Size.Y_B,  Size.S_D, Size.S_B);
+    super(id, name, Size.U_D, Size.Y_D, Size.U_B, Size.Y_B, Size.S_D, Size.S_B);
     setDesc(DESC);
   }
 
@@ -53,7 +53,6 @@ public class Sum extends BlockImpl {
     double y = u1 + u0;
     dY[0].set(y);
   }
-
 
   @Override
   public Block.Type blockType() {

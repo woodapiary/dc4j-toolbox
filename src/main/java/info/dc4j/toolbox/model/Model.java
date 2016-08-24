@@ -32,6 +32,4 @@ public interface Model extends ModelService, LayoutService, MonitorService {
   int MONITOR_ID = 1;
   OrderStrategy.Type ORDER_STRAREGY_TYPE = OrderStrategy.Type.BY_WAVE;
 
-
-
 }

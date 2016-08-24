@@ -131,15 +131,15 @@ public class ModelFactoryImpl implements ModelFactory {
     return tracer;
   }
 
-  //TODO socket factory
+  // TODO socket factory
   @Override
   public OrderStrategy createOrderStrategy(OrderStrategy.Type type) {
     OrderStrategy orderStrategy = null;
     switch (type) {
-      case  BY_INSERT:
+      case BY_INSERT:
         orderStrategy = new OrderStrategyByInsert();
         break;
-      case  BY_WAVE:
+      case BY_WAVE:
         orderStrategy = new OrderStrategyByWave();
         break;
       default:

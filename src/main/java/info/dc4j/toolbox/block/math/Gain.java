@@ -52,7 +52,7 @@ public class Gain extends BlockImpl {
   private double k = kDefault;
 
   public Gain(int id, String name) {
-    super(id, name, Size.U_D, Size.Y_D, Size.U_B, Size.Y_B,  Size.S_D, Size.S_B);
+    super(id, name, Size.U_D, Size.Y_D, Size.U_B, Size.Y_B, Size.S_D, Size.S_B);
     setDesc(DESC);
   }
 
@@ -62,7 +62,6 @@ public class Gain extends BlockImpl {
     double y = k * u0;
     dY[0].set(y);
   }
-
 
   @Override
   public Block.Type blockType() {

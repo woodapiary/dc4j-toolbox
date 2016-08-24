@@ -25,7 +25,7 @@ package info.dc4j.toolbox.block;
 import info.dc4j.toolbox.connector.BoolConnector;
 import info.dc4j.toolbox.element.DataType;
 
-public class BoolSocket  extends SocketImpl {
+public class BoolSocket extends SocketImpl {
 
   public BoolSocket(int id, String name) {
     super(id, name);
@@ -39,7 +39,7 @@ public class BoolSocket  extends SocketImpl {
 
   @Override
   public BoolConnector getConnector() {
-    return (BoolConnector)super.getConnector();
+    return (BoolConnector) super.getConnector();
   }
 
   @Override

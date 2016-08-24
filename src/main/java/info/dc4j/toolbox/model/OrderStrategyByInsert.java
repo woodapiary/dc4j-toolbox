@@ -30,13 +30,12 @@ public class OrderStrategyByInsert implements OrderStrategy {
 
   private List<Block> layoutBlocks;
 
-
   @Override
   public void execute(List<Block> blocks) {
     int level = 0;
     this.layoutBlocks = blocks;
     for (Block block : layoutBlocks) {
-      level ++;
+      level++;
       block.setOrder(level);
     }
     check();
@@ -49,6 +48,5 @@ public class OrderStrategyByInsert implements OrderStrategy {
       }
     }
   }
-
 
 }

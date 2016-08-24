@@ -52,7 +52,6 @@ public class EmptyBlock extends BlockImpl {
     bY[0].set(y1);
   }
 
-
   public void setD(double d) {
     this.d = d;
   }

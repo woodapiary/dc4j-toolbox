@@ -45,7 +45,7 @@ public class PT1Test {
     u.setValue(1.0);
     for (int i = 1; i < 6000; i++) {
       block1.run(0);
-      //System.out.println(y.getValue());
+      // System.out.println(y.getValue());
     }
     assertEquals(1, u.getValue(), delta);
     assertEquals(9.5, y.getValue(), delta);

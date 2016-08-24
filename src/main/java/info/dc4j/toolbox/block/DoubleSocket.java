@@ -39,7 +39,7 @@ public class DoubleSocket extends SocketImpl {
 
   @Override
   public DoubleConnector getConnector() {
-    return (DoubleConnector)super.getConnector();
+    return (DoubleConnector) super.getConnector();
   }
 
   @Override

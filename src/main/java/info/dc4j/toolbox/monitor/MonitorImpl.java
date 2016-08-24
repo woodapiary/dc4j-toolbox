@@ -102,8 +102,6 @@ public class MonitorImpl implements Monitor {
     return res;
   }
 
-
-
   @Override
   public void run(double maxTime) {
     t = t + dt;

@@ -31,7 +31,6 @@ import info.dc4j.toolbox.connector.DoubleConnector;
 
 public class StepTest {
 
-
   double delta = 0.005;
 
   @Test
@@ -45,7 +44,7 @@ public class StepTest {
     assertEquals(0.0, y.getValue(), delta);
     for (int i = 1; i < 3000; i++) {
       block1.run(0);
-      //System.out.println(y.getValue());
+      // System.out.println(y.getValue());
     }
     assertEquals(2.0, y.getValue(), delta);
 

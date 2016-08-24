@@ -42,7 +42,7 @@ public class Subtract extends BlockImpl {
   }
 
   public Subtract(int id, String name) {
-    super(id, name, Size.U_D, Size.Y_D, Size.U_B, Size.Y_B,  Size.S_D, Size.S_B);
+    super(id, name, Size.U_D, Size.Y_D, Size.U_B, Size.Y_B, Size.S_D, Size.S_B);
     setDesc(DESC);
   }
 
@@ -53,8 +53,6 @@ public class Subtract extends BlockImpl {
     double y = u0 - u1;
     dY[0].set(y);
   }
-
-
 
   @Override
   public Block.Type blockType() {

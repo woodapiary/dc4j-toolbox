@@ -54,7 +54,7 @@ public class Sin extends BlockImpl {
   private double w = wDefault;
 
   public Sin(int id, String name) {
-    super(id, name, Size.U_D, Size.Y_D, Size.U_B, Size.Y_B,  Size.S_D, Size.S_B);
+    super(id, name, Size.U_D, Size.Y_D, Size.U_B, Size.Y_B, Size.S_D, Size.S_B);
     setDesc(DESC);
   }
 

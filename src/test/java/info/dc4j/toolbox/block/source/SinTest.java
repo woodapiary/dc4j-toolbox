@@ -44,7 +44,7 @@ public class SinTest {
     assertEquals(0.0, y.getValue(), delta);
     for (int i = 1; i < 3000; i++) {
       block1.run(0);
-      //System.out.println(y.getValue());
+      // System.out.println(y.getValue());
     }
     assertEquals(0.28, y.getValue(), delta);
 

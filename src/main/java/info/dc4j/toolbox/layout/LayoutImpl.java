@@ -43,7 +43,6 @@ public class LayoutImpl implements Layout {
   private final HashMap<Integer, Block> mapBlocks = new HashMap<>();
   private final HashMap<Integer, Connector> mapConnectors = new HashMap<>();
 
-
   public LayoutImpl(ModelFactory factory) {
     this.factory = factory;
   }

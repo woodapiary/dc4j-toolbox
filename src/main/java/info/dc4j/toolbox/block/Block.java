@@ -47,10 +47,13 @@ public interface Block extends Element, Composite, Runnable, Parametrizable {
   void setOrder(int order);
 
   List<Block> getSourceBlock();
+
   List<Block> getTargetBlock();
+
   boolean isOrdered();
 
   void setConnector(Connector connector, Block.Port port, int pin);
+
   BlockInfo getBlockInfo();
 
 }

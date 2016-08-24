@@ -27,6 +27,7 @@ import java.util.List;
 public interface Parametrizable {
 
   List<Parameter> getParameters(boolean defaults);
+
   void setParameters(List<Parameter> params);
 
 }
