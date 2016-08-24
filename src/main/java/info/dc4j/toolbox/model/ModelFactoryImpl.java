@@ -31,9 +31,10 @@ import info.dc4j.toolbox.block.math.Sum;
 import info.dc4j.toolbox.block.source.Sin;
 import info.dc4j.toolbox.block.source.Step;
 import info.dc4j.toolbox.connector.BoolConnector;
+import info.dc4j.toolbox.connector.BoolSplitter;
 import info.dc4j.toolbox.connector.Connector;
 import info.dc4j.toolbox.connector.DoubleConnector;
-import info.dc4j.toolbox.connector.Splitter;
+import info.dc4j.toolbox.connector.DoubleSplitter;
 import info.dc4j.toolbox.element.DataType;
 import info.dc4j.toolbox.layout.Layout;
 import info.dc4j.toolbox.layout.LayoutImpl;
@@ -75,8 +76,11 @@ public class ModelFactoryImpl implements ModelFactory {
       case SUBSTRACT:
         block = new Subtract(id, name);
         break;
-      case SPLITTER:
-        block = new Splitter(id, name);
+      case SPLITTER_D:
+        block = new DoubleSplitter(id, name);
+        break;
+      case SPLITTER_B:
+        block = new BoolSplitter(id, name);
         break;
       case USER:
         createUserBlock(id, name, param);
@@ -144,6 +148,7 @@ public class ModelFactoryImpl implements ModelFactory {
     return orderStrategy;
   }
 
+  @Override
   public Model createModel() {
     ModelFactory factory = this;
     Layout layout = new LayoutImpl(factory);

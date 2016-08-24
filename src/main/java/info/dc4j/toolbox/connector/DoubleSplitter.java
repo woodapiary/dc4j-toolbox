@@ -28,10 +28,22 @@ import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.block.BlockImpl;
 import info.dc4j.toolbox.element.Parameter;
 
-public class Splitter extends BlockImpl {
+public class DoubleSplitter extends BlockImpl {
 
-  public Splitter(int id, String name) {
-    super(id, name, 1, 2, 0, 0, 0, 0);
+  public static final String DESC = "split signal(double) on two";
+
+  public interface Size {
+    int U_D = 1;
+    int U_B = 0;
+    int Y_D = 2;
+    int Y_B = 0;
+    int S_D = 0;
+    int S_B = 0;
+  }
+
+  public DoubleSplitter(int id, String name) {
+    super(id, name, Size.U_D, Size.Y_D, Size.U_B, Size.Y_B,  Size.S_D, Size.S_B);
+    setDesc(DESC);
   }
 
   @Override
@@ -45,7 +57,7 @@ public class Splitter extends BlockImpl {
 
   @Override
   public Block.Type blockType() {
-    return Block.Type.SPLITTER;
+    return Block.Type.SPLITTER_D;
   }
 
   @Override
@@ -55,7 +67,7 @@ public class Splitter extends BlockImpl {
 
   @Override
   public void setParameters(List<Parameter> params) {
-
+    throw new IllegalArgumentException("wrong parameter");
   }
 
 }

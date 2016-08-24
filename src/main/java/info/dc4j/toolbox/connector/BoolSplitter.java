@@ -22,31 +22,52 @@
  */
 package info.dc4j.toolbox.connector;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
+import java.util.List;
 
 import info.dc4j.toolbox.block.Block;
+import info.dc4j.toolbox.block.BlockImpl;
+import info.dc4j.toolbox.element.Parameter;
 
-public class SplitterTest {
+public class BoolSplitter extends BlockImpl {
 
-  double delta = 0.005;
+  public static final String DESC = "split signal(bool) on two";
 
-  @Test
-  public void test01() {
-    DoubleSplitter block1 = new DoubleSplitter(1, "block1");
-    DoubleConnector u1 = new DoubleConnector(1, "in1", null, block1);
-    DoubleConnector y1 = new DoubleConnector(2, "out1", block1, null);
-    DoubleConnector y2 = new DoubleConnector(3, "out2", block1, null);
-    block1.setConnector(u1, Block.Port.U, 0);
-    block1.setConnector(y1, Block.Port.Y, 0);
-    block1.setConnector(y2, Block.Port.Y, 1);
-    u1.setValue(2.0);
-    for (int i = 1; i < 3000; i++) {
-      block1.run(0);
-      //System.out.println(y.getValue());
-    }
-    assertEquals(2, y1.getValue(), delta);
-    assertEquals(2, y2.getValue(), delta);
+  public interface Size {
+    int U_D = 0;
+    int U_B = 1;
+    int Y_D = 0;
+    int Y_B = 2;
+    int S_D = 0;
+    int S_B = 0;
   }
+
+  public BoolSplitter(int id, String name) {
+    super(id, name, Size.U_D, Size.Y_D, Size.U_B, Size.Y_B,  Size.S_D, Size.S_B);
+    setDesc(DESC);
+  }
+
+  @Override
+  protected void eval() {
+    boolean u = bU[0].get();
+    boolean y0 = u;
+    boolean y1 = u;
+    bY[0].set(y0);
+    bY[1].set(y1);
+  }
+
+  @Override
+  public Block.Type blockType() {
+    return Block.Type.SPLITTER_B;
+  }
+
+  @Override
+  public List<Parameter> getParameters(boolean defaults) {
+    return null;
+  }
+
+  @Override
+  public void setParameters(List<Parameter> params) {
+    throw new IllegalArgumentException("wrong parameter");
+  }
+
 }

@@ -37,7 +37,7 @@ public interface Block extends Element, Composite, Runnable, Parametrizable {
   };
 
   public enum Type {
-    USER, INTEGRATOR, PT1, GAIN, SUBSTRACT, SUM, SIN, STEP, SPLITTER
+    USER, INTEGRATOR, PT1, GAIN, SUBSTRACT, SUM, SIN, STEP, SPLITTER_D, SPLITTER_B
   }
 
   Type blockType();
