@@ -31,9 +31,13 @@ import info.dc4j.toolbox.element.Parameter;
 
 public interface LayoutService {
 
-  int createBlock(Integer id, String name, Block.Type type, Object param);
+  int createBlock(int id, String name, Block.Type type);
 
-  int createConnection(Integer id, String name, Integer fromId, Integer toId, Integer out, Integer in, DataType type);
+  int createBlock(String name, Block.Type type);
+
+  int createConnection(int id, String name, Integer fromId, Integer toId, Integer out, Integer in, DataType type);
+
+  int createConnection(String name, Integer fromId, Integer toId, Integer out, Integer in, DataType type);
 
   List<Parameter> getBlockParameters(int blockId, boolean defaults);
 

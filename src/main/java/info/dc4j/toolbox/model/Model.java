@@ -22,14 +22,9 @@
  */
 package info.dc4j.toolbox.model;
 
-import info.dc4j.toolbox.layout.LayoutService;
-import info.dc4j.toolbox.monitor.MonitorService;
-
-public interface Model extends ModelService, LayoutService, MonitorService {
+public interface Model extends ModelService {
 
   double DT = 0.001;
-  int LAYER_ID = 0;
-  int MONITOR_ID = 1;
   OrderStrategy.Type ORDER_STRAREGY_TYPE = OrderStrategy.Type.BY_WAVE;
 
 }

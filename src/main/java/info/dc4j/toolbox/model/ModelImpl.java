@@ -27,13 +27,10 @@ import java.util.Comparator;
 import java.util.List;
 
 import info.dc4j.toolbox.block.Block;
-import info.dc4j.toolbox.block.BlockInfo;
-import info.dc4j.toolbox.element.DataType;
-import info.dc4j.toolbox.element.Parameter;
 import info.dc4j.toolbox.layout.Layout;
+import info.dc4j.toolbox.layout.LayoutService;
 import info.dc4j.toolbox.monitor.Monitor;
-import info.dc4j.toolbox.monitor.TraceData;
-import info.dc4j.toolbox.monitor.Tracer;
+import info.dc4j.toolbox.monitor.MonitorService;
 
 public class ModelImpl implements Model {
 
@@ -123,63 +120,12 @@ public class ModelImpl implements Model {
   }
 
   @Override
-  public int createBlock(Integer id, String name, Block.Type type, Object param) {
-    return layout.createBlock(id, name, type, param);
+  public LayoutService getLayoutService() {
+    return layout;
   }
 
   @Override
-  public int createBlock(String name, Block.Type type) {
-    return createBlock(null, name, type, null);
-  }
-
-  @Override
-  public int createConnection(Integer id, String name, Integer fromId, Integer toId, Integer out, Integer in,
-      DataType type) {
-    return layout.createConnection(id, name, fromId, toId, out, in, type);
-  }
-
-  @Override
-  public int createConnection(String name, Integer fromId, Integer toId, int out, int in, DataType type) {
-    return createConnection(null, name, fromId, toId, out, in, type);
-  }
-
-  @Override
-  public void setMonitoredConnector(int connectorId) {
-    monitor.setMonitoredConnector(connectorId);
-  }
-
-  @Override
-  public List<Integer> getMonitoredConnectors() {
-    return monitor.getMonitoredConnectors();
-  }
-
-  @Override
-  public void setTracer(Tracer.Type type) {
-    monitor.setTracer(type);
-  }
-
-  @Override
-  public List<String> getTracers() {
-    return monitor.getTracers();
-  }
-
-  @Override
-  public List<TraceData> getTraceData() {
-    return monitor.getTraceData();
-  }
-
-  @Override
-  public List<Parameter> getBlockParameters(int blockId, boolean defaults) {
-    return layout.getBlockParameters(blockId, defaults);
-  }
-
-  @Override
-  public void setBlockParameters(int blockId, List<Parameter> parameters) {
-    layout.setBlockParameters(blockId, parameters);
-  }
-
-  @Override
-  public BlockInfo getBlockInfo(int blockId) {
-    return layout.getBlockInfo(blockId);
+  public MonitorService getMonitorService() {
+    return monitor;
   }
 }

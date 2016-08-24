@@ -28,6 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import info.dc4j.toolbox.block.Block;
+import info.dc4j.toolbox.block.Block.Type;
 import info.dc4j.toolbox.block.BlockInfo;
 import info.dc4j.toolbox.connector.Connector;
 import info.dc4j.toolbox.element.DataType;
@@ -48,7 +49,11 @@ public class LayoutImpl implements Layout {
   }
 
   @Override
-  public int createBlock(Integer id, String name, Block.Type type, Object param) {
+  public int createBlock(int id, String name, Block.Type type) {
+    return createBlock(id, name, type, null);
+  }
+
+  private int createBlock(Integer id, String name, Block.Type type, Object param) {
     Block block = factory.createBlock(id, name, type, param);
     blocks.add(block);
     mapBlocks.put(block.getId(), block);
@@ -56,7 +61,17 @@ public class LayoutImpl implements Layout {
   }
 
   @Override
-  public int createConnection(Integer id, String name, Integer fromId, Integer toId, Integer out, Integer in,
+  public int createBlock(String name, Type type) {
+    return createBlock(null, name, type, null);
+  }
+
+  @Override
+  public int createConnection(int id, String name, Integer fromId, Integer toId, Integer out, Integer in,
+      DataType type) {
+    return createConnection(id, name, fromId, toId, out, in, type);
+  }
+
+  private int createConnection(Integer id, String name, Integer fromId, Integer toId, Integer out, Integer in,
       DataType type) {
     Block source = fromId != null ? getBlock(fromId) : null;
     Block target = toId != null ? getBlock(toId) : null;
@@ -70,6 +85,11 @@ public class LayoutImpl implements Layout {
       target.setConnector(connector, Block.PortType.U, in);
     }
     return connector.getId();
+  }
+
+  @Override
+  public int createConnection(String name, Integer fromId, Integer toId, Integer out, Integer in, DataType type) {
+    return createConnection(null, name, fromId, toId, out, in, type);
   }
 
   @Override
@@ -126,5 +146,6 @@ public class LayoutImpl implements Layout {
     builder.append("]");
     return builder.toString();
   }
+
 
 }
