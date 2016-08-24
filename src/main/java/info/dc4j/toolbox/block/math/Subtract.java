@@ -30,9 +30,20 @@ import info.dc4j.toolbox.element.Parameter;
 
 public class Subtract extends BlockImpl {
 
-  public Subtract(int id, String name) {
-    super(id, name, 2, 1, 0, 0, 0, 0);
+  public static final String DESC = "subtract inputs";
 
+  public interface Size {
+    int U_D = 2;
+    int U_B = 0;
+    int Y_D = 1;
+    int Y_B = 0;
+    int S_D = 0;
+    int S_B = 0;
+  }
+
+  public Subtract(int id, String name) {
+    super(id, name, Size.U_D, Size.Y_D, Size.U_B, Size.Y_B,  Size.S_D, Size.S_B);
+    setDesc(DESC);
   }
 
   @Override
@@ -57,7 +68,7 @@ public class Subtract extends BlockImpl {
 
   @Override
   public void setParameters(List<Parameter> params) {
-
+    throw new IllegalArgumentException("wrong parameter");
   }
 
 }

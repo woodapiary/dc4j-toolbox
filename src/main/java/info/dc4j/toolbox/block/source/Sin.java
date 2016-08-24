@@ -22,19 +22,40 @@
  */
 package info.dc4j.toolbox.block.source;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.block.BlockImpl;
+import info.dc4j.toolbox.element.DataType;
 import info.dc4j.toolbox.element.Parameter;
 
 public class Sin extends BlockImpl {
 
-  private double a = 1.0;
-  private double w = 1.0;
+  public static final String DESC = "generate sin function";
+
+  public enum P {
+    A, W
+  };
+
+  public interface Size {
+    int U_D = 0;
+    int U_B = 0;
+    int Y_D = 1;
+    int Y_B = 0;
+    int S_D = 0;
+    int S_B = 0;
+  }
+
+  private static double aDefault = 1.0;
+  private static double wDefault = 1.0;
+
+  private double a = aDefault;
+  private double w = wDefault;
 
   public Sin(int id, String name) {
-    super(id, name, 0, 1, 0, 0, 0, 0);
+    super(id, name, Size.U_D, Size.Y_D, Size.U_B, Size.Y_B,  Size.S_D, Size.S_B);
+    setDesc(DESC);
   }
 
   @Override
@@ -43,8 +64,6 @@ public class Sin extends BlockImpl {
     dY[0].set(y);
   }
 
-
-
   @Override
   public Block.Type blockType() {
     return Block.Type.SIN;
@@ -52,14 +71,28 @@ public class Sin extends BlockImpl {
 
   @Override
   public List<Parameter> getParameters(boolean defaults) {
-    // TODO Auto-generated method stub
-    return null;
+    List<Parameter> data = new ArrayList<>();
+    if (!defaults) {
+      data.add(new Parameter(getId(), P.A.name(), DataType.DOUBLE, a));
+      data.add(new Parameter(getId(), P.W.name(), DataType.DOUBLE, w));
+    }
+    return data;
   }
 
   @Override
   public void setParameters(List<Parameter> params) {
-    // TODO Auto-generated method stub
-
+    for (Parameter param : params) {
+      switch (P.valueOf(param.getName())) {
+        case A:
+          a = param.getDouble();
+          break;
+        case W:
+          w = param.getDouble();
+          break;
+        default:
+          throw new IllegalArgumentException("wrong parameter");
+      }
+    }
   }
 
   protected void setA(double a) {

@@ -27,7 +27,7 @@
 * **Product** - multiply one input by another.
 * **Sum** - sum inputs.
 * **Divide** - givide one input by another.
-* **Subtract** - gubtract inputs.
+* **Subtract** - subtract inputs.
 
 ##4. Logic Operations
 

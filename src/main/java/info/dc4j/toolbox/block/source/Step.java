@@ -22,19 +22,40 @@
  */
 package info.dc4j.toolbox.block.source;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.block.BlockImpl;
+import info.dc4j.toolbox.element.DataType;
 import info.dc4j.toolbox.element.Parameter;
 
 public class Step extends BlockImpl {
 
-  private double a = 1.0;
-  private double t0 = 1.0;
+  public static final String DESC = "generate step function";
+
+  public enum P {
+    A, T0
+  };
+
+  public interface Size {
+    int U_D = 0;
+    int U_B = 0;
+    int Y_D = 1;
+    int Y_B = 0;
+    int S_D = 0;
+    int S_B = 0;
+  }
+
+  private static double aDefault = 1.0;
+  private static double t0Default = 1.0;
+
+  private double a = aDefault;
+  private double t0 = t0Default;
 
   public Step(int id, String name) {
-    super(id, name, 0, 1, 0, 0, 0, 0);
+    super(id, name, Size.U_D, Size.Y_D, Size.U_B, Size.Y_B,  Size.S_D, Size.S_B);
+    setDesc(DESC);
   }
 
   @Override
@@ -54,14 +75,28 @@ public class Step extends BlockImpl {
 
   @Override
   public List<Parameter> getParameters(boolean defaults) {
-    // TODO Auto-generated method stub
-    return null;
+    List<Parameter> data = new ArrayList<>();
+    if (!defaults) {
+      data.add(new Parameter(getId(), P.A.name(), DataType.DOUBLE, a));
+      data.add(new Parameter(getId(), P.T0.name(), DataType.DOUBLE, t0));
+    }
+    return data;
   }
 
   @Override
   public void setParameters(List<Parameter> params) {
-    // TODO Auto-generated method stub
-
+    for (Parameter param : params) {
+      switch (P.valueOf(param.getName())) {
+        case A:
+          a = param.getDouble();
+          break;
+        case T0:
+          t0 = param.getDouble();
+          break;
+        default:
+          throw new IllegalArgumentException("wrong parameter");
+      }
+    }
   }
 
   protected void setA(double a) {

@@ -22,18 +22,38 @@
  */
 package info.dc4j.toolbox.block.math;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.block.BlockImpl;
+import info.dc4j.toolbox.element.DataType;
 import info.dc4j.toolbox.element.Parameter;
 
 public class Gain extends BlockImpl {
 
-  private double k = 1.0;
+  public static final String DESC = "multiply input by constant";
+
+  public enum P {
+    K
+  };
+
+  public interface Size {
+    int U_D = 1;
+    int U_B = 0;
+    int Y_D = 1;
+    int Y_B = 0;
+    int S_D = 0;
+    int S_B = 0;
+  }
+
+  private static double kDefault = 1.0;
+
+  private double k = kDefault;
 
   public Gain(int id, String name) {
-    super(id, name, 1, 1, 0, 0, 0, 0);
+    super(id, name, Size.U_D, Size.Y_D, Size.U_B, Size.Y_B,  Size.S_D, Size.S_B);
+    setDesc(DESC);
   }
 
   @Override
@@ -51,14 +71,24 @@ public class Gain extends BlockImpl {
 
   @Override
   public List<Parameter> getParameters(boolean defaults) {
-    // TODO Auto-generated method stub
-    return null;
+    List<Parameter> data = new ArrayList<>();
+    if (!defaults) {
+      data.add(new Parameter(getId(), P.K.name(), DataType.DOUBLE, k));
+    }
+    return data;
   }
 
   @Override
   public void setParameters(List<Parameter> params) {
-    // TODO Auto-generated method stub
-
+    for (Parameter param : params) {
+      switch (P.valueOf(param.getName())) {
+        case K:
+          k = param.getDouble();
+          break;
+        default:
+          throw new IllegalArgumentException("wrong parameter");
+      }
+    }
   }
 
   protected void setK(double k) {
