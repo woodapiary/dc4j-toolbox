@@ -23,6 +23,9 @@
 package info.dc4j.toolbox.model;
 
 import info.dc4j.toolbox.block.Block;
+import info.dc4j.toolbox.block.BoolSocket;
+import info.dc4j.toolbox.block.DoubleSocket;
+import info.dc4j.toolbox.block.Socket;
 import info.dc4j.toolbox.block.continuous.Integrator;
 import info.dc4j.toolbox.block.continuous.PT1;
 import info.dc4j.toolbox.block.math.Gain;
@@ -47,6 +50,10 @@ import info.dc4j.toolbox.monitor.Tracer;
 public class ModelFactoryImpl implements ModelFactory {
 
   protected final SequenceId seq = new SequenceId();
+
+  protected ModelFactoryImpl() {
+    Model.setFactory(this);
+  }
 
   @Override
   public Block createBlock(Integer id, String name, Block.Type type, Object param) {
@@ -131,7 +138,6 @@ public class ModelFactoryImpl implements ModelFactory {
     return tracer;
   }
 
-  // TODO socket factory
   @Override
   public OrderStrategy createOrderStrategy(OrderStrategy.Type type) {
     OrderStrategy orderStrategy = null;
@@ -150,15 +156,15 @@ public class ModelFactoryImpl implements ModelFactory {
 
   @Override
   public Model createModel() {
-    ModelFactory factory = this;
-    Layout layout = new LayoutImpl(factory);
-    Monitor monitor = new MonitorImpl(factory, layout);
-    Model model = new ModelImpl(factory, layout, monitor);
+    Layout layout = new LayoutImpl();
+    Monitor monitor = new MonitorImpl(layout);
+    Model model = new ModelImpl(layout, monitor);
     return model;
   }
 
   public static ModelFactory getInstanse() {
-    return new ModelFactoryImpl();
+    ModelFactory factory = new ModelFactoryImpl();
+    return factory;
   }
 
   protected class SequenceId {
@@ -175,5 +181,21 @@ public class ModelFactoryImpl implements ModelFactory {
       seqConnector++;
       return seqConnector;
     }
+  }
+
+  @Override
+  public Socket createSocket(int id, String name, DataType type) {
+    Socket socket = null;
+    switch (type) {
+      case BOOLEAN:
+        socket = new BoolSocket(id, name);
+        break;
+      case DOUBLE:
+        socket = new DoubleSocket(id, name);
+        break;
+      default:
+        throw new IllegalArgumentException("bad type of socket");
+    }
+    return socket;
   }
 }

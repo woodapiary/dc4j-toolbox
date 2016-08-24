@@ -28,13 +28,18 @@ import org.junit.Test;
 
 import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.connector.DoubleConnector;
+import info.dc4j.toolbox.model.ModelFactoryImpl;
 
 public class IntegratorTest {
 
   double delta = 0.005;
+  {
+    ModelFactoryImpl.getInstanse().createModel();
+  }
 
   @Test
   public void test01() {
+
     Integrator block1 = new Integrator(1, "block1");
     DoubleConnector u = new DoubleConnector(1, "in", null, block1);
     DoubleConnector y = new DoubleConnector(2, "out", block1, null);

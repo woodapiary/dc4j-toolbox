@@ -30,10 +30,14 @@ import org.junit.Test;
 
 import info.dc4j.toolbox.connector.BoolConnector;
 import info.dc4j.toolbox.connector.DoubleConnector;
+import info.dc4j.toolbox.model.ModelFactoryImpl;
 
 public class BlockTest {
 
   double delta = 0.005;
+  {
+    ModelFactoryImpl.getInstanse().createModel();
+  }
 
   @Test
   public void test01() {

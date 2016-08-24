@@ -32,19 +32,17 @@ import info.dc4j.toolbox.layout.LayoutService;
 import info.dc4j.toolbox.monitor.Monitor;
 import info.dc4j.toolbox.monitor.MonitorService;
 
-public class ModelImpl implements Model {
+public class ModelImpl extends Model {
 
   private final Layout layout;
   private final Monitor monitor;
   private double dt = Model.DT;
   private double t;
   private long step;
-  private final ModelFactory factory;
 
-  protected ModelImpl(ModelFactory factory, Layout layout, Monitor monitor) {
+  protected ModelImpl(Layout layout, Monitor monitor) {
     this.layout = layout;
     this.monitor = monitor;
-    this.factory = factory;
   }
 
   @Override
@@ -99,7 +97,7 @@ public class ModelImpl implements Model {
   @Override
   public void build() {
     List<Block> list = layout.getBlocks();
-    OrderStrategy strategy = factory.createOrderStrategy(Model.ORDER_STRAREGY_TYPE);
+    OrderStrategy strategy = Model.getFactory().createOrderStrategy(Model.ORDER_STRAREGY_TYPE);
     strategy.execute(list);
     check();
     Collections.sort(list, new Comparator<Block>() {

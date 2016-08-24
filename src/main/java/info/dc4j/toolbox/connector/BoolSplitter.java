@@ -48,11 +48,11 @@ public class BoolSplitter extends BlockImpl {
 
   @Override
   protected void eval() {
-    boolean u0 = u.getB()[0].get();
+    boolean u0 = u.getB(0).get();
     boolean y0 = u0;
     boolean y1 = u0;
-    y.getB()[0].set(y0);
-    y.getB()[1].set(y1);
+    y.getB(0).set(y0);
+    y.getB(1).set(y1);
   }
 
   @Override

@@ -67,8 +67,7 @@ public class ModelTest {
     // 3->9->11->7
     // 8->9
     // 6->8
-    ModelFactory factory = new ModelFactoryImpl();
-    Model model = factory.createModel();
+    Model model = ModelFactoryImpl.getInstanse().createModel();
     int[] b = new int[12];
     b[6] = model.getLayoutService().createBlock("block6", Block.Type.SPLITTER_D);
     b[7] = model.getLayoutService().createBlock("block7", Block.Type.SUM);

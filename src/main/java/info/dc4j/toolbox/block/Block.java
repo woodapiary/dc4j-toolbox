@@ -39,8 +39,8 @@ public interface Block extends Element, Composite, Runnable, Parametrizable {
   interface Port {
     void setConnector(Connector connector, int pin);
     List<Socket> getSockets();
-    BoolSocket[] getB();
-    DoubleSocket[] getD();
+    BoolSocket getB(int i);
+    DoubleSocket getD(int i);
   }
 
   public enum Type {

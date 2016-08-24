@@ -28,10 +28,14 @@ import org.junit.Test;
 
 import info.dc4j.toolbox.block.Block;
 import info.dc4j.toolbox.connector.DoubleConnector;
+import info.dc4j.toolbox.model.ModelFactoryImpl;
 
 public class SubstractTest {
 
   double delta = 0.005;
+  {
+    ModelFactoryImpl.getInstanse().createModel();
+  }
 
   @Test
   public void test01() {

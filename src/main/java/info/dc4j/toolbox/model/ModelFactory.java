@@ -23,6 +23,7 @@
 package info.dc4j.toolbox.model;
 
 import info.dc4j.toolbox.block.Block;
+import info.dc4j.toolbox.block.Socket;
 import info.dc4j.toolbox.connector.Connector;
 import info.dc4j.toolbox.element.DataType;
 import info.dc4j.toolbox.monitor.Tracer;
@@ -32,6 +33,8 @@ public interface ModelFactory {
   Block createBlock(Integer id, String name, Block.Type type, Object param);
 
   Block createUserBlock(Integer id, String name, Object param);
+
+  Socket createSocket(int id, String name, DataType type);
 
   Connector createConnector(Integer id, String name, Block source, Block target, DataType type);
 

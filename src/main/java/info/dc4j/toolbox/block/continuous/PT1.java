@@ -59,13 +59,13 @@ public class PT1 extends BlockImpl {
 
   @Override
   protected void eval() {
-    double u0 = u.getD()[0].get();
-    double s0 = s.getD()[0].get();
+    double u0 = u.getD(0).get();
+    double s0 = s.getD(0).get();
     double ku = k / (1 + tf / dt);
     double ks = 1 / (1 + dt / tf);
     double y0 = ks * s0 + ku * u0;
-    y.getD()[0].set(y0);
-    s.getD()[0].set(y0);
+    y.getD(0).set(y0);
+    s.getD(0).set(y0);
   }
 
   @Override

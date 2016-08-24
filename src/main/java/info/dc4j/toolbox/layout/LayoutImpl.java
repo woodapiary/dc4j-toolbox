@@ -33,19 +33,18 @@ import info.dc4j.toolbox.block.BlockInfo;
 import info.dc4j.toolbox.connector.Connector;
 import info.dc4j.toolbox.element.DataType;
 import info.dc4j.toolbox.element.Parameter;
-import info.dc4j.toolbox.model.ModelFactory;
+import info.dc4j.toolbox.model.Model;
 
 //TODO implements units
 
 public class LayoutImpl implements Layout {
-  private final ModelFactory factory;
   private final List<Block> blocks = new ArrayList<>();
   private final List<Connector> connectors = new ArrayList<>();
   private final HashMap<Integer, Block> mapBlocks = new HashMap<>();
   private final HashMap<Integer, Connector> mapConnectors = new HashMap<>();
 
-  public LayoutImpl(ModelFactory factory) {
-    this.factory = factory;
+  public LayoutImpl() {
+
   }
 
   @Override
@@ -54,7 +53,7 @@ public class LayoutImpl implements Layout {
   }
 
   private int createBlock(Integer id, String name, Block.Type type, Object param) {
-    Block block = factory.createBlock(id, name, type, param);
+    Block block = Model.getFactory().createBlock(id, name, type, param);
     blocks.add(block);
     mapBlocks.put(block.getId(), block);
     return block.getId();
@@ -75,7 +74,7 @@ public class LayoutImpl implements Layout {
       DataType type) {
     Block source = fromId != null ? getBlock(fromId) : null;
     Block target = toId != null ? getBlock(toId) : null;
-    Connector connector = factory.createConnector(id, name, source, target, type);
+    Connector connector = Model.getFactory().createConnector(id, name, source, target, type);
     connectors.add(connector);
     mapConnectors.put(connector.getId(), connector);
     if (source != null && out != null) {

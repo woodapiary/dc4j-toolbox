@@ -58,11 +58,11 @@ public class Integrator extends BlockImpl {
 
   @Override
   protected void eval() {
-    double u0 = u.getD()[0].get();
-    double s0 = s.getD()[0].get();
+    double u0 = u.getD(0).get();
+    double s0 = s.getD(0).get();
     double y0 = u0 * dt / ti + s0;
-    s.getD()[0].set(y0);
-    y.getD()[0].set(y0);
+    s.getD(0).set(y0);
+    y.getD(0).set(y0);
   }
 
   protected void setTi(double ti) {

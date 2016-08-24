@@ -64,7 +64,7 @@ public class Step extends BlockImpl {
     if (t >= t0) {
       y0 = a;
     }
-    y.getD()[0].set(y0);
+    y.getD(0).set(y0);
   }
 
   @Override

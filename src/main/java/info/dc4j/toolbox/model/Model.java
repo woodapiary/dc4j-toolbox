@@ -22,9 +22,19 @@
  */
 package info.dc4j.toolbox.model;
 
-public interface Model extends ModelService {
+public abstract class Model implements ModelService {
 
-  double DT = 0.001;
-  OrderStrategy.Type ORDER_STRAREGY_TYPE = OrderStrategy.Type.BY_WAVE;
+  public static final double DT = 0.001;
+  public static final OrderStrategy.Type ORDER_STRAREGY_TYPE = OrderStrategy.Type.BY_WAVE;
+
+  private static ModelFactory factory;
+
+  public static ModelFactory getFactory() {
+    return factory;
+  }
+
+  public static void setFactory(ModelFactory f) {
+    factory = f;
+  }
 
 }

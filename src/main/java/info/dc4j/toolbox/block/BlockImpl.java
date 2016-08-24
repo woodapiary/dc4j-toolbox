@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import info.dc4j.toolbox.connector.Connector;
+import info.dc4j.toolbox.element.DataType;
 import info.dc4j.toolbox.element.Element;
 import info.dc4j.toolbox.element.ElementImpl;
 import info.dc4j.toolbox.layout.Composite;
@@ -195,29 +196,33 @@ public abstract class BlockImpl extends ElementImpl implements Block {
 
   class PortImpl implements Port {
 
-    public final BoolSocket[] b;
-    protected final DoubleSocket[] d;
+    private final Socket[] b;
+    private final Socket[] d;
+    private final List<Socket> sockets;
 
     public PortImpl(int sizeD, int sizeB) {
-      b = new BoolSocket[sizeB];
-      d = new DoubleSocket[sizeD];
+      b = new Socket[sizeB];
+      d = new Socket[sizeD];
+      sockets = new ArrayList<Socket>();
       for (int i = 0; i < sizeB; i++) {
-        b[i] = new BoolSocket(i, null);
+        b[i] = Model.getFactory().createSocket(i, null,DataType.BOOLEAN);
+        sockets.add(b[i]);
       }
 
       for (int i = 0; i < sizeD; i++) {
-        d[i] = new DoubleSocket(i, null);
+        d[i] = Model.getFactory().createSocket(i, null,DataType.DOUBLE);
+        sockets.add(d[i]);
       }
     }
 
     @Override
-    public BoolSocket[] getB() {
-      return b;
+    public BoolSocket getB(int i) {
+      return (BoolSocket)b[i];
     }
 
     @Override
-    public DoubleSocket[] getD() {
-      return d;
+    public DoubleSocket getD(int i) {
+      return (DoubleSocket)d[i];
     }
 
     @Override
@@ -236,14 +241,7 @@ public abstract class BlockImpl extends ElementImpl implements Block {
 
     @Override
     public List<Socket> getSockets() {
-      List<Socket> res = new ArrayList<Socket>();
-      for (Socket s : b) {
-        res.add(s);
-      }
-      for (Socket s : d) {
-        res.add(s);
-      }
-      return res;
+      return sockets;
     }
   }
 

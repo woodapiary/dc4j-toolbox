@@ -29,21 +29,18 @@ import info.dc4j.toolbox.connector.Connector;
 import info.dc4j.toolbox.element.Parameter;
 import info.dc4j.toolbox.layout.Layout;
 import info.dc4j.toolbox.model.Model;
-import info.dc4j.toolbox.model.ModelFactory;
 
 public class MonitorImpl implements Monitor {
   private int traceLevel = 100;
   private final List<Tracer> tracers = new ArrayList<>();
   private final List<Connector> connectors = new ArrayList<>();
   private final Layout layout;
-  private final ModelFactory factory;
   protected long step;
   protected double dt = Model.DT;
   protected double t;
 
-  public MonitorImpl(ModelFactory factory, Layout layout) {
+  public MonitorImpl(Layout layout) {
     this.layout = layout;
-    this.factory = factory;
   }
 
   @Override
@@ -64,7 +61,7 @@ public class MonitorImpl implements Monitor {
 
   @Override
   public void setTracer(Tracer.Type type) {
-    tracers.add(factory.createTracer(type));
+    tracers.add(Model.getFactory().createTracer(type));
   }
 
   @Override
