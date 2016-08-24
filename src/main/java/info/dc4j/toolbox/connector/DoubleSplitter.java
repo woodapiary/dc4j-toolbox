@@ -51,8 +51,8 @@ public class DoubleSplitter extends BlockImpl {
     double u0 = u.getD()[0].get();
     double y0 = u0;
     double y1 = u0;
-    y.getB()[0].set(y0);
-    y.getB()[1].set(y1);
+    y.getD()[0].set(y0);
+    y.getD()[1].set(y1);
   }
 
   @Override

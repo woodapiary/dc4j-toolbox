@@ -34,11 +34,23 @@ public class EmptyBlock extends BlockImpl {
     D, B
   };
 
-  private double d = 1.0;
-  private boolean b = false;
+  public interface Size {
+    int U_D = 1;
+    int U_B = 1;
+    int Y_D = 1;
+    int Y_B = 1;
+    int S_D = 0;
+    int S_B = 0;
+  }
+
+  private static double kDefault = 1.0;
+  private static boolean bDefault = false;
+
+  private double d = kDefault;
+  private boolean b = bDefault;
 
   public EmptyBlock(int id, String name) {
-    super(id, name, 1, 1, 1, 1, 0, 0);
+    super(id, name, Size.U_D, Size.Y_D, Size.U_B, Size.Y_B, Size.S_D, Size.S_B);
     setDesc(DESC);
   }
 

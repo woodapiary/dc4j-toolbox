@@ -51,7 +51,7 @@ public class Sum extends BlockImpl {
     double u0 =  u.getD()[0].get();
     double u1 =  u.getD()[1].get();
     double y0 = u0 + u1;
-    y.getD()[0].set(y0);;
+    y.getD()[0].set(y0);
   }
 
   @Override

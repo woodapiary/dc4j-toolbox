@@ -43,7 +43,7 @@ public class PT1 extends BlockImpl {
     int U_B = 0;
     int Y_D = 1;
     int Y_B = 0;
-    int S_D = 0;
+    int S_D = 1;
     int S_B = 0;
   }
 
