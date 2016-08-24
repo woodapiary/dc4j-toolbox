@@ -33,12 +33,9 @@ import info.dc4j.toolbox.model.Model;
 
 public abstract class BlockImpl extends ElementImpl implements Block {
 
-  protected final BoolSocket[] bY;
-  protected final BoolSocket[] bU;
-  protected final BoolSocket[] bS;
-  protected final DoubleSocket[] dY;
-  protected final DoubleSocket[] dU;
-  protected final DoubleSocket[] dS;
+  protected final Port y;
+  protected final Port u;
+  protected final Port s;
   protected long step;
   private Composite host;
   protected double dt = Model.DT;
@@ -47,71 +44,23 @@ public abstract class BlockImpl extends ElementImpl implements Block {
 
   public BlockImpl(int id, String name, int sizeUd, int sizeYd, int sizeUb, int sizeYb, int sizeSd, int sizeSb) {
     super(id, name);
-    bY = new BoolSocket[sizeYb];
-    bU = new BoolSocket[sizeUb];
-    bS = new BoolSocket[sizeSb];
-    dY = new DoubleSocket[sizeYd];
-    dU = new DoubleSocket[sizeUd];
-    dS = new DoubleSocket[sizeSd];
-    for (int i = 0; i < sizeYb; i++) {
-      bY[i] = new BoolSocket(i, null);
-    }
-    for (int i = 0; i < sizeUb; i++) {
-      bU[i] = new BoolSocket(i, null);
-    }
-    for (int i = 0; i < sizeSb; i++) {
-      bS[i] = new BoolSocket(i, null);
-    }
+    y = new PortImpl(sizeYd, sizeYb);
+    u = new PortImpl(sizeUd, sizeUb);
+    s = new PortImpl(sizeSd, sizeSb);
 
-    for (int i = 0; i < sizeUd; i++) {
-      dU[i] = new DoubleSocket(i, null);
-    }
-    for (int i = 0; i < sizeYd; i++) {
-      dY[i] = new DoubleSocket(i, null);
-    }
-    for (int i = 0; i < sizeSd; i++) {
-      dS[i] = new DoubleSocket(i, null);
-    }
   }
 
   @Override
-  public void setConnector(Connector connector, Block.Port port, int pin) {
+  public void setConnector(Connector connector, Block.PortType port, int pin) {
     switch (port) {
       case U:
-        switch (connector.connectorType()) {
-          case BOOLEAN:
-            bU[pin].setConnector(connector);
-            break;
-          case DOUBLE:
-            dU[pin].setConnector(connector);
-            break;
-          default:
-            break;
-        }
+        u.setConnector(connector, pin);
         break;
       case Y:
-        switch (connector.connectorType()) {
-          case BOOLEAN:
-            bY[pin].setConnector(connector);
-            break;
-          case DOUBLE:
-            dY[pin].setConnector(connector);
-            break;
-          default:
-            break;
-        }
+        y.setConnector(connector, pin);
         break;
       case S:
-        switch (connector.connectorType()) {
-          case BOOLEAN:
-            bS[pin].setConnector(connector);
-            break;
-          case DOUBLE:
-            dS[pin].setConnector(connector);
-            break;
-          default:
-            break;
-        }
+        s.setConnector(connector, pin);
         break;
       default:
         break;
@@ -202,8 +151,7 @@ public abstract class BlockImpl extends ElementImpl implements Block {
   @Override
   public List<Block> getSourceBlock() {
     List<Block> blocks = new ArrayList<>();
-    // TODO add bool
-    for (Socket s : dU) {
+    for (Socket s : u.getSockets()) {
       Connector c = s.getConnector();
       if (c != null) {
         Block b = c.getSource();
@@ -218,8 +166,7 @@ public abstract class BlockImpl extends ElementImpl implements Block {
   @Override
   public List<Block> getTargetBlock() {
     List<Block> blocks = new ArrayList<>();
-    // TODO add bool
-    for (Socket s : dY) {
+    for (Socket s : y.getSockets()) {
       Connector c = s.getConnector();
       if (c != null) {
         Block b = c.getTarget();
@@ -231,6 +178,7 @@ public abstract class BlockImpl extends ElementImpl implements Block {
     return blocks;
   }
 
+  @Override
   public BlockInfo getBlockInfo() {
     return new BlockInfo(this);
   }
@@ -243,6 +191,60 @@ public abstract class BlockImpl extends ElementImpl implements Block {
     builder.append(super.toString());
     builder.append("]");
     return builder.toString();
+  }
+
+  class PortImpl implements Port {
+
+    public final BoolSocket[] b;
+    protected final DoubleSocket[] d;
+
+    public PortImpl(int sizeD, int sizeB) {
+      b = new BoolSocket[sizeB];
+      d = new DoubleSocket[sizeD];
+      for (int i = 0; i < sizeB; i++) {
+        b[i] = new BoolSocket(i, null);
+      }
+
+      for (int i = 0; i < sizeD; i++) {
+        d[i] = new DoubleSocket(i, null);
+      }
+    }
+
+    @Override
+    public BoolSocket[] getB() {
+      return b;
+    }
+
+    @Override
+    public DoubleSocket[] getD() {
+      return d;
+    }
+
+    @Override
+    public void setConnector(Connector connector, int pin) {
+      switch (connector.connectorType()) {
+        case BOOLEAN:
+          b[pin].setConnector(connector);
+          break;
+        case DOUBLE:
+          d[pin].setConnector(connector);
+          break;
+        default:
+          break;
+      }
+    }
+
+    @Override
+    public List<Socket> getSockets() {
+      List<Socket> res = new ArrayList<Socket>();
+      for (Socket s : b) {
+        res.add(s);
+      }
+      for (Socket s : d) {
+        res.add(s);
+      }
+      return res;
+    }
   }
 
 }

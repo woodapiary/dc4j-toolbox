@@ -35,9 +35,9 @@ public interface LayoutService {
 
   int createConnection(Integer id, String name, Integer fromId, Integer toId, Integer out, Integer in, DataType type);
 
-  List<Parameter> getBlockParameters(Integer blockId, boolean defaults);
+  List<Parameter> getBlockParameters(int blockId, boolean defaults);
 
-  void setBlockParameters(Integer blockId, List<Parameter> parameters);
+  void setBlockParameters(int blockId, List<Parameter> parameters);
 
   BlockInfo getBlockInfo(int blockId);
 }

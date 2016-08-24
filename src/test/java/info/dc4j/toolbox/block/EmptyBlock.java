@@ -44,12 +44,12 @@ public class EmptyBlock extends BlockImpl {
 
   @Override
   protected void eval() {
-    double u0 = dU[0].get();
-    boolean u1 = bU[0].get();
+    double u0 = u.getD()[0].get();
+    boolean u1 = u.getB()[0].get();
     double y0 = u0 * d;
     boolean y1 = u1 && b;
-    dY[0].set(y0);
-    bY[0].set(y1);
+    y.getD()[0].set(y0);
+    y.getB()[0].set(y1);
   }
 
   public void setD(double d) {

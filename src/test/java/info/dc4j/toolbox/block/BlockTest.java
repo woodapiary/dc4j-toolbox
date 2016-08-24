@@ -40,8 +40,8 @@ public class BlockTest {
     EmptyBlock block1 = new EmptyBlock(1, "block1");
     DoubleConnector u1 = new DoubleConnector(1, "in1", null, block1);
     DoubleConnector y1 = new DoubleConnector(2, "out1", block1, null);
-    block1.setConnector(u1, Block.Port.U, 0);
-    block1.setConnector(y1, Block.Port.Y, 0);
+    block1.setConnector(u1, Block.PortType.U, 0);
+    block1.setConnector(y1, Block.PortType.Y, 0);
     block1.run(0);
     assertEquals(0, u1.getValue(), delta);
     assertEquals(0, y1.getValue(), delta);
@@ -75,8 +75,8 @@ public class BlockTest {
     EmptyBlock block1 = new EmptyBlock(1, "block1");
     BoolConnector u1 = new BoolConnector(1, "in1", null, block1);
     BoolConnector y1 = new BoolConnector(2, "out1", block1, null);
-    block1.setConnector(u1, Block.Port.U, 0);
-    block1.setConnector(y1, Block.Port.Y, 0);
+    block1.setConnector(u1, Block.PortType.U, 0);
+    block1.setConnector(y1, Block.PortType.Y, 0);
     block1.run(0);
     assertFalse(u1.getValue());
     assertFalse(y1.getValue());

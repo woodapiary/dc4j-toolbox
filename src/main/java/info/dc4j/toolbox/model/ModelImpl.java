@@ -169,32 +169,13 @@ public class ModelImpl implements Model {
   }
 
   @Override
-  public List<Parameter> getBlockParameters(Integer blockId, boolean defaults) {
-    if (blockId != null) {
-      switch (blockId) {
-        case Model.MONITOR_ID:
-          return monitor.getParameters(defaults);
-        default:
-          return layout.getBlockParameters(blockId, defaults);
-      }
-    } else {
-      return layout.getBlockParameters(blockId, defaults);
-    }
+  public List<Parameter> getBlockParameters(int blockId, boolean defaults) {
+    return layout.getBlockParameters(blockId, defaults);
   }
 
   @Override
-  public void setBlockParameters(Integer blockId, List<Parameter> parameters) {
-    if (blockId != null) {
-      switch (blockId) {
-        case Model.MONITOR_ID:
-          monitor.setParameters(parameters);
-          break;
-        default:
-          layout.setBlockParameters(blockId, parameters);
-      }
-    } else {
-      layout.setBlockParameters(blockId, parameters);
-    }
+  public void setBlockParameters(int blockId, List<Parameter> parameters) {
+    layout.setBlockParameters(blockId, parameters);
   }
 
   @Override

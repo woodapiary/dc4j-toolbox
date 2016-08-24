@@ -60,11 +60,11 @@ public class Step extends BlockImpl {
 
   @Override
   protected void eval() {
-    double y = 0;
+    double y0 = 0;
     if (t >= t0) {
-      y = a;
+      y0 = a;
     }
-    dY[0].set(y);
+    y.getD()[0].set(y0);
   }
 
   @Override

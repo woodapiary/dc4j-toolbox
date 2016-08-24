@@ -38,9 +38,9 @@ public class SplitterTest {
     DoubleConnector u1 = new DoubleConnector(1, "in1", null, block1);
     DoubleConnector y1 = new DoubleConnector(2, "out1", block1, null);
     DoubleConnector y2 = new DoubleConnector(3, "out2", block1, null);
-    block1.setConnector(u1, Block.Port.U, 0);
-    block1.setConnector(y1, Block.Port.Y, 0);
-    block1.setConnector(y2, Block.Port.Y, 1);
+    block1.setConnector(u1, Block.PortType.U, 0);
+    block1.setConnector(y1, Block.PortType.Y, 0);
+    block1.setConnector(y2, Block.PortType.Y, 1);
     u1.setValue(2.0);
     for (int i = 1; i < 3000; i++) {
       block1.run(0);

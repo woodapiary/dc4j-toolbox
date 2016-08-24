@@ -38,8 +38,8 @@ public class PT1Test {
     PT1 block1 = new PT1(1, "block1");
     DoubleConnector u = new DoubleConnector(1, "in", null, block1);
     DoubleConnector y = new DoubleConnector(2, "out", block1, null);
-    block1.setConnector(u, Block.Port.U, 0);
-    block1.setConnector(y, Block.Port.Y, 0);
+    block1.setConnector(u, Block.PortType.U, 0);
+    block1.setConnector(y, Block.PortType.Y, 0);
     block1.setK(10);
     block1.setTf(2);
     u.setValue(1.0);

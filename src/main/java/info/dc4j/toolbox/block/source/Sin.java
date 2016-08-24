@@ -60,8 +60,8 @@ public class Sin extends BlockImpl {
 
   @Override
   protected void eval() {
-    double y = a * Math.sin(t * w);
-    dY[0].set(y);
+    double y0 = a * Math.sin(t * w);
+    y.getD()[0].set(y0);
   }
 
   @Override

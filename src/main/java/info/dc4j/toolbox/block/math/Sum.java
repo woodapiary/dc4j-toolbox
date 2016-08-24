@@ -48,10 +48,10 @@ public class Sum extends BlockImpl {
 
   @Override
   protected void eval() {
-    double u0 = dU[0].get();
-    double u1 = dU[1].get();
-    double y = u1 + u0;
-    dY[0].set(y);
+    double u0 =  u.getD()[0].get();
+    double u1 =  u.getD()[1].get();
+    double y0 = u0 + u1;
+    y.getD()[0].set(y0);;
   }
 
   @Override

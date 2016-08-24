@@ -32,9 +32,16 @@ import info.dc4j.toolbox.model.Runnable;
 
 public interface Block extends Element, Composite, Runnable, Parametrizable {
 
-  public enum Port {
+  public enum PortType {
     Y, U, S
   };
+
+  interface Port {
+    void setConnector(Connector connector, int pin);
+    List<Socket> getSockets();
+    public BoolSocket[] getB();
+    public DoubleSocket[] getD();
+  }
 
   public enum Type {
     USER, INTEGRATOR, PT1, GAIN, SUBSTRACT, SUM, SIN, STEP, SPLITTER_D, SPLITTER_B
@@ -52,7 +59,7 @@ public interface Block extends Element, Composite, Runnable, Parametrizable {
 
   boolean isOrdered();
 
-  void setConnector(Connector connector, Block.Port port, int pin);
+  void setConnector(Connector connector, Block.PortType port, int pin);
 
   BlockInfo getBlockInfo();
 

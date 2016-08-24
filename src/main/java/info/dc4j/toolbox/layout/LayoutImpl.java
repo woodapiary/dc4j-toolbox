@@ -64,24 +64,22 @@ public class LayoutImpl implements Layout {
     connectors.add(connector);
     mapConnectors.put(connector.getId(), connector);
     if (source != null && out != null) {
-      source.setConnector(connector, Block.Port.Y, out);
+      source.setConnector(connector, Block.PortType.Y, out);
     }
     if (target != null && in != null) {
-      target.setConnector(connector, Block.Port.U, in);
+      target.setConnector(connector, Block.PortType.U, in);
     }
     return connector.getId();
   }
 
   @Override
-  public List<Parameter> getBlockParameters(Integer blockId, boolean defaults) {
-    // TODO get all on null
+  public List<Parameter> getBlockParameters(int blockId, boolean defaults) {
     Block block = getBlock(blockId);
     return block.getParameters(defaults);
   }
 
   @Override
-  public void setBlockParameters(Integer blockId, List<Parameter> parameters) {
-    // TODO set all on null
+  public void setBlockParameters(int blockId, List<Parameter> parameters) {
     Block block = getBlock(blockId);
     block.setParameters(parameters);
   }

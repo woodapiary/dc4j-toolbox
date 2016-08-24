@@ -39,9 +39,9 @@ public class SubstractTest {
     DoubleConnector u1 = new DoubleConnector(1, "in1", null, block1);
     DoubleConnector u2 = new DoubleConnector(3, "in2", null, block1);
     DoubleConnector y = new DoubleConnector(2, "out", block1, null);
-    block1.setConnector(u1, Block.Port.U, 0);
-    block1.setConnector(u2, Block.Port.U, 1);
-    block1.setConnector(y, Block.Port.Y, 0);
+    block1.setConnector(u1, Block.PortType.U, 0);
+    block1.setConnector(u2, Block.PortType.U, 1);
+    block1.setConnector(y, Block.PortType.Y, 0);
     u1.setValue(4.0);
     u2.setValue(1.0);
     for (int i = 1; i < 3000; i++) {
