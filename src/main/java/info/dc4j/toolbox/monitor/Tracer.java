@@ -28,7 +28,7 @@ import info.dc4j.toolbox.connector.Connector;
 
 public interface Tracer {
 
-  public enum Type {
+  enum Type {
     CONSOLE, MEMORY
   }
 
@@ -41,3 +41,4 @@ public interface Tracer {
   Tracer.Type tracerType();
 
 }
+

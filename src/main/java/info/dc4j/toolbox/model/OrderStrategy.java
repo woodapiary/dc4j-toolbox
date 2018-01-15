@@ -28,7 +28,7 @@ import info.dc4j.toolbox.block.Block;
 
 public interface OrderStrategy {
 
-  public enum Type {
+  enum Type {
     BY_INSERT, BY_WAVE
   }
 

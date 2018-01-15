@@ -67,10 +67,10 @@ public class LayoutImpl implements Layout {
   @Override
   public int createConnection(int id, String name, Integer fromId, Integer toId, Integer out, Integer in,
       DataType type) {
-    return createConnection(id, name, fromId, toId, out, in, type);
+    return createConnection1(id, name, fromId, toId, out, in, type);
   }
 
-  private int createConnection(Integer id, String name, Integer fromId, Integer toId, Integer out, Integer in,
+  private int createConnection1(Integer id, String name, Integer fromId, Integer toId, Integer out, Integer in,
       DataType type) {
     Block source = fromId != null ? getBlock(fromId) : null;
     Block target = toId != null ? getBlock(toId) : null;
@@ -88,7 +88,7 @@ public class LayoutImpl implements Layout {
 
   @Override
   public int createConnection(String name, Integer fromId, Integer toId, Integer out, Integer in, DataType type) {
-    return createConnection(null, name, fromId, toId, out, in, type);
+    return createConnection1(null, name, fromId, toId, out, in, type);
   }
 
   @Override
@@ -145,6 +145,5 @@ public class LayoutImpl implements Layout {
     builder.append("]");
     return builder.toString();
   }
-
 
 }

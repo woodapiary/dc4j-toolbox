@@ -200,29 +200,29 @@ public abstract class BlockImpl extends ElementImpl implements Block {
     private final Socket[] d;
     private final List<Socket> sockets;
 
-    public PortImpl(int sizeD, int sizeB) {
+    PortImpl(int sizeD, int sizeB) {
       b = new Socket[sizeB];
       d = new Socket[sizeD];
       sockets = new ArrayList<Socket>();
       for (int i = 0; i < sizeB; i++) {
-        b[i] = Model.getFactory().createSocket(i, null,DataType.BOOLEAN);
+        b[i] = Model.getFactory().createSocket(i, null, DataType.BOOLEAN);
         sockets.add(b[i]);
       }
 
       for (int i = 0; i < sizeD; i++) {
-        d[i] = Model.getFactory().createSocket(i, null,DataType.DOUBLE);
+        d[i] = Model.getFactory().createSocket(i, null, DataType.DOUBLE);
         sockets.add(d[i]);
       }
     }
 
     @Override
     public BoolSocket getB(int i) {
-      return (BoolSocket)b[i];
+      return (BoolSocket) b[i];
     }
 
     @Override
     public DoubleSocket getD(int i) {
-      return (DoubleSocket)d[i];
+      return (DoubleSocket) d[i];
     }
 
     @Override

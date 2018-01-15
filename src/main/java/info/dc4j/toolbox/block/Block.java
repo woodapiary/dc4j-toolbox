@@ -32,18 +32,21 @@ import info.dc4j.toolbox.model.Runnable;
 
 public interface Block extends Element, Composite, Runnable, Parametrizable {
 
-  public enum PortType {
+  enum PortType {
     Y, U, S
   };
 
   interface Port {
     void setConnector(Connector connector, int pin);
+
     List<Socket> getSockets();
+
     BoolSocket getB(int i);
+
     DoubleSocket getD(int i);
   }
 
-  public enum Type {
+  enum Type {
     USER, INTEGRATOR, PT1, GAIN, SUBSTRACT, SUM, SIN, STEP, SPLITTER_D, SPLITTER_B
   }
 

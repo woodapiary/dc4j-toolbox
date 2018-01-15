@@ -46,7 +46,7 @@ package info.dc4j.toolbox.element;
 
 public interface Element {
 
-  public enum Type {
+  enum Type {
     MONITOR, BLOCK, CONNECTOR, UNIT, SOCKET
   }
 

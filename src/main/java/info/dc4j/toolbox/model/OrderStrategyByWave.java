@@ -46,6 +46,11 @@ public class OrderStrategyByWave implements OrderStrategy {
     level++;
     setLevelOnNewBlocksInPointer(level);
     delAllTargetOrderedBlocksFromPointer(countOp);
+
+    do {
+      countOp = 0;
+    } while (countOp > 0);
+
     do {
       do {
         countOp = 0;
