@@ -70,6 +70,11 @@ public class LayoutImpl implements Layout {
     return createConnection1(id, name, fromId, toId, out, in, type);
   }
 
+  @Override
+  public int createConnection(String name, Integer fromId, Integer toId, Integer out, Integer in, DataType type) {
+    return createConnection1(null, name, fromId, toId, out, in, type);
+  }
+
   private int createConnection1(Integer id, String name, Integer fromId, Integer toId, Integer out, Integer in,
       DataType type) {
     Block source = fromId != null ? getBlock(fromId) : null;
@@ -86,10 +91,6 @@ public class LayoutImpl implements Layout {
     return connector.getId();
   }
 
-  @Override
-  public int createConnection(String name, Integer fromId, Integer toId, Integer out, Integer in, DataType type) {
-    return createConnection1(null, name, fromId, toId, out, in, type);
-  }
 
   @Override
   public List<Parameter> getBlockParameters(int blockId, boolean defaults) {
