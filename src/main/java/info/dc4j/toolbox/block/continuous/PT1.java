@@ -1,5 +1,6 @@
 /**
- * The MIT License
+ * The MIT License (MIT)
+ *
  * Copyright (c) 2002-2016 dc4j.info
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -9,16 +10,16 @@
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 package info.dc4j.toolbox.block.continuous;
 
@@ -32,11 +33,11 @@ import info.dc4j.toolbox.element.Parameter;
 
 public class PT1 extends BlockImpl {
 
-  public static final String DESC = "first order lowpass filter";
+  private static final String DESC = "first order lowpass filter";
 
   public enum P {
     K, TF
-  };
+  }
 
   public interface Size {
     int U_D = 1;
@@ -55,22 +56,23 @@ public class PT1 extends BlockImpl {
 
   public PT1(int id, String name) {
     super(id, name, Size.U_D, Size.Y_D, Size.U_B, Size.Y_B, Size.S_D, Size.S_B);
+    setDesc(DESC);
   }
 
   @Override
   protected void eval() {
-    double u0 = u.getD(0).get();
-    double s0 = s.getD(0).get();
-    double ku = k / (1 + tf / dt);
-    double ks = 1 / (1 + dt / tf);
-    double y0 = ks * s0 + ku * u0;
+    final double u0 = u.getD(0).get();
+    final double s0 = s.getD(0).get();
+    final double ku = k / (1 + tf / dt);
+    final double ks = 1 / (1 + dt / tf);
+    final double y0 = ks * s0 + ku * u0;
     y.getD(0).set(y0);
     s.getD(0).set(y0);
   }
 
   @Override
   public void setParameters(List<Parameter> params) {
-    for (Parameter param : params) {
+    for (final Parameter param : params) {
       switch (P.valueOf(param.getName())) {
         case K:
           k = param.getDouble();
@@ -86,7 +88,7 @@ public class PT1 extends BlockImpl {
 
   @Override
   public List<Parameter> getParameters(boolean defaults) {
-    List<Parameter> data = new ArrayList<>();
+    final List<Parameter> data = new ArrayList<>();
     if (!defaults) {
       data.add(new Parameter(getId(), P.K.name(), DataType.DOUBLE, k));
       data.add(new Parameter(getId(), P.TF.name(), DataType.DOUBLE, tf));

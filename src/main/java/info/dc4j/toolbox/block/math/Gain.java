@@ -1,5 +1,6 @@
 /**
- * The MIT License
+ * The MIT License (MIT)
+ *
  * Copyright (c) 2002-2016 dc4j.info
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -9,16 +10,16 @@
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 package info.dc4j.toolbox.block.math;
 
@@ -36,7 +37,7 @@ public class Gain extends BlockImpl {
 
   public enum P {
     K
-  };
+  }
 
   public interface Size {
     int U_D = 1;
@@ -58,8 +59,8 @@ public class Gain extends BlockImpl {
 
   @Override
   protected void eval() {
-    double u0 = u.getD(0).get();
-    double y0 = k * u0;
+    final double u0 = u.getD(0).get();
+    final double y0 = k * u0;
     y.getD(0).set(y0);
   }
 
@@ -70,7 +71,7 @@ public class Gain extends BlockImpl {
 
   @Override
   public List<Parameter> getParameters(boolean defaults) {
-    List<Parameter> data = new ArrayList<>();
+    final List<Parameter> data = new ArrayList<>();
     if (!defaults) {
       data.add(new Parameter(getId(), P.K.name(), DataType.DOUBLE, k));
     }
@@ -79,7 +80,7 @@ public class Gain extends BlockImpl {
 
   @Override
   public void setParameters(List<Parameter> params) {
-    for (Parameter param : params) {
+    for (final Parameter param : params) {
       switch (P.valueOf(param.getName())) {
         case K:
           k = param.getDouble();

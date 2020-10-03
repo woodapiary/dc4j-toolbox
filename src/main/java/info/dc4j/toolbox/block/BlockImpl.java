@@ -1,5 +1,6 @@
 /**
- * The MIT License
+ * The MIT License (MIT)
+ *
  * Copyright (c) 2002-2016 dc4j.info
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -9,16 +10,16 @@
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 package info.dc4j.toolbox.block;
 
@@ -151,11 +152,11 @@ public abstract class BlockImpl extends ElementImpl implements Block {
 
   @Override
   public List<Block> getSourceBlock() {
-    List<Block> blocks = new ArrayList<>();
-    for (Socket s : u.getSockets()) {
-      Connector c = s.getConnector();
+    final List<Block> blocks = new ArrayList<>();
+    for (final Socket s : u.getSockets()) {
+      final Connector c = s.getConnector();
       if (c != null) {
-        Block b = c.getSource();
+        final Block b = c.getSource();
         if (b != null) {
           blocks.add(b);
         }
@@ -166,11 +167,11 @@ public abstract class BlockImpl extends ElementImpl implements Block {
 
   @Override
   public List<Block> getTargetBlock() {
-    List<Block> blocks = new ArrayList<>();
-    for (Socket s : y.getSockets()) {
-      Connector c = s.getConnector();
+    final List<Block> blocks = new ArrayList<>();
+    for (final Socket s : y.getSockets()) {
+      final Connector c = s.getConnector();
       if (c != null) {
-        Block b = c.getTarget();
+        final Block b = c.getTarget();
         if (b != null) {
           blocks.add(b);
         }
@@ -186,7 +187,7 @@ public abstract class BlockImpl extends ElementImpl implements Block {
 
   @Override
   public String toString() {
-    StringBuilder builder = new StringBuilder();
+    final StringBuilder builder = new StringBuilder();
     builder.append("BlockImpl [order=");
     builder.append(order);
     builder.append(super.toString());
@@ -203,7 +204,7 @@ public abstract class BlockImpl extends ElementImpl implements Block {
     PortImpl(int sizeD, int sizeB) {
       b = new Socket[sizeB];
       d = new Socket[sizeD];
-      sockets = new ArrayList<Socket>();
+      sockets = new ArrayList<>();
       for (int i = 0; i < sizeB; i++) {
         b[i] = Model.getFactory().createSocket(i, null, DataType.BOOLEAN);
         sockets.add(b[i]);
