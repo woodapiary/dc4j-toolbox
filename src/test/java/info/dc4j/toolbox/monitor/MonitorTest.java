@@ -38,14 +38,14 @@ public class MonitorTest {
 
   @Test
   public void test01() {
-    MonitorImpl monitor = new MonitorImpl(null);
-    EmptyBlock block1 = new EmptyBlock(1, "block1");
-    DoubleConnector u1 = new DoubleConnector(1, "in1", null, block1);
-    DoubleConnector y1 = new DoubleConnector(2, "out1", block1, null);
+    final MonitorImpl monitor = new MonitorImpl(null);
+    final EmptyBlock block1 = new EmptyBlock(1, "block1");
+    final DoubleConnector u1 = new DoubleConnector(1, "in1", null, block1);
+    final DoubleConnector y1 = new DoubleConnector(2, "out1", block1, null);
     block1.setConnector(u1, Block.PortType.U, 0);
     block1.setConnector(y1, Block.PortType.Y, 0);
-    BoolConnector u2 = new BoolConnector(1, "in2", null, block1);
-    BoolConnector y2 = new BoolConnector(2, "out2", block1, null);
+    final BoolConnector u2 = new BoolConnector(1, "in2", null, block1);
+    final BoolConnector y2 = new BoolConnector(2, "out2", block1, null);
     block1.setConnector(u2, Block.PortType.U, 0);
     block1.setConnector(y2, Block.PortType.Y, 0);
     monitor.setMonitoredConnector(u1);
@@ -66,14 +66,14 @@ public class MonitorTest {
 
   @Test
   public void test02() {
-    MonitorImpl monitor = new MonitorImpl(null);
-    EmptyBlock block1 = new EmptyBlock(1, "block1");
-    DoubleConnector u1 = new DoubleConnector(1, "in1", null, block1);
-    DoubleConnector y1 = new DoubleConnector(2, "out1", block1, null);
+    final MonitorImpl monitor = new MonitorImpl(null);
+    final EmptyBlock block1 = new EmptyBlock(1, "block1");
+    final DoubleConnector u1 = new DoubleConnector(1, "in1", null, block1);
+    final DoubleConnector y1 = new DoubleConnector(2, "out1", block1, null);
     block1.setConnector(u1, Block.PortType.U, 0);
     block1.setConnector(y1, Block.PortType.Y, 0);
-    BoolConnector u2 = new BoolConnector(1, "in2", null, block1);
-    BoolConnector y2 = new BoolConnector(2, "out2", block1, null);
+    final BoolConnector u2 = new BoolConnector(1, "in2", null, block1);
+    final BoolConnector y2 = new BoolConnector(2, "out2", block1, null);
     block1.setConnector(u2, Block.PortType.U, 0);
     block1.setConnector(y2, Block.PortType.Y, 0);
     monitor.setMonitoredConnector(u1);

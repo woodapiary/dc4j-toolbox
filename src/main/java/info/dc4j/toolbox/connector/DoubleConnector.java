@@ -28,7 +28,7 @@ import info.dc4j.toolbox.element.DataType;
 
 public class DoubleConnector extends ConnectorImpl {
 
-  public DoubleConnector(int id, String name, Block source, Block target) {
+  public DoubleConnector(final int id, final String name, final Block source, final Block target) {
     super(id, name, source, target);
     setValue(0.0);
   }

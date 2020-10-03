@@ -40,9 +40,9 @@ public class GainTest {
 
   @Test
   public void test01() {
-    Gain block1 = new Gain(1, "block1");
-    DoubleConnector u = new DoubleConnector(1, "in", null, block1);
-    DoubleConnector y = new DoubleConnector(2, "out", block1, null);
+    final Gain block1 = new Gain(1, "block1");
+    final DoubleConnector u = new DoubleConnector(1, "in", null, block1);
+    final DoubleConnector y = new DoubleConnector(2, "out", block1, null);
     block1.setConnector(u, Block.PortType.U, 0);
     block1.setConnector(y, Block.PortType.Y, 0);
     u.setValue(2.0);

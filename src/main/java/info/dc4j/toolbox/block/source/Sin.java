@@ -54,7 +54,7 @@ public class Sin extends BlockImpl {
   private double a = aDefault;
   private double w = wDefault;
 
-  public Sin(int id, String name) {
+  public Sin(final int id, final String name) {
     super(id, name, Size.U_D, Size.Y_D, Size.U_B, Size.Y_B, Size.S_D, Size.S_B);
     setDesc(DESC);
   }
@@ -71,7 +71,7 @@ public class Sin extends BlockImpl {
   }
 
   @Override
-  public List<Parameter> getParameters(boolean defaults) {
+  public List<Parameter> getParameters(final boolean defaults) {
     final List<Parameter> data = new ArrayList<>();
     if (!defaults) {
       data.add(new Parameter(getId(), P.A.name(), DataType.DOUBLE, a));
@@ -81,7 +81,7 @@ public class Sin extends BlockImpl {
   }
 
   @Override
-  public void setParameters(List<Parameter> params) {
+  public void setParameters(final List<Parameter> params) {
     for (final Parameter param : params) {
       switch (P.valueOf(param.getName())) {
         case A:
@@ -96,11 +96,11 @@ public class Sin extends BlockImpl {
     }
   }
 
-  protected void setA(double a) {
+  protected void setA(final double a) {
     this.a = a;
   }
 
-  protected void setW(double w) {
+  protected void setW(final double w) {
     this.w = w;
   }
 

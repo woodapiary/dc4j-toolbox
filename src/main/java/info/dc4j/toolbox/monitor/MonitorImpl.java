@@ -40,17 +40,17 @@ public class MonitorImpl implements Monitor {
   protected double dt = Model.DT;
   protected double t;
 
-  public MonitorImpl(Layout layout) {
+  public MonitorImpl(final Layout layout) {
     this.layout = layout;
   }
 
   @Override
-  public void setMonitoredConnector(int connectorId) {
-    Connector connector = layout.getConnector(connectorId);
+  public void setMonitoredConnector(final int connectorId) {
+    final Connector connector = layout.getConnector(connectorId);
     connectors.add(connector);
   }
 
-  protected void setMonitoredConnector(Connector connector) {
+  protected void setMonitoredConnector(final Connector connector) {
     connectors.add(connector);
   }
 
@@ -61,7 +61,7 @@ public class MonitorImpl implements Monitor {
   }
 
   @Override
-  public void setTracer(Tracer.Type type) {
+  public void setTracer(final Tracer.Type type) {
     tracers.add(Model.getFactory().createTracer(type));
   }
 
@@ -71,9 +71,9 @@ public class MonitorImpl implements Monitor {
     return null;
   }
 
-  private void trace(long step, double t, List<Connector> conn) {
-    if (step % traceLevel == 0 || step == 0) {
-      for (Tracer tracer : tracers) {
+  private void trace(final long step, final double t, final List<Connector> conn) {
+    if (((step % traceLevel) == 0) || (step == 0)) {
+      for (final Tracer tracer : tracers) {
         tracer.trace(step, t, conn != null ? conn : connectors);
       }
     }
@@ -83,7 +83,7 @@ public class MonitorImpl implements Monitor {
   public void init() {
     t = 0;
     step = 0;
-    for (Tracer tracer : tracers) {
+    for (final Tracer tracer : tracers) {
       tracer.clear();
     }
   }
@@ -91,7 +91,7 @@ public class MonitorImpl implements Monitor {
   @Override
   public List<TraceData> getTraceData() {
     List<TraceData> res = null;
-    for (Tracer tracer : tracers) {
+    for (final Tracer tracer : tracers) {
       res = tracer.getTraceData();
       if (res != null) {
         break;
@@ -101,14 +101,14 @@ public class MonitorImpl implements Monitor {
   }
 
   @Override
-  public void run(double maxTime) {
+  public void run(final double maxTime) {
     t = t + dt;
     step++;
     trace(getStep(), getT(), null);
   }
 
   @Override
-  public void setScanTime(double dt) {
+  public void setScanTime(final double dt) {
     this.dt = dt;
   }
 
@@ -127,18 +127,18 @@ public class MonitorImpl implements Monitor {
     return step;
   }
 
-  protected void setTraceLevel(int traceLevel) {
+  protected void setTraceLevel(final int traceLevel) {
     this.traceLevel = traceLevel;
   }
 
   @Override
-  public List<Parameter> getParameters(boolean defaults) {
+  public List<Parameter> getParameters(final boolean defaults) {
     // TODO Auto-generated method stub
     return null;
   }
 
   @Override
-  public void setParameters(List<Parameter> params) {
+  public void setParameters(final List<Parameter> params) {
     // TODO Auto-generated method stub
 
   }

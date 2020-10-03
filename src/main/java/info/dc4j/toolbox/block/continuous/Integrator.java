@@ -52,7 +52,7 @@ public class Integrator extends BlockImpl {
 
   private double ti = tiDefault;
 
-  public Integrator(int id, String name) {
+  public Integrator(final int id, final String name) {
     super(id, name, Size.U_D, Size.Y_D, Size.U_B, Size.Y_B, Size.S_D, Size.S_B);
     setDesc(DESC);
   }
@@ -61,12 +61,12 @@ public class Integrator extends BlockImpl {
   protected void eval() {
     final double u0 = u.getD(0).get();
     final double s0 = s.getD(0).get();
-    final double y0 = u0 * dt / ti + s0;
+    final double y0 = ((u0 * dt) / ti) + s0;
     s.getD(0).set(y0);
     y.getD(0).set(y0);
   }
 
-  protected void setTi(double ti) {
+  protected void setTi(final double ti) {
     this.ti = ti;
   }
 
@@ -80,7 +80,7 @@ public class Integrator extends BlockImpl {
   }
 
   @Override
-  public List<Parameter> getParameters(boolean defaults) {
+  public List<Parameter> getParameters(final boolean defaults) {
     final List<Parameter> data = new ArrayList<>();
     if (!defaults) {
       data.add(new Parameter(getId(), P.TI.name(), DataType.DOUBLE, ti));
@@ -89,7 +89,7 @@ public class Integrator extends BlockImpl {
   }
 
   @Override
-  public void setParameters(List<Parameter> params) {
+  public void setParameters(final List<Parameter> params) {
     for (final Parameter param : params) {
       switch (P.valueOf(param.getName())) {
         case TI:

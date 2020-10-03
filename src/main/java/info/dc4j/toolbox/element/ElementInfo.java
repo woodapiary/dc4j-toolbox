@@ -29,7 +29,7 @@ public class ElementInfo {
   private final String name;
   private final String desc;
 
-  public ElementInfo(Element element) {
+  public ElementInfo(final Element element) {
     this.id = element.getId();
     this.name = element.getName();
     this.desc = element.getDesc();

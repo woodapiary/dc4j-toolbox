@@ -40,8 +40,8 @@ public class SinTest {
 
   @Test
   public void test01() {
-    Sin block1 = new Sin(1, "block1");
-    DoubleConnector y = new DoubleConnector(2, "out", block1, null);
+    final Sin block1 = new Sin(1, "block1");
+    final DoubleConnector y = new DoubleConnector(2, "out", block1, null);
     block1.setConnector(y, Block.PortType.Y, 0);
     block1.setA(2.0);
     block1.setW(1.0);

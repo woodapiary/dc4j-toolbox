@@ -31,12 +31,12 @@ import info.dc4j.toolbox.connector.Connector;
 public class ConsoleTracer implements Tracer {
 
   @Override
-  public void trace(long step, double t, List<Connector> connectors) {
+  public void trace(final long step, final double t, final List<Connector> connectors) {
     System.out.printf("%tT  ", new Date());
     System.out.printf("%07d  ", step);
     System.out.printf("t=");
     System.out.printf("%-5.3f  ", t);
-    for (Connector conn : connectors) {
+    for (final Connector conn : connectors) {
       System.out.printf("%5.4s", conn.getName());
       System.out.printf("=");
       switch (conn.connectorType()) {

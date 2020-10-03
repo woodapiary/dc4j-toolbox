@@ -28,7 +28,7 @@ import info.dc4j.toolbox.element.DataType;
 
 public class BoolConnector extends ConnectorImpl {
 
-  public BoolConnector(int id, String name, Block source, Block target) {
+  public BoolConnector(final int id, final String name, final Block source, final Block target) {
     super(id, name, source, target);
     setValue(false);
   }

@@ -49,74 +49,74 @@ public class LayoutImpl implements Layout {
   }
 
   @Override
-  public int createBlock(int id, String name, Block.Type type) {
+  public int createBlock(final int id, final String name, final Block.Type type) {
     return createBlock(id, name, type, null);
   }
 
-  private int createBlock(Integer id, String name, Block.Type type, Object param) {
-    Block block = Model.getFactory().createBlock(id, name, type, param);
+  private int createBlock(final Integer id, final String name, final Block.Type type, final Object param) {
+    final Block block = Model.getFactory().createBlock(id, name, type, param);
     blocks.add(block);
     mapBlocks.put(block.getId(), block);
     return block.getId();
   }
 
   @Override
-  public int createBlock(String name, Type type) {
+  public int createBlock(final String name, final Type type) {
     return createBlock(null, name, type, null);
   }
 
   @Override
-  public int createConnection(int id, String name, Integer fromId, Integer toId, Integer out, Integer in,
-      DataType type) {
+  public int createConnection(final int id, final String name, final Integer fromId, final Integer toId,
+      final Integer out, final Integer in, final DataType type) {
     return createConnection1(id, name, fromId, toId, out, in, type);
   }
 
   @Override
-  public int createConnection(String name, Integer fromId, Integer toId, Integer out, Integer in, DataType type) {
+  public int createConnection(final String name, final Integer fromId, final Integer toId, final Integer out,
+      final Integer in, final DataType type) {
     return createConnection1(null, name, fromId, toId, out, in, type);
   }
 
-  private int createConnection1(Integer id, String name, Integer fromId, Integer toId, Integer out, Integer in,
-      DataType type) {
-    Block source = fromId != null ? getBlock(fromId) : null;
-    Block target = toId != null ? getBlock(toId) : null;
-    Connector connector = Model.getFactory().createConnector(id, name, source, target, type);
+  private int createConnection1(final Integer id, final String name, final Integer fromId, final Integer toId,
+      final Integer out, final Integer in, final DataType type) {
+    final Block source = fromId != null ? getBlock(fromId) : null;
+    final Block target = toId != null ? getBlock(toId) : null;
+    final Connector connector = Model.getFactory().createConnector(id, name, source, target, type);
     connectors.add(connector);
     mapConnectors.put(connector.getId(), connector);
-    if (source != null && out != null) {
+    if ((source != null) && (out != null)) {
       source.setConnector(connector, Block.PortType.Y, out);
     }
-    if (target != null && in != null) {
+    if ((target != null) && (in != null)) {
       target.setConnector(connector, Block.PortType.U, in);
     }
     return connector.getId();
   }
 
-
   @Override
-  public List<Parameter> getBlockParameters(int blockId, boolean defaults) {
-    Block block = getBlock(blockId);
+  public List<Parameter> getBlockParameters(final int blockId, final boolean defaults) {
+    final Block block = getBlock(blockId);
     return block.getParameters(defaults);
   }
 
   @Override
-  public void setBlockParameters(int blockId, List<Parameter> parameters) {
-    Block block = getBlock(blockId);
+  public void setBlockParameters(final int blockId, final List<Parameter> parameters) {
+    final Block block = getBlock(blockId);
     block.setParameters(parameters);
   }
 
   @Override
-  public Connector getConnector(int id) {
+  public Connector getConnector(final int id) {
     return mapConnectors.get(id);
   }
 
   @Override
-  public Block getBlock(int id) {
+  public Block getBlock(final int id) {
     return mapBlocks.get(id);
   }
 
   @Override
-  public BlockInfo getBlockInfo(int id) {
+  public BlockInfo getBlockInfo(final int id) {
     return mapBlocks.get(id).getBlockInfo();
   }
 
@@ -132,7 +132,7 @@ public class LayoutImpl implements Layout {
 
   @Override
   public String toString() {
-    StringBuilder builder = new StringBuilder();
+    final StringBuilder builder = new StringBuilder();
     builder.append("LayoutImpl [");
     if (blocks != null) {
       builder.append("blocks=");

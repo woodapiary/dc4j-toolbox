@@ -42,4 +42,3 @@ public interface Tracer {
   Tracer.Type tracerType();
 
 }
-

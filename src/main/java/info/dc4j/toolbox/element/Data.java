@@ -32,7 +32,7 @@ public class Data implements Serializable {
   private final DataType type;
   private final Object value;
 
-  public Data(int id, DataType type, Object value) {
+  public Data(final int id, final DataType type, final Object value) {
     if (type == null) {
       throw new IllegalArgumentException("type is null");
     }

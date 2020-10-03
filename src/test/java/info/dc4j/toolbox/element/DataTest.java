@@ -74,7 +74,7 @@ public class DataTest {
   @Test
   public void test08() {
     data = new Data(1, DataType.INTEGER, 1);
-    long val = 1;
+    final long val = 1;
     assertEquals(val, (long) data.getInteger());
   }
 
@@ -87,7 +87,7 @@ public class DataTest {
   @Test
   public void test10() {
     data = new Data(1, DataType.STRING, "test");
-    long val = 1;
+    final long val = 1;
     assertEquals(val, data.getId());
     assertEquals(DataType.STRING, data.getType());
     assertEquals("test", data.getValue());

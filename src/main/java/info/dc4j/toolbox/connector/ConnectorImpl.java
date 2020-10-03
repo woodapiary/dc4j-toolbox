@@ -35,7 +35,7 @@ public abstract class ConnectorImpl extends ElementImpl implements Connector {
   private final Block target;
   private Object value;
 
-  public ConnectorImpl(int id, String name, Block source, Block target) {
+  public ConnectorImpl(final int id, final String name, final Block source, final Block target) {
     super(id, name);
     this.source = source;
     this.target = target;
@@ -47,7 +47,7 @@ public abstract class ConnectorImpl extends ElementImpl implements Connector {
   }
 
   @Override
-  public void setValue(Object value) {
+  public void setValue(final Object value) {
     if (value == null) {
       throw new IllegalArgumentException("value is null");
     }
@@ -59,8 +59,8 @@ public abstract class ConnectorImpl extends ElementImpl implements Connector {
 
   @Override
   public String getCanonicalName() {
-    String sourceName = (source != null) ? source.getCanonicalName() : "source";
-    String targetName = (target != null) ? target.getCanonicalName() : "target";
+    final String sourceName = (source != null) ? source.getCanonicalName() : "source";
+    final String targetName = (target != null) ? target.getCanonicalName() : "target";
     return sourceName + "/" + getName() + "/" + targetName;
   }
 
@@ -86,7 +86,7 @@ public abstract class ConnectorImpl extends ElementImpl implements Connector {
 
   @Override
   public String toString() {
-    StringBuilder builder = new StringBuilder();
+    final StringBuilder builder = new StringBuilder();
     builder.append("Connector [");
     if (source != null) {
       builder.append("source=");

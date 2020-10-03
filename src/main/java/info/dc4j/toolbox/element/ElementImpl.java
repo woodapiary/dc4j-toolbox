@@ -29,7 +29,7 @@ public abstract class ElementImpl implements Element {
   private String name;
   private String desc;
 
-  public ElementImpl(int id, String name) {
+  public ElementImpl(final int id, final String name) {
     this.id = id;
     if (name == null) {
       this.name = elementType().name() + "-" + ((Integer) id).toString();
@@ -50,7 +50,7 @@ public abstract class ElementImpl implements Element {
   }
 
   @Override
-  public void setName(String name) {
+  public void setName(final String name) {
     if (name == null) {
       throw new IllegalArgumentException("name must be not null");
     }
@@ -63,7 +63,7 @@ public abstract class ElementImpl implements Element {
   }
 
   @Override
-  public void setDesc(String desc) {
+  public void setDesc(final String desc) {
     this.desc = desc;
   }
 

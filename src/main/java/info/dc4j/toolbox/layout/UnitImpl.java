@@ -34,21 +34,21 @@ public class UnitImpl extends ElementImpl implements Unit {
   private final List<Composite> blocks = new ArrayList<>();
   private Composite host;
 
-  public UnitImpl(int id, String name) {
+  public UnitImpl(final int id, final String name) {
     super(id, name);
   }
 
   @Override
-  public void addBlock(Composite block) {
+  public void addBlock(final Composite block) {
     blocks.add(block);
     block.setHost(this);
   }
 
   @Override
   public List<Composite> getTreeBlocks() {
-    List<Composite> res = new ArrayList<>();
-    for (Composite block : blocks) {
-      List<Composite> childList = block.getTreeBlocks();
+    final List<Composite> res = new ArrayList<>();
+    for (final Composite block : blocks) {
+      final List<Composite> childList = block.getTreeBlocks();
       if (childList == null) {
         res.add(block);
       } else {
@@ -70,7 +70,7 @@ public class UnitImpl extends ElementImpl implements Unit {
   }
 
   @Override
-  public void setHost(Composite host) {
+  public void setHost(final Composite host) {
     this.host = host;
   }
 

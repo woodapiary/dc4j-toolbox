@@ -42,16 +42,16 @@ public class Sum extends BlockImpl {
     int S_B = 0;
   }
 
-  public Sum(int id, String name) {
+  public Sum(final int id, final String name) {
     super(id, name, Size.U_D, Size.Y_D, Size.U_B, Size.Y_B, Size.S_D, Size.S_B);
     setDesc(DESC);
   }
 
   @Override
   protected void eval() {
-    double u0 = u.getD(0).get();
-    double u1 = u.getD(1).get();
-    double y0 = u0 + u1;
+    final double u0 = u.getD(0).get();
+    final double u1 = u.getD(1).get();
+    final double y0 = u0 + u1;
     y.getD(0).set(y0);
   }
 
@@ -61,12 +61,12 @@ public class Sum extends BlockImpl {
   }
 
   @Override
-  public List<Parameter> getParameters(boolean defaults) {
+  public List<Parameter> getParameters(final boolean defaults) {
     return null;
   }
 
   @Override
-  public void setParameters(List<Parameter> params) {
+  public void setParameters(final List<Parameter> params) {
     throw new IllegalArgumentException("wrong parameter");
   }
 

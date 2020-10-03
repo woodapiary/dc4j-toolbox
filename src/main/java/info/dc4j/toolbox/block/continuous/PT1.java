@@ -54,7 +54,7 @@ public class PT1 extends BlockImpl {
   private double k = kDefault;
   private double tf = tDefault;
 
-  public PT1(int id, String name) {
+  public PT1(final int id, final String name) {
     super(id, name, Size.U_D, Size.Y_D, Size.U_B, Size.Y_B, Size.S_D, Size.S_B);
     setDesc(DESC);
   }
@@ -63,15 +63,15 @@ public class PT1 extends BlockImpl {
   protected void eval() {
     final double u0 = u.getD(0).get();
     final double s0 = s.getD(0).get();
-    final double ku = k / (1 + tf / dt);
-    final double ks = 1 / (1 + dt / tf);
-    final double y0 = ks * s0 + ku * u0;
+    final double ku = k / (1 + (tf / dt));
+    final double ks = 1 / (1 + (dt / tf));
+    final double y0 = (ks * s0) + (ku * u0);
     y.getD(0).set(y0);
     s.getD(0).set(y0);
   }
 
   @Override
-  public void setParameters(List<Parameter> params) {
+  public void setParameters(final List<Parameter> params) {
     for (final Parameter param : params) {
       switch (P.valueOf(param.getName())) {
         case K:
@@ -87,7 +87,7 @@ public class PT1 extends BlockImpl {
   }
 
   @Override
-  public List<Parameter> getParameters(boolean defaults) {
+  public List<Parameter> getParameters(final boolean defaults) {
     final List<Parameter> data = new ArrayList<>();
     if (!defaults) {
       data.add(new Parameter(getId(), P.K.name(), DataType.DOUBLE, k));
@@ -96,11 +96,11 @@ public class PT1 extends BlockImpl {
     return data;
   }
 
-  protected void setK(double k) {
+  protected void setK(final double k) {
     this.k = k;
   }
 
-  protected void setTf(double tf) {
+  protected void setTf(final double tf) {
     this.tf = tf;
   }
 

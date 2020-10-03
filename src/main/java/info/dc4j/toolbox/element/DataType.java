@@ -31,7 +31,7 @@ public enum DataType {
 
   private static final String ALL_TYPES_STRING = Arrays.toString(DataType.values());
 
-  public static DataType getType(Class<?> clazz) {
+  public static DataType getType(final Class<?> clazz) {
     final String className = clazz.getSimpleName().toUpperCase();
     if (ALL_TYPES_STRING.contains(className)) {
       return DataType.valueOf(className);

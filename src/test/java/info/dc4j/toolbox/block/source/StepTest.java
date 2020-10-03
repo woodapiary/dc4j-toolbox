@@ -40,8 +40,8 @@ public class StepTest {
 
   @Test
   public void test01() {
-    Step block1 = new Step(1, "block1");
-    DoubleConnector y = new DoubleConnector(2, "out", block1, null);
+    final Step block1 = new Step(1, "block1");
+    final DoubleConnector y = new DoubleConnector(2, "out", block1, null);
     block1.setConnector(y, Block.PortType.Y, 0);
     block1.setA(2.0);
     block1.setT0(1.0);

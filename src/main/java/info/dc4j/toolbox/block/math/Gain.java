@@ -52,7 +52,7 @@ public class Gain extends BlockImpl {
 
   private double k = kDefault;
 
-  public Gain(int id, String name) {
+  public Gain(final int id, final String name) {
     super(id, name, Size.U_D, Size.Y_D, Size.U_B, Size.Y_B, Size.S_D, Size.S_B);
     setDesc(DESC);
   }
@@ -70,7 +70,7 @@ public class Gain extends BlockImpl {
   }
 
   @Override
-  public List<Parameter> getParameters(boolean defaults) {
+  public List<Parameter> getParameters(final boolean defaults) {
     final List<Parameter> data = new ArrayList<>();
     if (!defaults) {
       data.add(new Parameter(getId(), P.K.name(), DataType.DOUBLE, k));
@@ -79,7 +79,7 @@ public class Gain extends BlockImpl {
   }
 
   @Override
-  public void setParameters(List<Parameter> params) {
+  public void setParameters(final List<Parameter> params) {
     for (final Parameter param : params) {
       switch (P.valueOf(param.getName())) {
         case K:
@@ -91,7 +91,7 @@ public class Gain extends BlockImpl {
     }
   }
 
-  protected void setK(double k) {
+  protected void setK(final double k) {
     this.k = k;
   }
 

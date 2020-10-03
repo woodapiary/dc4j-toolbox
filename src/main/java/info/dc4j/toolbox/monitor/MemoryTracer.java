@@ -33,7 +33,7 @@ public class MemoryTracer implements Tracer {
   private final List<TraceData> result = new ArrayList<>();
 
   @Override
-  public void trace(long step, double t, List<Connector> connectors) {
+  public void trace(final long step, final double t, final List<Connector> connectors) {
     final TraceData line = new TraceData(step, t);
     result.add(line);
     for (final Connector connector : connectors) {

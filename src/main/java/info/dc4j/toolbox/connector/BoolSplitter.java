@@ -42,7 +42,7 @@ public class BoolSplitter extends BlockImpl {
     int S_B = 0;
   }
 
-  public BoolSplitter(int id, String name) {
+  public BoolSplitter(final int id, final String name) {
     super(id, name, Size.U_D, Size.Y_D, Size.U_B, Size.Y_B, Size.S_D, Size.S_B);
     setDesc(DESC);
   }
@@ -62,12 +62,12 @@ public class BoolSplitter extends BlockImpl {
   }
 
   @Override
-  public List<Parameter> getParameters(boolean defaults) {
+  public List<Parameter> getParameters(final boolean defaults) {
     return null;
   }
 
   @Override
-  public void setParameters(List<Parameter> params) {
+  public void setParameters(final List<Parameter> params) {
     throw new IllegalArgumentException("wrong parameter");
   }
 

@@ -40,10 +40,10 @@ public class SubstractTest {
 
   @Test
   public void test01() {
-    Subtract block1 = new Subtract(1, "block1");
-    DoubleConnector u1 = new DoubleConnector(1, "in1", null, block1);
-    DoubleConnector u2 = new DoubleConnector(3, "in2", null, block1);
-    DoubleConnector y = new DoubleConnector(2, "out", block1, null);
+    final Subtract block1 = new Subtract(1, "block1");
+    final DoubleConnector u1 = new DoubleConnector(1, "in1", null, block1);
+    final DoubleConnector u2 = new DoubleConnector(3, "in2", null, block1);
+    final DoubleConnector y = new DoubleConnector(2, "out", block1, null);
     block1.setConnector(u1, Block.PortType.U, 0);
     block1.setConnector(u2, Block.PortType.U, 1);
     block1.setConnector(y, Block.PortType.Y, 0);

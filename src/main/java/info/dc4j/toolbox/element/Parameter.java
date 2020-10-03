@@ -29,7 +29,7 @@ public class Parameter extends Data {
 
   private final String name;
 
-  public Parameter(int id, String name, DataType type, Object value) {
+  public Parameter(final int id, final String name, final DataType type, final Object value) {
     super(id, type, value);
     if (name == null) {
       throw new IllegalArgumentException("name is null");

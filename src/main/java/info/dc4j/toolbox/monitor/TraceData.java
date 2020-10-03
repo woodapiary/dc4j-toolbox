@@ -36,7 +36,7 @@ public class TraceData implements Serializable {
   private final double t;
   private final List<Data> indicators = new ArrayList<>();
 
-  public TraceData(long step, double t) {
+  public TraceData(final long step, final double t) {
     this.step = step;
     this.t = t;
   }
@@ -53,7 +53,7 @@ public class TraceData implements Serializable {
     return indicators;
   }
 
-  public void addIndicator(Data indicator) {
+  public void addIndicator(final Data indicator) {
     indicators.add(indicator);
   }
 
