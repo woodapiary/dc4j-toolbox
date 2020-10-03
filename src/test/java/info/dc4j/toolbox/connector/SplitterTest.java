@@ -25,6 +25,7 @@ package info.dc4j.toolbox.connector;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import info.dc4j.toolbox.block.Block;
@@ -33,12 +34,13 @@ public class SplitterTest {
 
   double delta = 0.005;
 
+  @Ignore
   @Test
   public void test01() {
-    DoubleSplitter block1 = new DoubleSplitter(1, "block1");
-    DoubleConnector u1 = new DoubleConnector(1, "in1", null, block1);
-    DoubleConnector y1 = new DoubleConnector(2, "out1", block1, null);
-    DoubleConnector y2 = new DoubleConnector(3, "out2", block1, null);
+    final DoubleSplitter block1 = new DoubleSplitter(1, "block1");
+    final DoubleConnector u1 = new DoubleConnector(1, "in1", null, block1);
+    final DoubleConnector y1 = new DoubleConnector(2, "out1", block1, null);
+    final DoubleConnector y2 = new DoubleConnector(3, "out2", block1, null);
     block1.setConnector(u1, Block.PortType.U, 0);
     block1.setConnector(y1, Block.PortType.Y, 0);
     block1.setConnector(y2, Block.PortType.Y, 1);
