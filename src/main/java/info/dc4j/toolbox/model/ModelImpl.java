@@ -41,17 +41,17 @@ public class ModelImpl extends Model {
   private double t;
   private long step;
 
-  protected ModelImpl(Layout layout, Monitor monitor) {
+  protected ModelImpl(final Layout layout, final Monitor monitor) {
     this.layout = layout;
     this.monitor = monitor;
   }
 
   @Override
-  public void run(double maxTime) {
+  public void run(final double maxTime) {
     while (t < maxTime) {
       step++;
       t = t + dt;
-      for (Runnable block : layout.getBlocks()) {
+      for (final Runnable block : layout.getBlocks()) {
         block.run(maxTime);
       }
       monitor.run(maxTime);
@@ -59,12 +59,12 @@ public class ModelImpl extends Model {
   }
 
   @Override
-  public void setScanTime(double dt) {
+  public void setScanTime(final double dt) {
     if (dt <= 0) {
       throw new IllegalArgumentException("dt must be over zero");
     }
     this.dt = dt;
-    for (Runnable block : layout.getBlocks()) {
+    for (final Runnable block : layout.getBlocks()) {
       block.setScanTime(dt);
     }
     monitor.setScanTime(dt);
@@ -79,7 +79,7 @@ public class ModelImpl extends Model {
   public void init() {
     t = 0;
     step = 0;
-    for (Runnable block : layout.getBlocks()) {
+    for (final Runnable block : layout.getBlocks()) {
       block.init();
     }
     monitor.init();
@@ -97,13 +97,13 @@ public class ModelImpl extends Model {
 
   @Override
   public void build() {
-    List<Block> list = layout.getBlocks();
-    OrderStrategy strategy = Model.getFactory().createOrderStrategy(Model.ORDER_STRAREGY_TYPE);
+    final List<Block> list = layout.getBlocks();
+    final OrderStrategy strategy = Model.getFactory().createOrderStrategy(Model.ORDER_STRAREGY_TYPE);
     strategy.execute(list);
     check();
     Collections.sort(list, new Comparator<Block>() {
       @Override
-      public int compare(Block o1, Block o2) {
+      public int compare(final Block o1, final Block o2) {
         return ((Integer) o1.getOrder()).compareTo(o2.getOrder());
       }
     });
@@ -111,7 +111,7 @@ public class ModelImpl extends Model {
   }
 
   private void check() {
-    for (Block block : layout.getBlocks()) {
+    for (final Block block : layout.getBlocks()) {
       if (!block.isOrdered()) {
         throw new IllegalStateException("no order for block: " + block.getCanonicalName());
       }

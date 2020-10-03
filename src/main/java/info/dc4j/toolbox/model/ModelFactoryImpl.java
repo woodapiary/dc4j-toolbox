@@ -57,7 +57,7 @@ public class ModelFactoryImpl implements ModelFactory {
   }
 
   @Override
-  public Block createBlock(Integer id, String name, Block.Type type, Object param) {
+  public Block createBlock(Integer id, final String name, final Block.Type type, final Object param) {
     if (id == null) {
       id = seq.getBlockId();
     }
@@ -100,12 +100,13 @@ public class ModelFactoryImpl implements ModelFactory {
   }
 
   @Override
-  public Block createUserBlock(Integer id, String name, Object param) {
+  public Block createUserBlock(final Integer id, final String name, final Object param) {
     throw new IllegalArgumentException("no user blocks");
   }
 
   @Override
-  public Connector createConnector(Integer id, String name, Block source, Block target, DataType type) {
+  public Connector createConnector(Integer id, final String name, final Block source, final Block target,
+      final DataType type) {
     if (id == null) {
       id = seq.getConnectorId();
     }
@@ -124,7 +125,7 @@ public class ModelFactoryImpl implements ModelFactory {
   }
 
   @Override
-  public Tracer createTracer(Tracer.Type type) {
+  public Tracer createTracer(final Tracer.Type type) {
     Tracer tracer = null;
     switch (type) {
       case CONSOLE:
@@ -140,7 +141,7 @@ public class ModelFactoryImpl implements ModelFactory {
   }
 
   @Override
-  public OrderStrategy createOrderStrategy(OrderStrategy.Type type) {
+  public OrderStrategy createOrderStrategy(final OrderStrategy.Type type) {
     OrderStrategy orderStrategy = null;
     switch (type) {
       case BY_INSERT:
@@ -157,14 +158,14 @@ public class ModelFactoryImpl implements ModelFactory {
 
   @Override
   public Model createModel() {
-    Layout layout = new LayoutImpl();
-    Monitor monitor = new MonitorImpl(layout);
-    Model model = new ModelImpl(layout, monitor);
+    final Layout layout = new LayoutImpl();
+    final Monitor monitor = new MonitorImpl(layout);
+    final Model model = new ModelImpl(layout, monitor);
     return model;
   }
 
   public static ModelFactory getInstanse() {
-    ModelFactory factory = new ModelFactoryImpl();
+    final ModelFactory factory = new ModelFactoryImpl();
     return factory;
   }
 
@@ -185,7 +186,7 @@ public class ModelFactoryImpl implements ModelFactory {
   }
 
   @Override
-  public Socket createSocket(int id, String name, DataType type) {
+  public Socket createSocket(final int id, final String name, final DataType type) {
     Socket socket = null;
     switch (type) {
       case BOOLEAN:

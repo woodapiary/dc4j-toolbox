@@ -37,7 +37,7 @@ public class OrderStrategyByWave implements OrderStrategy {
   private int level = 0;
 
   @Override
-  public void execute(List<Block> layoutBlocks) {
+  public void execute(final List<Block> layoutBlocks) {
     int countOp = 0;
     int flagOut = 0;
     level = 0;
@@ -70,7 +70,7 @@ public class OrderStrategyByWave implements OrderStrategy {
   }
 
   private int addStartedBlocksToPointer(int count) {
-    for (Block pointer : snapPointers) {
+    for (final Block pointer : snapPointers) {
       if (getCountSource(pointer) == 0) {
         count = addBlockToPointer(count, pointer);
       }
@@ -80,9 +80,9 @@ public class OrderStrategyByWave implements OrderStrategy {
   }
 
   private int addTargetWhichAllSourceOrderedToPointer(int count) {
-    for (Block pointer : snapPointers) {
-      List<Block> targets = pointer.getTargetBlock();
-      for (Block target : targets) {
+    for (final Block pointer : snapPointers) {
+      final List<Block> targets = pointer.getTargetBlock();
+      for (final Block target : targets) {
         if (isAllSourceOrdered(target)) {
           count = addBlockToPointer(count, target);
         }
@@ -94,9 +94,9 @@ public class OrderStrategyByWave implements OrderStrategy {
 
   private int addAllNoOrderedTargetsToPointer() {
     int count = 0;
-    for (Block pointer : snapPointers) {
-      List<Block> targets = pointer.getTargetBlock();
-      for (Block target : targets) {
+    for (final Block pointer : snapPointers) {
+      final List<Block> targets = pointer.getTargetBlock();
+      for (final Block target : targets) {
         if (isNoNullSourceOrdered(target)) {
           count = addBlockToPointer(count, target);
         }
@@ -107,7 +107,7 @@ public class OrderStrategyByWave implements OrderStrategy {
   }
 
   private int delAllTargetOrderedBlocksFromPointer(int count) {
-    for (Block block : snapPointers) {
+    for (final Block block : snapPointers) {
       if (isAllTargetOrdered(block)) {
         pointers.remove(block);
         count++;
@@ -117,47 +117,47 @@ public class OrderStrategyByWave implements OrderStrategy {
     return count;
   }
 
-  private boolean isAllSourceOrdered(Block b) {
-    List<Block> blocks = b.getSourceBlock();
+  private boolean isAllSourceOrdered(final Block b) {
+    final List<Block> blocks = b.getSourceBlock();
     if (blocks.size() == 0) {
       return false;
     }
     boolean res = true;
-    for (Block block : blocks) {
+    for (final Block block : blocks) {
       res = res && block.isOrdered();
     }
     return res;
   }
 
-  private int getCountSource(Block b) {
+  private int getCountSource(final Block b) {
     return b.getSourceBlock().size();
   }
 
-  private boolean isNoNullSourceOrdered(Block b) {
-    List<Block> blocks = b.getSourceBlock();
+  private boolean isNoNullSourceOrdered(final Block b) {
+    final List<Block> blocks = b.getSourceBlock();
     if (blocks.size() == 0) {
       return false;
     }
     boolean res = false;
-    for (Block block : blocks) {
+    for (final Block block : blocks) {
       res = res || block.isOrdered();
     }
     return res;
   }
 
-  private boolean isAllTargetOrdered(Block b) {
-    List<Block> blocks = b.getTargetBlock();
+  private boolean isAllTargetOrdered(final Block b) {
+    final List<Block> blocks = b.getTargetBlock();
     if (blocks.size() == 0) {
       return true;
     }
     boolean res = true;
-    for (Block block : blocks) {
+    for (final Block block : blocks) {
       res = res && block.isOrdered();
     }
     return res;
   }
 
-  private int addBlockToPointer(int count, Block block) {
+  private int addBlockToPointer(int count, final Block block) {
     if (!block.isOrdered() && !pointers.contains(block)) {
       pointers.add(block);
       count++;
@@ -165,24 +165,24 @@ public class OrderStrategyByWave implements OrderStrategy {
     return count;
   }
 
-  private void setLevelOnNewBlocksInPointer(int level) {
-    for (Block pointer : pointers) {
+  private void setLevelOnNewBlocksInPointer(final int level) {
+    for (final Block pointer : pointers) {
       if (!pointer.isOrdered()) {
         pointer.setOrder(level);
       }
     }
   }
 
-  private void snapPointers(List<Block> blocks) {
+  private void snapPointers(final List<Block> blocks) {
     snapPointers = new ArrayList<>(blocks);
   }
 
-  private void printf(String str) {
+  private void printf(final String str) {
     if (DEBUG) {
       System.out.print(str + ": pointer=  ");
       System.out.print(level);
       System.out.print(" -> ");
-      for (Block pointer : pointers) {
+      for (final Block pointer : pointers) {
         System.out.print(pointer.getName() + ", ");
       }
       System.out.println();

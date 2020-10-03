@@ -34,7 +34,7 @@ public abstract class Model implements ModelService {
     return factory;
   }
 
-  public static void setFactory(ModelFactory f) {
+  public static void setFactory(final ModelFactory f) {
     factory = f;
   }
 

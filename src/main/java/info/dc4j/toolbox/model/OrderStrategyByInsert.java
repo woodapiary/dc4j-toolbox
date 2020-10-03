@@ -32,10 +32,10 @@ public class OrderStrategyByInsert implements OrderStrategy {
   private List<Block> layoutBlocks;
 
   @Override
-  public void execute(List<Block> blocks) {
+  public void execute(final List<Block> blocks) {
     int level = 0;
     this.layoutBlocks = blocks;
-    for (Block block : layoutBlocks) {
+    for (final Block block : layoutBlocks) {
       level++;
       block.setOrder(level);
     }
@@ -43,7 +43,7 @@ public class OrderStrategyByInsert implements OrderStrategy {
   }
 
   private void check() {
-    for (Block block : layoutBlocks) {
+    for (final Block block : layoutBlocks) {
       if (!block.isOrdered()) {
         throw new IllegalStateException("no order for block: " + block.getCanonicalName());
       }

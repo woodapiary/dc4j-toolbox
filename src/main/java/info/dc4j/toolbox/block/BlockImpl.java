@@ -44,7 +44,8 @@ public abstract class BlockImpl extends ElementImpl implements Block {
   protected double t;
   private int order;
 
-  public BlockImpl(int id, String name, int sizeUd, int sizeYd, int sizeUb, int sizeYb, int sizeSd, int sizeSb) {
+  public BlockImpl(final int id, final String name, final int sizeUd, final int sizeYd, final int sizeUb,
+      final int sizeYb, final int sizeSd, final int sizeSb) {
     super(id, name);
     y = new PortImpl(sizeYd, sizeYb);
     u = new PortImpl(sizeUd, sizeUb);
@@ -53,7 +54,7 @@ public abstract class BlockImpl extends ElementImpl implements Block {
   }
 
   @Override
-  public void setConnector(Connector connector, Block.PortType port, int pin) {
+  public void setConnector(final Connector connector, final Block.PortType port, final int pin) {
     switch (port) {
       case U:
         u.setConnector(connector, pin);
@@ -72,7 +73,7 @@ public abstract class BlockImpl extends ElementImpl implements Block {
   protected abstract void eval();
 
   @Override
-  public void run(double maxTime) {
+  public void run(final double maxTime) {
     step++;
     t = t + dt;
     eval();
@@ -92,7 +93,7 @@ public abstract class BlockImpl extends ElementImpl implements Block {
   }
 
   @Override
-  public void setScanTime(double dt) {
+  public void setScanTime(final double dt) {
     if (dt <= 0) {
       throw new IllegalArgumentException("dt must be over zero");
     }
@@ -110,7 +111,7 @@ public abstract class BlockImpl extends ElementImpl implements Block {
   }
 
   @Override
-  public void setHost(Composite host) {
+  public void setHost(final Composite host) {
     this.host = host;
   }
 
@@ -136,7 +137,7 @@ public abstract class BlockImpl extends ElementImpl implements Block {
   }
 
   @Override
-  public void setOrder(int order) {
+  public void setOrder(final int order) {
     this.order = order;
   }
 
@@ -201,7 +202,7 @@ public abstract class BlockImpl extends ElementImpl implements Block {
     private final Socket[] d;
     private final List<Socket> sockets;
 
-    PortImpl(int sizeD, int sizeB) {
+    PortImpl(final int sizeD, final int sizeB) {
       b = new Socket[sizeB];
       d = new Socket[sizeD];
       sockets = new ArrayList<>();
@@ -217,17 +218,17 @@ public abstract class BlockImpl extends ElementImpl implements Block {
     }
 
     @Override
-    public BoolSocket getB(int i) {
+    public BoolSocket getB(final int i) {
       return (BoolSocket) b[i];
     }
 
     @Override
-    public DoubleSocket getD(int i) {
+    public DoubleSocket getD(final int i) {
       return (DoubleSocket) d[i];
     }
 
     @Override
-    public void setConnector(Connector connector, int pin) {
+    public void setConnector(final Connector connector, final int pin) {
       switch (connector.connectorType()) {
         case BOOLEAN:
           b[pin].setConnector(connector);

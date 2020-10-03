@@ -50,7 +50,7 @@ public class EmptyBlock extends BlockImpl {
   private double d = kDefault;
   private boolean b = bDefault;
 
-  public EmptyBlock(int id, String name) {
+  public EmptyBlock(final int id, final String name) {
     super(id, name, Size.U_D, Size.Y_D, Size.U_B, Size.Y_B, Size.S_D, Size.S_B);
     setDesc(DESC);
   }
@@ -65,11 +65,11 @@ public class EmptyBlock extends BlockImpl {
     y.getB(0).set(y1);
   }
 
-  public void setD(double d) {
+  public void setD(final double d) {
     this.d = d;
   }
 
-  public void setB(boolean b) {
+  public void setB(final boolean b) {
     this.b = b;
   }
 
@@ -79,13 +79,13 @@ public class EmptyBlock extends BlockImpl {
   }
 
   @Override
-  public List<Parameter> getParameters(boolean defaults) {
+  public List<Parameter> getParameters(final boolean defaults) {
     // TODO Auto-generated method stub
     return null;
   }
 
   @Override
-  public void setParameters(List<Parameter> params) {
+  public void setParameters(final List<Parameter> params) {
     // TODO Auto-generated method stub
 
   }

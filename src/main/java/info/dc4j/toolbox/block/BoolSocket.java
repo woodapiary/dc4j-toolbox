@@ -28,7 +28,7 @@ import info.dc4j.toolbox.element.DataType;
 
 public class BoolSocket extends SocketImpl {
 
-  public BoolSocket(int id, String name) {
+  public BoolSocket(final int id, final String name) {
     super(id, name);
     set(false);
   }

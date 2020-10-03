@@ -28,7 +28,7 @@ import info.dc4j.toolbox.element.DataType;
 
 public class DoubleSocket extends SocketImpl {
 
-  public DoubleSocket(int id, String name) {
+  public DoubleSocket(final int id, final String name) {
     super(id, name);
     set(0.0);
   }

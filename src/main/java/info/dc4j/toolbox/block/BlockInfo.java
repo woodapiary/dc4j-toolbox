@@ -30,7 +30,7 @@ public class BlockInfo {
   private final ElementInfo element;
   private final int order;
 
-  public BlockInfo(Block block) {
+  public BlockInfo(final Block block) {
     element = block.getElementInfo();
     this.order = block.getOrder();
   }

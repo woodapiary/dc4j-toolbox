@@ -33,13 +33,13 @@ public abstract class SocketImpl extends ElementImpl implements Socket {
   private Connector connector;
   private Object value;
 
-  public SocketImpl(int id, String name) {
+  public SocketImpl(final int id, final String name) {
     super(id, name);
   }
 
   @Override
-  public void setConnector(Connector connector) {
-    if (connector != null && socketType() != connector.connectorType()) {
+  public void setConnector(final Connector connector) {
+    if ((connector != null) && (socketType() != connector.connectorType())) {
       throw new IllegalArgumentException("bad type of connector");
     }
     if (this.connector == null) {
@@ -51,14 +51,14 @@ public abstract class SocketImpl extends ElementImpl implements Socket {
 
   @Override
   public Object get() {
-    if (connector == null || connector.getValue() == null) {
+    if ((connector == null) || (connector.getValue() == null)) {
       return value;
     }
     return connector.getValue();
   }
 
   @Override
-  public void set(Object value) {
+  public void set(final Object value) {
     if (value == null) {
       throw new IllegalArgumentException("value is null");
     }
